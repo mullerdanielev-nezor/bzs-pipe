@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pipe Work Kft — Referenciák, 5 mobilbarát extrém koncepció</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700;900&family=Inter:wght@400;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{font-family:'Inter',sans-serif; background:#0f0d0a; color:#f4f1ea;}
+
+  header.intro{max-width:1180px; margin:0 auto; padding:56px 28px 32px; border-bottom:1px solid #2a2620;}
+  .eyebrow{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#ffd400; font-weight:700; margin:0 0 14px;}
+  h1{font-family:'Oswald',sans-serif; font-weight:600; font-size:clamp(26px,3.6vw,38px); margin:0 0 14px; text-transform:uppercase; letter-spacing:0.5px; color:#fff;}
+  .lede{font-size:15px; line-height:1.6; color:#a9a294; max-width:66ch; margin:0;}
+
+  nav.jump{position:sticky; top:0; z-index:50; background:#0f0d0a; border-bottom:1px solid #2a2620; overflow-x:auto; white-space:nowrap; padding:12px 28px;}
+  nav.jump a{font-size:12.5px; color:#a9a294; text-decoration:none; margin-right:20px;}
+  nav.jump a:hover{color:#ffd400;}
+
+  .shell{max-width:1180px; margin:0 auto; padding:44px 28px 100px; display:flex; flex-direction:column; gap:72px;}
+  .entry-name{font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:#a9a294; font-weight:700;}
+  .entry-rationale{font-size:13.5px; color:#a9a294; max-width:70ch; line-height:1.5; margin:6px 0 14px;}
+  .wrap{border-radius:6px; overflow:hidden; border:1px solid #2a2620; box-shadow:0 24px 50px -24px rgba(0,0,0,0.7); background:#151310;}
+  footer.note{max-width:1180px; margin:24px auto 0; padding:28px 28px 0; border-top:1px solid #2a2620; font-size:13px; color:#a9a294; line-height:1.6;}
+
+  /* =========================================================
+     01 — SWIPE KÁRTYAKÖTEG
+  ========================================================= */
+  .g1{height:440px; position:relative; display:flex; align-items:center; justify-content:center; touch-action:pan-y;}
+  .g1-card{position:absolute; width:280px; height:340px; border-radius:14px; overflow:hidden; box-shadow:0 20px 40px -14px rgba(0,0,0,0.6); transition:transform 0.35s ease, opacity 0.35s ease; cursor:grab;}
+  .g1-card img{width:100%; height:100%; object-fit:cover; display:block; pointer-events:none;}
+  .g1-card .tag{position:absolute; bottom:0; left:0; right:0; padding:16px; background:linear-gradient(0deg, rgba(0,0,0,0.75), transparent); font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:13px; letter-spacing:0.5px; color:#fff;}
+  .g1-arrows{position:absolute; bottom:14px; left:50%; transform:translateX(-50%); display:flex; gap:14px; z-index:10;}
+  .g1-btn{width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.06); color:#fff; font-size:20px; cursor:pointer;}
+  .g1-btn:hover{background:#ffd400; color:#1a1712;}
+  .g1-hint{position:absolute; top:16px; left:50%; transform:translateX(-50%); font-family:'Oswald',sans-serif; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#a9a294; background:rgba(0,0,0,0.4); padding:5px 12px; border-radius:999px;}
+
+  /* =========================================================
+     02 — STORY MÓD (tap navigáció, progress sávok)
+  ========================================================= */
+  .g2{height:480px; position:relative; background:#000;}
+  .g2-bars{position:absolute; top:12px; left:12px; right:12px; display:flex; gap:5px; z-index:5;}
+  .g2-bar{flex:1; height:3px; background:rgba(255,255,255,0.3); border-radius:2px; overflow:hidden;}
+  .g2-bar i{display:block; height:100%; width:0%; background:#ffd400;}
+  .g2-bar.done i{width:100%;}
+  .g2-slide{position:absolute; inset:0; opacity:0; transition:opacity 0.2s ease;}
+  .g2-slide.active{opacity:1;}
+  .g2-slide img{width:100%; height:100%; object-fit:cover;}
+  .g2-cap{position:absolute; bottom:24px; left:24px; right:24px; z-index:5;}
+  .g2-cap b{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:18px; color:#fff; display:block;}
+  .g2-cap span{font-family:'Inter',sans-serif; font-size:12px; color:#ffd400;}
+  .g2-tap{position:absolute; top:0; bottom:0; width:50%; z-index:4;}
+  .g2-tap.left{left:0;} .g2-tap.right{right:0;}
+
+  /* =========================================================
+     03 — SCROLL-PARALLAX REVEAL RÁCS
+  ========================================================= */
+  .g3{padding:48px 32px; display:grid; grid-template-columns:repeat(3,1fr); gap:40px 16px;}
+  .g3-cell{opacity:0; transform:translateY(40px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .g3-cell.in{opacity:1; transform:translateY(0);}
+  .g3-cell:nth-child(3n+2){margin-top:36px;}
+  .g3-cell img{width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:8px; display:block;}
+  .g3-cell span{display:block; margin-top:8px; font-family:'Oswald',sans-serif; font-size:11.5px; text-transform:uppercase; letter-spacing:0.5px; color:#a9a294;}
+
+  /* =========================================================
+     04 — TAP-TO-EXPAND HARMONIKA CSEMPÉK
+  ========================================================= */
+  .g4{display:flex; gap:8px; height:420px; padding:20px;}
+  .g4-tile{position:relative; border-radius:10px; overflow:hidden; cursor:pointer; flex:1; transition:flex 0.45s cubic-bezier(.2,.8,.2,1);}
+  .g4-tile.active{flex:5;}
+  .g4-tile img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .g4-tile .scrim{position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,0.7), transparent 55%);}
+  .g4-tile .label{position:absolute; bottom:14px; left:14px; right:10px; font-family:'Oswald',sans-serif; text-transform:uppercase; color:#fff; font-size:12px; letter-spacing:0.5px; writing-mode:vertical-rl; text-orientation:mixed;}
+  .g4-tile.active .label{writing-mode:horizontal-tb; font-size:15px;}
+  .g4-tile .count{position:absolute; top:12px; left:14px; font-family:'Inter',sans-serif; font-size:11px; color:#ffd400; opacity:0; transition:opacity 0.3s ease;}
+  .g4-tile.active .count{opacity:1;}
+
+  /* =========================================================
+     05 — 3D COVERFLOW KÖRHINTA
+  ========================================================= */
+  .g5{height:400px; position:relative; display:flex; align-items:center; justify-content:center; perspective:1000px; touch-action:pan-y;}
+  .g5-stage{position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center; transform-style:preserve-3d;}
+  .g5-card{position:absolute; width:220px; height:280px; border-radius:10px; overflow:hidden; box-shadow:0 20px 40px -16px rgba(0,0,0,0.6); transition:transform 0.45s ease, opacity 0.45s ease, filter 0.45s ease;}
+  .g5-card img{width:100%; height:100%; object-fit:cover; display:block;}
+  .g5-nav{position:absolute; bottom:14px; left:50%; transform:translateX(-50%); display:flex; gap:14px; z-index:10;}
+
+  @media (max-width:760px){
+    .g1-card{width:220px; height:280px;}
+    .g3{grid-template-columns:repeat(2,1fr);}
+    .g3-cell:nth-child(3n+2){margin-top:0;}
+    .g3-cell:nth-child(2n){margin-top:28px;}
+    .g4{flex-wrap:nowrap; overflow-x:auto; height:320px;}
+    .g4-tile{flex:0 0 60px;}
+    .g4-tile.active{flex:0 0 240px;}
+    .g5-card{width:160px; height:210px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="eyebrow">Pipe Work Kft — Referenciák</p>
+  <h1>5 mobilbarát, ütős koncepció</h1>
+  <p class="lede">Ugyanaz a merész irány, de kurzor nélkül is teljes értékű — érintéssel, koppintással, görgetéssel működnek, nem hoveren múlnak. Próbáld ki egérrel is, érintőképernyőn is.</p>
+</header>
+
+<nav class="jump">
+  <a href="#g1">01 Swipe kártyaköteg</a>
+  <a href="#g2">02 Story mód</a>
+  <a href="#g3">03 Scroll-parallax reveal</a>
+  <a href="#g4">04 Tap-to-expand csempék</a>
+  <a href="#g5">05 3D coverflow körhinta</a>
+</nav>
+
+<div class="shell">
+
+  <article id="g1">
+    <span class="entry-name">01 · Swipe kártyaköteg</span>
+    <p class="entry-rationale">Egymásra pakolt kártyák — húzd oldalra (egérrel vagy ujjal) vagy koppints a nyilakra. Tinder-szerű, azonnal ismerős gesztus mindenkinek, teljesen touch-natív.</p>
+    <div class="wrap g1" id="g1demo">
+      <span class="g1-hint">Húzd oldalra ↔</span>
+      <div class="g1-card" data-i="0" style="z-index:5;"><img src="images/site/referencia/thumb/lapostetos-01.jpg"><div class="tag">Lapostető szigetelés</div></div>
+      <div class="g1-card" data-i="1" style="z-index:4;"><img src="images/site/referencia/thumb/badogozas-02.jpg"><div class="tag">Bádogozás &amp; szegélyezés</div></div>
+      <div class="g1-card" data-i="2" style="z-index:3;"><img src="images/site/referencia/thumb/erkely-01.jpg"><div class="tag">Erkély &amp; terasz</div></div>
+      <div class="g1-card" data-i="3" style="z-index:2;"><img src="images/site/referencia/thumb/ipari-01.jpg"><div class="tag">Ipari fémlemez tetőfedés</div></div>
+      <div class="g1-card" data-i="4" style="z-index:1;"><img src="images/site/referencia/thumb/alapozas-01.jpg"><div class="tag">Alapozás &amp; pinceszigetelés</div></div>
+      <div class="g1-arrows">
+        <button class="g1-btn" id="g1prev">&#8249;</button>
+        <button class="g1-btn" id="g1next">&#8250;</button>
+      </div>
+    </div>
+  </article>
+
+  <article id="g2">
+    <span class="entry-name">02 · Story mód (Instagram Stories-szerű)</span>
+    <p class="entry-rationale">Koppints a kép bal/jobb felére a lapozáshoz, felül idővonal-sávok mutatják a haladást — mobilon a legismerősebb, legszórakoztatóbb böngészési mód, amit már mindenki ösztönösen tud kezelni.</p>
+    <div class="wrap g2" id="g2demo">
+      <div class="g2-bars" id="g2bars"></div>
+      <div class="g2-slide active"><img src="images/site/referencia/thumb/lapostetos-07.jpg"></div>
+      <div class="g2-slide"><img src="images/site/referencia/thumb/badogozas-05.jpg"></div>
+      <div class="g2-slide"><img src="images/site/referencia/thumb/erkely-02.jpg"></div>
+      <div class="g2-slide"><img src="images/site/referencia/thumb/lapostetos-19.jpg"></div>
+      <div class="g2-tap left" id="g2left"></div>
+      <div class="g2-tap right" id="g2right"></div>
+      <div class="g2-cap"><b id="g2title">Lapostető szigetelés</b><span id="g2count">01 / 04</span></div>
+    </div>
+  </article>
+
+  <article id="g3">
+    <span class="entry-name">03 · Scroll-parallax reveal rács</span>
+    <p class="entry-rationale">Csak görgetés kell — a képek lágyan, lépcsőzetesen úsznak be, ahogy a képernyőre érnek, eltolt (staggered) rácspozíciókkal. Görgesd le ezt a szakaszt.</p>
+    <div class="wrap g3" id="g3demo">
+      <div class="g3-cell"><img src="images/site/referencia/thumb/lapostetos-01.jpg"><span>Lapostető</span></div>
+      <div class="g3-cell"><img src="images/site/referencia/thumb/badogozas-02.jpg"><span>Bádogozás</span></div>
+      <div class="g3-cell"><img src="images/site/referencia/thumb/erkely-01.jpg"><span>Erkély</span></div>
+      <div class="g3-cell"><img src="images/site/referencia/thumb/lapostetos-13.jpg"><span>Lapostető</span></div>
+      <div class="g3-cell"><img src="images/site/referencia/thumb/ipari-01.jpg"><span>Ipari</span></div>
+      <div class="g3-cell"><img src="images/site/referencia/thumb/badogozas-08.jpg"><span>Bádogozás</span></div>
+      <div class="g3-cell"><img src="images/site/referencia/thumb/lapostetos-19.jpg"><span>Lapostető</span></div>
+      <div class="g3-cell"><img src="images/site/referencia/thumb/alapozas-01.jpg"><span>Alapozás</span></div>
+      <div class="g3-cell"><img src="images/site/referencia/thumb/erkely-03.jpg"><span>Erkély</span></div>
+    </div>
+  </article>
+
+  <article id="g4">
+    <span class="entry-name">04 · Tap-to-expand harmonika csempék</span>
+    <p class="entry-rationale">Öt keskeny csempe egymás mellett — koppintásra (nem hoverre) az adott csempe kinyílik, a többi összehúzódik. Nagy érintési felület, mobilon és asztalin egyaránt természetes.</p>
+    <div class="wrap">
+      <div class="g4" id="g4demo">
+        <div class="g4-tile active" data-cat="Lapostető szigetelés" data-count="24 munka"><img src="images/site/referencia/thumb/lapostetos-01.jpg"><div class="scrim"></div><span class="count">24 munka</span><span class="label">Lapostető szigetelés</span></div>
+        <div class="g4-tile" data-cat="Bádogozás &amp; szegélyezés" data-count="10 munka"><img src="images/site/referencia/thumb/badogozas-01.jpg"><div class="scrim"></div><span class="count">10 munka</span><span class="label">Bádogozás &amp; szegélyezés</span></div>
+        <div class="g4-tile" data-cat="Erkély &amp; terasz" data-count="3 munka"><img src="images/site/referencia/thumb/erkely-01.jpg"><div class="scrim"></div><span class="count">3 munka</span><span class="label">Erkély &amp; terasz</span></div>
+        <div class="g4-tile" data-cat="Ipari fémlemez tetőfedés" data-count="1 munka"><img src="images/site/referencia/thumb/ipari-01.jpg"><div class="scrim"></div><span class="count">1 munka</span><span class="label">Ipari fémlemez tetőfedés</span></div>
+        <div class="g4-tile" data-cat="Alapozás &amp; pinceszigetelés" data-count="1 munka"><img src="images/site/referencia/thumb/alapozas-01.jpg"><div class="scrim"></div><span class="count">1 munka</span><span class="label">Alapozás &amp; pinceszigetelés</span></div>
+      </div>
+    </div>
+  </article>
+
+  <article id="g5">
+    <span class="entry-name">05 · 3D coverflow körhinta</span>
+    <p class="entry-rationale">A középső kép nagyban, elöl, az oldalsók kisebbek és oldalra dőlve sorakoznak, mint egy régi iPod Coverflow — koppints egy oldalsó képre, vagy a nyilakra, hogy középre kerüljön.</p>
+    <div class="wrap g5" id="g5demo">
+      <div class="g5-stage" id="g5stage">
+        <div class="g5-card" data-i="0"><img src="images/site/referencia/thumb/lapostetos-01.jpg"></div>
+        <div class="g5-card" data-i="1"><img src="images/site/referencia/thumb/badogozas-02.jpg"></div>
+        <div class="g5-card" data-i="2"><img src="images/site/referencia/thumb/erkely-01.jpg"></div>
+        <div class="g5-card" data-i="3"><img src="images/site/referencia/thumb/lapostetos-13.jpg"></div>
+        <div class="g5-card" data-i="4"><img src="images/site/referencia/thumb/ipari-01.jpg"></div>
+      </div>
+      <div class="g5-nav">
+        <button class="g1-btn" id="g5prev">&#8249;</button>
+        <button class="g1-btn" id="g5next">&#8250;</button>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<footer class="note">
+  Mind az öt touch-elsődleges: nincs bennük olyan effekt, ami csak egérrel működik. A 02 (story mód) és 01 (swipe kártyák) mobilon különösen otthonosan hatnak, a 03 (scroll-parallax) pedig a legegyszerűbben skálázódik nagyon sok képre is.
+</footer>
+
+<script>
+  // 01 — swipe kártyaköteg
+  (function(){
+    var demo = document.getElementById('g1demo');
+    var cards = Array.prototype.slice.call(demo.querySelectorAll('.g1-card'));
+    var order = cards.slice();
+    function layout(){
+      order.forEach(function(card, i){
+        card.style.zIndex = order.length - i;
+        card.style.transform = 'translate(' + (i * 8) + 'px,' + (i * 8) + 'px) scale(' + (1 - i * 0.04) + ')';
+        card.style.opacity = i < 4 ? 1 : 0;
+      });
+    }
+    function cycle(dir){
+      if (dir === 1){ order.push(order.shift()); }
+      else { order.unshift(order.pop()); }
+      layout();
+    }
+    document.getElementById('g1next').addEventListener('click', function(){ cycle(1); });
+    document.getElementById('g1prev').addEventListener('click', function(){ cycle(-1); });
+
+    var startX = null;
+    order[0] && order[0].addEventListener('pointerdown', function(e){ startX = e.clientX; });
+    demo.addEventListener('pointerup', function(e){
+      if (startX === null) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 40) cycle(dx < 0 ? 1 : -1);
+      startX = null;
+    });
+    layout();
+  })();
+
+  // 02 — story mód
+  (function(){
+    var slides = document.querySelectorAll('#g2demo .g2-slide');
+    var barsWrap = document.getElementById('g2bars');
+    var titles = ['Lapostető szigetelés','Bádogozás & szegélyezés','Erkély & terasz szigetelés','Lapostető szigetelés'];
+    var idx = 0;
+    slides.forEach(function(){ var b = document.createElement('div'); b.className='g2-bar'; b.innerHTML='<i></i>'; barsWrap.appendChild(b); });
+    var bars = barsWrap.children;
+    function show(i){
+      slides[idx].classList.remove('active');
+      idx = (i + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+      Array.prototype.forEach.call(bars, function(b, bi){
+        b.classList.toggle('done', bi < idx);
+        b.querySelector('i').style.width = bi === idx ? '100%' : (bi < idx ? '100%' : '0%');
+      });
+      document.getElementById('g2title').textContent = titles[idx];
+      document.getElementById('g2count').textContent = String(idx+1).padStart(2,'0') + ' / ' + String(slides.length).padStart(2,'0');
+    }
+    document.getElementById('g2left').addEventListener('click', function(){ show(idx - 1); });
+    document.getElementById('g2right').addEventListener('click', function(){ show(idx + 1); });
+    show(0);
+  })();
+
+  // 03 — scroll reveal
+  (function(){
+    var cells = document.querySelectorAll('#g3demo .g3-cell');
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e, i){ if (e.isIntersecting){ setTimeout(function(){ e.target.classList.add('in'); }, i * 60); } });
+      }, { threshold:0.15 });
+      cells.forEach(function(c){ io.observe(c); });
+    } else {
+      cells.forEach(function(c){ c.classList.add('in'); });
+    }
+  })();
+
+  // 04 — tap to expand
+  (function(){
+    var tiles = document.querySelectorAll('#g4demo .g4-tile');
+    tiles.forEach(function(t){
+      t.addEventListener('click', function(){
+        tiles.forEach(function(o){ o.classList.remove('active'); });
+        t.classList.add('active');
+      });
+    });
+  })();
+
+  // 05 — coverflow
+  (function(){
+    var cards = Array.prototype.slice.call(document.querySelectorAll('#g5stage .g5-card'));
+    var center = 0;
+    function layout(){
+      cards.forEach(function(card, i){
+        var offset = i - center;
+        var abs = Math.abs(offset);
+        var tx = offset * 130;
+        var scale = offset === 0 ? 1 : 0.72;
+        var rot = offset === 0 ? 0 : (offset < 0 ? 28 : -28);
+        card.style.transform = 'translateX(' + tx + 'px) scale(' + scale + ') rotateY(' + rot + 'deg)';
+        card.style.zIndex = 10 - abs;
+        card.style.opacity = abs > 2 ? 0 : 1;
+        card.style.filter = offset === 0 ? 'none' : 'brightness(0.55)';
+      });
+    }
+    function go(dir){ center = Math.max(0, Math.min(cards.length - 1, center + dir)); layout(); }
+    document.getElementById('g5next').addEventListener('click', function(){ go(1); });
+    document.getElementById('g5prev').addEventListener('click', function(){ go(-1); });
+    cards.forEach(function(card, i){
+      card.addEventListener('click', function(){ center = i; layout(); });
+    });
+    var startX = null;
+    var stage = document.getElementById('g5demo');
+    stage.addEventListener('pointerdown', function(e){ startX = e.clientX; });
+    stage.addEventListener('pointerup', function(e){
+      if (startX === null) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+      startX = null;
+    });
+    layout();
+  })();
+</script>
+
+</body>
+</html>

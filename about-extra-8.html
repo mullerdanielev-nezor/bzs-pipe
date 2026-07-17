@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Pipe Work Kft — Rólunk, 8 extra koncepció</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif; background:#f4f1ea; color:#1a1712;}
+
+  header.intro{max-width:1180px; margin:0 auto; padding:56px 28px 32px; border-bottom:1px solid #ddd5c4;}
+  .eyebrow{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#c99a00; font-weight:700; margin:0 0 14px;}
+  h1{font-family:'Oswald',sans-serif; font-weight:600; font-size:clamp(26px,3.6vw,38px); margin:0 0 14px; text-transform:uppercase; letter-spacing:0.5px;}
+  .lede{font-size:15px; line-height:1.6; color:#6b6355; max-width:66ch; margin:0;}
+
+  nav.jump{position:sticky; top:0; z-index:50; background:#f4f1ea; border-bottom:1px solid #ddd5c4; overflow-x:auto; white-space:nowrap; padding:12px 28px;}
+  nav.jump a{font-size:12.5px; color:#6b6355; text-decoration:none; margin-right:20px;}
+  nav.jump a:hover{color:#1a1712;}
+
+  .shell{max-width:1180px; margin:0 auto; padding:44px 28px 100px; display:flex; flex-direction:column; gap:56px;}
+  .entry-name{font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:#6b6355; font-weight:700;}
+  .entry-rationale{font-size:13.5px; color:#6b6355; max-width:64ch; line-height:1.5; margin:6px 0 14px;}
+  .wrap{border-radius:4px; overflow:hidden; border:1px solid #ddd5c4; box-shadow:0 16px 36px -20px rgba(0,0,0,0.35);}
+  footer.note{max-width:1180px; margin:24px auto 0; padding:28px 28px 0; border-top:1px solid #ddd5c4; font-size:13px; color:#6b6355; line-height:1.6;}
+
+  .photo{background-image:url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=900&auto=format&fit=crop'); background-size:cover; background-position:center;}
+
+  @keyframes fadeUp { from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes drift { 0%,100%{transform:translate(0,0);} 50%{transform:translate(14px,-10px);} }
+  @keyframes ringPulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,212,0,0.4);} 50%{box-shadow:0 0 0 10px rgba(255,212,0,0);} }
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  /* =========================================================
+     01 — SZÖVEG BAL, KÉP JOBB, PARALLAX + ZAJTEXTÚRA HÁTTÉR
+  ========================================================= */
+  .b1{background:#14171c; padding:72px 64px; display:flex; align-items:center; gap:48px; position:relative; overflow:hidden;}
+  .b1::before{content:""; position:absolute; inset:0; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); opacity:0.05; mix-blend-mode:overlay;}
+  .b1-text{position:relative; max-width:360px; opacity:0; animation:fadeUp 0.7s ease forwards;}
+  .b1-text .eyebrow{color:#ffd400;}
+  .b1-text h2{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:26px; margin-bottom:12px;}
+  .b1-text p{color:#c9c3b3; font-size:14px; line-height:1.6;}
+  .b1-imgwrap{position:relative; flex:0 0 320px; height:340px; border:3px solid #ffd400; padding:8px; background:#0f1115;}
+  .b1-imgwrap .photo{width:100%; height:100%;}
+  .b1-imgwrap img.tag{position:absolute; top:-14px; right:-14px; width:64px; height:64px; border-radius:50%; background:#ffd400; display:none;}
+
+  /* =========================================================
+     02 — KÖR ALAKÚ KÉP, LEBEGŐ JELVÉNY, PONTRÁCS HÁTTÉR
+  ========================================================= */
+  .b2{background:#f7f4ec; padding:80px 64px; display:flex; align-items:center; gap:56px; position:relative;}
+  .b2::before{content:""; position:absolute; inset:0; background-image:radial-gradient(#d8cba8 1.5px, transparent 1.5px); background-size:22px 22px; opacity:0.5;}
+  .b2-imgwrap{position:relative; flex:0 0 auto; z-index:1;}
+  .b2-circle{width:260px; height:260px; border-radius:50%; overflow:hidden; border:6px solid #fff; box-shadow:0 20px 40px -18px rgba(0,0,0,0.3);}
+  .b2-circle .photo{width:100%; height:100%;}
+  .b2-badge{position:absolute; bottom:6px; right:0; width:76px; height:76px; border-radius:50%; background:#ffd400; color:#1a1712; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-weight:700; animation:drift 4s ease-in-out infinite;}
+  .b2-badge b{font-size:20px;} .b2-badge span{font-size:8px; text-transform:uppercase; letter-spacing:0.5px;}
+  .b2-text{position:relative; z-index:1; max-width:380px;}
+  .b2-text .eyebrow{color:#a5843c;}
+  .b2-text h2{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:26px; margin-bottom:12px;}
+  .b2-text p{color:#5c5646; font-size:14px; line-height:1.6;}
+
+  /* =========================================================
+     03 — TELJES HÁTTÉRKÉP, ÜVEGKÁRTYA SZÖVEG, GÖRGETÉS-BEÚSZÁS
+  ========================================================= */
+  .b3{position:relative; min-height:380px; display:flex; align-items:flex-end;}
+  .b3-bg{position:absolute; inset:0;}
+  .b3-scrim{position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,10,8,0.82) 0%, rgba(10,10,8,0.1) 65%);}
+  .b3-card{position:relative; margin:40px; padding:28px 32px; max-width:420px; background:rgba(20,18,14,0.5); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.15); border-radius:14px;}
+  .b3-card .eyebrow{color:#ffd400;}
+  .b3-card h2{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:22px; margin-bottom:10px;}
+  .b3-card p{color:#e9e4d4; font-size:13.5px; line-height:1.55;}
+
+  /* =========================================================
+     04 — FERDE KÉPKIVÁGÁS, ANIMÁLT SZÁMLÁLÓ, MESH HÁTTÉR
+  ========================================================= */
+  .b4{position:relative; background:#0f1115; padding:0; display:flex; min-height:400px; overflow:hidden;}
+  .b4-blob{position:absolute; width:280px; height:280px; border-radius:50%; filter:blur(80px); opacity:0.35; animation:drift 7s ease-in-out infinite;}
+  .b4-blob.x1{background:#ffd400; top:-60px; left:20%;}
+  .b4-blob.x2{background:#3b6fd1; bottom:-80px; right:10%; animation-delay:2s;}
+  .b4-text{position:relative; flex:1 1 50%; padding:56px; display:flex; flex-direction:column; justify-content:center;}
+  .b4-text .eyebrow{color:#ffd400;}
+  .b4-text h2{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:24px; margin-bottom:10px;}
+  .b4-text p{color:#c9c3b3; font-size:13.5px; line-height:1.6; margin-bottom:18px; max-width:34ch;}
+  .b4-count{font-family:'Oswald',sans-serif; font-size:34px; color:#ffd400; font-variant-numeric:tabular-nums;}
+  .b4-count span{font-size:11px; color:#c9c3b3; display:block; text-transform:uppercase; letter-spacing:0.5px;}
+  .b4-imgwrap{position:relative; flex:1 1 50%; clip-path:polygon(14% 0, 100% 0, 100% 100%, 0% 100%);}
+  .b4-imgwrap .photo{width:100%; height:100%;}
+
+  /* =========================================================
+     05 — KÉTKÉPES KOLLÁZS, ELFORGATVA, HOVER-TILT
+  ========================================================= */
+  .b5{background:#eef0f2; padding:80px 64px; display:flex; align-items:center; gap:64px;}
+  .b5-collage{position:relative; flex:0 0 300px; height:300px;}
+  .b5-collage .photo{position:absolute; width:190px; height:230px; border:6px solid #fff; box-shadow:0 16px 30px -14px rgba(0,0,0,0.3); transition:transform 0.35s ease;}
+  .b5-collage .p1{top:0; left:0; transform:rotate(-6deg); z-index:1;}
+  .b5-collage .p2{bottom:0; right:0; transform:rotate(5deg); background-color:#7a6a52;}
+  .b5-collage:hover .p1{transform:rotate(-10deg) translate(-6px,-4px);}
+  .b5-collage:hover .p2{transform:rotate(9deg) translate(6px,4px);}
+  .b5-text{max-width:380px;}
+  .b5-text .eyebrow{color:#a5843c;}
+  .b5-text h2{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:26px; margin-bottom:12px;}
+  .b5-text p{color:#5c5646; font-size:14px; line-height:1.6;}
+
+  /* =========================================================
+     06 — STICKY KÉP BAL, GÖRGETHETŐ SZÖVEG JOBB, RAJZOLÓDÓ VONAL
+  ========================================================= */
+  .b6{display:grid; grid-template-columns:1fr 1.2fr; background:#f7f4ec;}
+  .b6-imgcol{position:sticky; top:0; align-self:stretch; min-height:380px;}
+  .b6-imgcol .photo{width:100%; height:100%;}
+  .b6-textcol{padding:56px 48px; display:flex; flex-direction:column; justify-content:center;}
+  .b6-textcol .eyebrow{color:#a5843c;}
+  .b6-textcol h2{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:24px; margin-bottom:14px;}
+  .b6-line{width:0; height:3px; background:#ffd400; margin-bottom:14px; animation:growLine 1s ease 0.3s forwards;}
+  @keyframes growLine{ from{width:0;} to{width:70px;} }
+  .b6-textcol p{color:#5c5646; font-size:14px; line-height:1.6; max-width:40ch;}
+
+  /* =========================================================
+     07 — BLOB-VÁGÁSÚ KÉP, LEBEGŐ ALAKZATOK HÁTTÉR, KINETIKUS SZÖVEG
+  ========================================================= */
+  .b7{position:relative; background:#1c1f25; padding:80px 64px; display:flex; align-items:center; gap:56px; overflow:hidden;}
+  .b7-shape{position:absolute; border:1px solid rgba(255,212,0,0.25); border-radius:50%;}
+  .b7-shape.s1{width:120px; height:120px; top:20px; left:10%; animation:drift 6s ease-in-out infinite;}
+  .b7-shape.s2{width:70px; height:70px; bottom:30px; left:38%; animation:drift 5s ease-in-out infinite reverse;}
+  .b7-shape.s3{width:180px; height:180px; top:-40px; right:6%; animation:drift 8s ease-in-out infinite;}
+  .b7-imgwrap{position:relative; flex:0 0 260px; height:280px; clip-path:path('M130,0 C210,0 260,60 260,140 C260,230 200,280 120,280 C40,280 0,220 0,130 C0,50 60,0 130,0 Z'); z-index:1;}
+  .b7-imgwrap .photo{width:100%; height:100%;}
+  .b7-text{position:relative; z-index:1; max-width:380px;}
+  .b7-text .eyebrow{color:#ffd400;}
+  .b7-text h2 span{display:block; opacity:0; animation:fadeUp 0.6s ease forwards;}
+  .b7-text h2 span:nth-child(2){animation-delay:0.15s;}
+  .b7-text h2{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:24px; margin-bottom:12px;}
+  .b7-text p{color:#c9c3b3; font-size:14px; line-height:1.6;}
+
+  /* =========================================================
+     08 — "VIDEÓ-ELŐNÉZET" KÉP, RÁCS HÁTTÉR, PULZÁLÓ LEJÁTSZÓ GYŰRŰ
+  ========================================================= */
+  .b8{background:#0f1115; padding:80px 64px; display:flex; align-items:center; gap:56px; position:relative;}
+  .b8::before{content:""; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size:34px 34px;}
+  .b8-imgwrap{position:relative; flex:0 0 360px; height:230px;}
+  .b8-imgwrap .photo{width:100%; height:100%; filter:brightness(0.7);}
+  .b8-play{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:64px; height:64px; border-radius:50%; background:rgba(255,212,0,0.9); display:flex; align-items:center; justify-content:center; animation:ringPulse 2.2s ease-in-out infinite;}
+  .b8-play::before{content:""; border-style:solid; border-width:9px 0 9px 15px; border-color:transparent transparent transparent #1a1712; margin-left:4px;}
+  .b8-text{position:relative; max-width:380px;}
+  .b8-text .eyebrow{color:#ffd400;}
+  .b8-text h2{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:24px; margin-bottom:12px;}
+  .b8-text p{color:#c9c3b3; font-size:14px; line-height:1.6;}
+
+  @media (max-width:900px){
+    .b1,.b2,.b4,.b5,.b7,.b8{flex-direction:column; text-align:left;}
+    .b1-imgwrap,.b4-imgwrap,.b7-imgwrap,.b8-imgwrap{width:100%; flex:none;}
+    .b6{grid-template-columns:1fr;}
+    .b6-imgcol{position:static; height:220px;}
+  }
+  @media (max-width:600px){
+    .b1,.b2,.b3-card,.b4-text,.b5,.b6-textcol,.b7,.b8{padding:44px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="eyebrow">Pipe Work Kft — Miskolc</p>
+  <h1>Rólunk szekció — 8 extra koncepció</h1>
+  <p class="lede">Mind a nyolc tartalmaz: rövid szöveget, elhelyezett képes részt, saját háttér-designt és legalább egy animációt (betöltéskor, görgetésre vagy hoverre). Görgesd végig, próbáld ki a hover- és görgetés-effekteket élőben.</p>
+</header>
+
+<nav class="jump">
+  <a href="#b1">01 Parallax + zaj</a>
+  <a href="#b2">02 Kör kép + jelvény</a>
+  <a href="#b3">03 Háttérkép + üvegkártya</a>
+  <a href="#b4">04 Ferde vágás + mesh</a>
+  <a href="#b5">05 Kollázs, hover-tilt</a>
+  <a href="#b6">06 Sticky kép</a>
+  <a href="#b7">07 Blob-vágás</a>
+  <a href="#b8">08 Videó-előnézet</a>
+</nav>
+
+<div class="shell">
+
+  <article id="b1">
+    <span class="entry-name">01 · Parallax + zajtextúra háttér</span>
+    <p class="entry-rationale">Sötét, finoman zajos háttér, sárga kerettel bekeretezett kép jobbra, a szöveg betöltéskor lágyan felcsúszik.</p>
+    <div class="wrap">
+      <div class="b1">
+        <div class="b1-text">
+          <p class="eyebrow">Rólunk</p>
+          <h2>A Pipe Work Kft</h2>
+          <p>2018 óta építünk Miskolcon és környékén, a tervezéstől a kulcsrakész átadásig.</p>
+        </div>
+        <div class="b1-imgwrap"><div class="photo" style="width:100%;height:100%;"></div></div>
+      </div>
+    </div>
+  </article>
+
+  <article id="b2">
+    <span class="entry-name">02 · Kör alakú kép, lebegő jelvény</span>
+    <p class="entry-rationale">Puha, pontrácsos háttér, kör alakú fotó, sarkán egy lassan lebegő "7+ év" jelvény.</p>
+    <div class="wrap">
+      <div class="b2">
+        <div class="b2-imgwrap">
+          <div class="b2-circle"><div class="photo" style="width:100%;height:100%;"></div></div>
+          <div class="b2-badge"><b>7+</b><span>év</span></div>
+        </div>
+        <div class="b2-text">
+          <p class="eyebrow">Rólunk</p>
+          <h2>Kik vagyunk</h2>
+          <p>Helyi csapat, Miskolcon és környékén — lakó- és nem lakóingatlanok építése 2018 óta.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="b3">
+    <span class="entry-name">03 · Teljes háttérkép + üvegkártya</span>
+    <p class="entry-rationale">A kép tölti ki az egész szekciót háttérként, a rövid szöveg egy homályosított üvegkártyán ül alul.</p>
+    <div class="wrap">
+      <div class="b3">
+        <div class="b3-bg photo" style="position:absolute; inset:0;"></div>
+        <div class="b3-scrim"></div>
+        <div class="b3-card">
+          <p class="eyebrow">Rólunk</p>
+          <h2>A Pipe Work Kft</h2>
+          <p>2018 óta építünk lakó- és nem lakóingatlanokat Miskolcon és környékén.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="b4">
+    <span class="entry-name">04 · Ferde vágás + mesh háttér</span>
+    <p class="entry-rationale">Lassan sodródó, elmosott fényfoltok a sötét háttéren, a kép ferdén van kivágva, mellette egy kiemelt szám.</p>
+    <div class="wrap">
+      <div class="b4">
+        <div class="b4-blob x1"></div><div class="b4-blob x2"></div>
+        <div class="b4-text">
+          <p class="eyebrow">Rólunk</p>
+          <h2>A Pipe Work Kft</h2>
+          <p>2018 óta építünk Miskolcon és környékén, megbízható ütemezéssel.</p>
+          <div class="b4-count">7+<span>Év tapasztalat</span></div>
+        </div>
+        <div class="b4-imgwrap"><div class="photo" style="width:100%;height:100%;"></div></div>
+      </div>
+    </div>
+  </article>
+
+  <article id="b5">
+    <span class="entry-name">05 · Kétképes kollázs, hover-tilt</span>
+    <p class="entry-rationale">Két, enyhén elforgatott kép egymásra csúsztatva — vidd az egeret fölé, a képek finoman szétnyílnak.</p>
+    <div class="wrap">
+      <div class="b5">
+        <div class="b5-collage">
+          <div class="photo p1"></div>
+          <div class="photo p2"></div>
+        </div>
+        <div class="b5-text">
+          <p class="eyebrow">Rólunk</p>
+          <h2>A Pipe Work Kft</h2>
+          <p>2018 óta építünk lakó- és nem lakóingatlanokat Miskolcon és környékén.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="b6">
+    <span class="entry-name">06 · Sticky kép, rajzolódó vonal</span>
+    <p class="entry-rationale">A kép a görgetés alatt a helyén marad (sticky), a cím alatt egy vonal betöltéskor "kirajzolódik".</p>
+    <div class="wrap">
+      <div class="b6">
+        <div class="b6-imgcol photo"></div>
+        <div class="b6-textcol">
+          <p class="eyebrow">Rólunk</p>
+          <h2>A Pipe Work Kft</h2>
+          <div class="b6-line"></div>
+          <p>2018 óta építünk Miskolcon és környékén, a tervezéstől a kulcsrakész átadásig.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="b7">
+    <span class="entry-name">07 · Blob-vágású kép, lebegő alakzatok</span>
+    <p class="entry-rationale">Szerves, "blob" alakúra vágott kép, körülötte lassan sodródó, halvány körvonalas alakzatok a háttérben.</p>
+    <div class="wrap">
+      <div class="b7">
+        <div class="b7-shape s1"></div><div class="b7-shape s2"></div><div class="b7-shape s3"></div>
+        <div class="b7-imgwrap"><div class="photo" style="width:100%;height:100%;"></div></div>
+        <div class="b7-text">
+          <p class="eyebrow">Rólunk</p>
+          <h2><span>A Pipe Work</span><span>Kft</span></h2>
+          <p>2018 óta építünk lakó- és nem lakóingatlanokat Miskolcon és környékén.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="b8">
+    <span class="entry-name">08 · "Videó-előnézet" kép, rács háttér</span>
+    <p class="entry-rationale">Finom rácsvonalas háttér, a kép sötétített, mint egy videóelőnézet, közepén pulzáló lejátszó-gomb — bemutató videóhoz előkészítve.</p>
+    <div class="wrap">
+      <div class="b8">
+        <div class="b8-imgwrap">
+          <div class="photo" style="width:100%;height:100%;"></div>
+          <div class="b8-play"></div>
+        </div>
+        <div class="b8-text">
+          <p class="eyebrow">Rólunk</p>
+          <h2>A Pipe Work Kft</h2>
+          <p>2018 óta építünk Miskolcon és környékén — nézze meg röviden, hogyan dolgozunk.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<footer class="note">
+  Mindegyik a jóváhagyott sárga + acélszürke/krém márkanyelvet viszi tovább. A képek egyelőre helykitöltő fotók — cseréld valódi projektképekre, amint van.
+</footer>
+
+</body>
+</html>

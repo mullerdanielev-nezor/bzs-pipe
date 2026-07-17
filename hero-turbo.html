@@ -1,0 +1,260 @@
+<title>Pipe Work Kft — Hero turbó ötletek</title>
+<style>
+  :root{ --page-bg:#f6f3ec; --page-panel:#fff; --page-ink:#1a1712; --page-muted:#6b6355; --page-accent:#c99a00; --page-line:#e2dbc9; }
+  @media (prefers-color-scheme: dark){ :root{ --page-bg:#14120e; --page-panel:#1e1b15; --page-ink:#f1ece0; --page-muted:#a89d87; --page-accent:#ffd400; --page-line:#332e22; } }
+  :root[data-theme="dark"]{ --page-bg:#14120e; --page-panel:#1e1b15; --page-ink:#f1ece0; --page-muted:#a89d87; --page-accent:#ffd400; --page-line:#332e22; }
+  :root[data-theme="light"]{ --page-bg:#f6f3ec; --page-panel:#fff; --page-ink:#1a1712; --page-muted:#6b6355; --page-accent:#c99a00; --page-line:#e2dbc9; }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;overflow-x:hidden;}
+  body{background:var(--page-bg); color:var(--page-ink); font-family:'Inter',system-ui,-apple-system,sans-serif;}
+
+  header.intro{max-width:1180px; margin:0 auto; padding:64px 28px 36px; border-bottom:1px solid var(--page-line);}
+  .intro-eyebrow{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--page-accent); font-weight:700; margin:0 0 16px;}
+  h1{font-family:'Oswald',sans-serif; font-weight:600; font-size:clamp(28px,4vw,42px); letter-spacing:0.5px; line-height:1.15; margin:0 0 16px; text-wrap:balance; max-width:24ch;}
+  .intro-lede{font-size:15.5px; line-height:1.65; color:var(--page-muted); max-width:66ch; margin:0;}
+
+  nav.jump{position:sticky; top:0; z-index:50; background:var(--page-bg); border-bottom:1px solid var(--page-line); overflow-x:auto; white-space:nowrap; padding:14px 28px;}
+  nav.jump a{font-size:12.5px; color:var(--page-muted); text-decoration:none; margin-right:22px; padding-bottom:4px; border-bottom:2px solid transparent;}
+  nav.jump a:hover, nav.jump a:focus-visible{color:var(--page-ink); border-bottom-color:var(--page-accent);}
+
+  .shell{max-width:1180px; margin:0 auto; padding:52px 28px 120px;}
+  .grid{display:flex; flex-direction:column; gap:56px;}
+  .entry-name{font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--page-muted); font-weight:700;}
+  .entry-name b{color:var(--page-ink);}
+  .entry-rationale{font-size:14px; color:var(--page-muted); max-width:64ch; line-height:1.5; margin:8px 0 14px;}
+  .mock-wrap{border-radius:2px; overflow:hidden; border:1px solid var(--page-line); box-shadow:0 18px 40px -22px rgba(0,0,0,0.35);}
+
+  /* ===== shared hero DNA ===== */
+  .navbar{display:flex; align-items:center; justify-content:space-between; padding:20px 44px; background:#f3f0ea; box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+  .nav-left{display:flex; gap:26px;}
+  .nav-left a{text-decoration:none; color:#1a1a1a; font-family:'Oswald',sans-serif; font-weight:600; font-size:14px; letter-spacing:1.5px; text-transform:uppercase;}
+  .logo{display:flex; align-items:center; gap:9px;}
+  .logo-box{width:40px; height:40px; border:2px solid #1a1a1a; display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-weight:700; font-size:17px;}
+  .logo-text{font-family:'Oswald',sans-serif; line-height:1.1;}
+  .logo-text .top{font-size:16px; font-weight:600; letter-spacing:1px;}
+  .logo-text .bottom{font-size:10px; letter-spacing:2px; color:#444;}
+  .phone-btn{background:#1a1a1a; color:#fff; padding:11px 20px; font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:1.5px; font-size:12.5px; text-decoration:none;}
+
+  .hero{position:relative; min-height:420px; background:
+      linear-gradient(120deg, rgba(10,12,10,0.05) 0%, rgba(10,12,10,0.55) 100%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 46px),
+      linear-gradient(150deg,#3a362f,#211f1b 55%,#151412);
+    display:flex; align-items:center; justify-content:space-between; gap:40px; padding:52px 72px; overflow:hidden;}
+  .hero-content{position:relative; max-width:520px; display:flex; flex-direction:column; align-items:flex-start;}
+  .hero-title{font-family:'Oswald',sans-serif; font-weight:600; font-size:36px; line-height:1.15; letter-spacing:1px; color:#fff; text-transform:uppercase; margin-bottom:8px; text-shadow:0 4px 14px rgba(0,0,0,0.5);}
+  .hero-underline{width:80px; height:5px; background:#ffd400; margin-bottom:18px;}
+  .hero-sub{font-family:'Inter',sans-serif; font-size:15px; line-height:1.6; color:#e9e4d4; max-width:34ch;}
+  .hero-frame{flex:0 0 auto; background:#f3f0ea; padding:8px; border:3px solid #ffd400; box-shadow:0 20px 40px -18px rgba(0,0,0,0.55);}
+  .hero-frame .ph{display:block; width:220px; height:270px; background:
+      linear-gradient(160deg,#7a6a52,#4a4238 55%,#2c2721);}
+
+  footer.note{max-width:1180px; margin:24px auto 0; padding:32px 28px 0; border-top:1px solid var(--page-line); font-size:13.5px; color:var(--page-muted); line-height:1.6;}
+
+  /* ===== 1. CTA gomb ===== */
+  .e1-cta{margin-top:22px; display:inline-block; background:#ffd400; color:#1a1a1a; font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; font-size:13px; padding:14px 28px; text-decoration:none;}
+
+  /* ===== 2. CTA + statsor ===== */
+  .e2-cta{margin-top:20px; display:inline-block; background:transparent; color:#ffd400; border:1.5px solid #ffd400; font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; font-size:13px; padding:12.5px 26px; text-decoration:none;}
+  .e2-stats{display:flex; gap:0; position:absolute; left:0; right:0; bottom:0; background:rgba(0,0,0,0.28); border-top:1px solid rgba(255,255,255,0.15);}
+  .e2-stats div{flex:1; padding:14px 24px; border-right:1px solid rgba(255,255,255,0.15);}
+  .e2-stats div:last-child{border-right:none;}
+  .e2-stats b{display:block; font-family:'Oswald',sans-serif; color:#ffd400; font-size:18px;}
+  .e2-stats span{font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:#d8d3c4;}
+  .e2 .hero{padding-bottom:0; min-height:460px;}
+  .e2 .hero-content{padding-bottom:70px;}
+
+  /* ===== 3. Jelvény a képen ===== */
+  .e3-badge{position:absolute; top:-14px; right:-14px; width:74px; height:74px; border-radius:50%; background:#ffd400; color:#1a1a1a; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-weight:700; line-height:1.05; box-shadow:0 8px 18px rgba(0,0,0,0.35); transform:rotate(8deg);}
+  .e3-badge b{font-size:20px;}
+  .e3-badge span{font-size:8.5px; letter-spacing:0.5px; text-transform:uppercase;}
+  .e3 .hero-frame{position:relative; margin-top:8px;}
+
+  /* ===== 4. Kollázs kép ===== */
+  .e4-imgcol{display:flex; flex-direction:column; gap:10px;}
+  .e4-imgcol .hero-frame{padding:6px;}
+  .e4-imgcol .ph.small{width:220px; height:96px;}
+
+  /* ===== 5. Betöltési animáció + görgetésjelző ===== */
+  @keyframes e5in{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+  .e5 .hero-title, .e5 .hero-underline, .e5 .hero-sub{animation:e5in 0.7s ease both;}
+  .e5 .hero-underline{animation-delay:0.15s;}
+  .e5 .hero-sub{animation-delay:0.28s;}
+  @keyframes e5zoom{ from{transform:scale(1.08);} to{transform:scale(1);} }
+  .e5 .hero-frame .ph{animation:e5zoom 1.1s ease both;}
+  @media (prefers-reduced-motion: reduce){ .e5 .hero-title,.e5 .hero-underline,.e5 .hero-sub,.e5 .hero-frame .ph{animation:none;} }
+  .e5-scroll{position:absolute; bottom:14px; left:50%; transform:translateX(-50%); width:22px; height:34px; border:2px solid rgba(255,255,255,0.6); border-radius:12px;}
+  .e5-scroll::before{content:""; position:absolute; top:6px; left:50%; width:3px; height:7px; background:#ffd400; border-radius:2px; transform:translateX(-50%); animation:e5dot 1.6s ease infinite;}
+  @keyframes e5dot{ 0%{opacity:1; top:6px;} 60%{opacity:0; top:16px;} 100%{opacity:0; top:6px;} }
+
+  /* ===== 6. Hover zoom kép ===== */
+  .e6 .hero-frame{overflow:hidden;}
+  .e6 .hero-frame .ph{transition:transform 0.5s ease;}
+  .e6 .hero-frame:hover .ph{transform:scale(1.08);}
+  .e6-hint{font-size:12px; color:var(--page-muted); font-style:italic;}
+
+  @media (max-width:760px){
+    .hero{flex-direction:column; align-items:flex-start; padding:36px 24px;}
+    .hero-title{font-size:26px;}
+    .e2 .hero-content{padding-bottom:0;}
+    .e2-stats{position:static; margin-top:24px;}
+  }
+</style>
+
+<header class="intro">
+  <p class="intro-eyebrow">Pipe Work Kft — Miskolc</p>
+  <h1>Hero turbó ötletek, vizuálisan</h1>
+  <p class="intro-lede">A jóváhagyott aláhúzásos hero maradt az alap — mindegyik kártya ugyanabból indul, csak egy-egy ötletet tesz hozzá, hogy külön-külön lásd a hatásukat. A képkeretben most helykitöltő textúra van (a valódi projektfotó a végleges verzióba kerül vissza).</p>
+</header>
+
+<nav class="jump">
+  <a href="#e1">01 CTA gomb</a>
+  <a href="#e2">02 CTA + statsor</a>
+  <a href="#e3">03 Jelvény a képen</a>
+  <a href="#e4">04 Kollázs kép</a>
+  <a href="#e5">05 Betöltés-animáció + görgetésjelző</a>
+  <a href="#e6">06 Hover zoom (vidd fölé az egeret)</a>
+</nav>
+
+<div class="shell">
+<div class="grid">
+
+  <article id="e1">
+    <span class="entry-name">01 · <b>CTA gomb</b></span>
+    <p class="entry-rationale">Kitöltött sárga gomb a szöveg alatt — konkrét cselekvésre hívás, nem csak hangulat.</p>
+    <div class="mock-wrap">
+      <nav class="navbar">
+        <div class="nav-left"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="logo"><div class="logo-box">PW</div><div class="logo-text"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <a class="phone-btn" href="tel:+36301234567">+36 30 123 4567</a>
+      </nav>
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-title">Lakó- és nem<br>lakóingatlanok építése</div>
+          <div class="hero-underline"></div>
+          <div class="hero-sub">Megbízható kivitelezés Miskolcon és környékén, 2018 óta</div>
+          <a class="e1-cta" href="#">Kérjen ajánlatot</a>
+        </div>
+        <div class="hero-frame"><span class="ph"></span></div>
+      </div>
+    </div>
+  </article>
+
+  <article id="e2" class="e2">
+    <span class="entry-name">02 · <b>CTA + statsor</b></span>
+    <p class="entry-rationale">Visszafogottabb körvonal-gomb, és egy tényadat-sáv a hero alján — konkrét számokkal épít bizalmat.</p>
+    <div class="mock-wrap">
+      <nav class="navbar">
+        <div class="nav-left"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="logo"><div class="logo-box">PW</div><div class="logo-text"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <a class="phone-btn" href="tel:+36301234567">+36 30 123 4567</a>
+      </nav>
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-title">Lakó- és nem<br>lakóingatlanok építése</div>
+          <div class="hero-underline"></div>
+          <div class="hero-sub">Megbízható kivitelezés Miskolcon és környékén, 2018 óta</div>
+          <a class="e2-cta" href="#">Kérjen ajánlatot</a>
+        </div>
+        <div class="hero-frame"><span class="ph"></span></div>
+        <div class="e2-stats">
+          <div><b>2018</b><span>Alapítva</span></div>
+          <div><b>Miskolc</b><span>Székhely</span></div>
+          <div><b>Lakó + ipari</b><span>Szakterület</span></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="e3" class="e3">
+    <span class="entry-name">03 · <b>Jelvény a képen</b></span>
+    <p class="entry-rationale">Kis kör alakú "7+ év" jelvény a kép sarkán — egyetlen szám, ami azonnal bizalmat kelt, dísz helyett tartalommal.</p>
+    <div class="mock-wrap">
+      <nav class="navbar">
+        <div class="nav-left"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="logo"><div class="logo-box">PW</div><div class="logo-text"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <a class="phone-btn" href="tel:+36301234567">+36 30 123 4567</a>
+      </nav>
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-title">Lakó- és nem<br>lakóingatlanok építése</div>
+          <div class="hero-underline"></div>
+          <div class="hero-sub">Megbízható kivitelezés Miskolcon és környékén, 2018 óta</div>
+        </div>
+        <div class="hero-frame">
+          <div class="e3-badge"><b>7+</b><span>év</span></div>
+          <span class="ph"></span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="e4">
+    <span class="entry-name">04 · <b>Kollázs kép</b></span>
+    <p class="entry-rationale">A fő kép mellé egy kisebb, második keretezett fotó — több mutatott munka egy pillanat alatt, kollázs-hatás.</p>
+    <div class="mock-wrap">
+      <nav class="navbar">
+        <div class="nav-left"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="logo"><div class="logo-box">PW</div><div class="logo-text"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <a class="phone-btn" href="tel:+36301234567">+36 30 123 4567</a>
+      </nav>
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-title">Lakó- és nem<br>lakóingatlanok építése</div>
+          <div class="hero-underline"></div>
+          <div class="hero-sub">Megbízható kivitelezés Miskolcon és környékén, 2018 óta</div>
+        </div>
+        <div class="e4-imgcol">
+          <div class="hero-frame"><span class="ph"></span></div>
+          <div class="hero-frame"><span class="ph small"></span></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="e5" class="e5">
+    <span class="entry-name">05 · <b>Betöltés-animáció + görgetésjelző</b></span>
+    <p class="entry-rationale">A szöveg lágyan felcsúszva jelenik meg, a kép finoman kizoomol — töltsd újra a lapot, hogy lásd. Alul egy pulzáló görgetésjelző a következő szekcióra mutat.</p>
+    <div class="mock-wrap">
+      <nav class="navbar">
+        <div class="nav-left"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="logo"><div class="logo-box">PW</div><div class="logo-text"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <a class="phone-btn" href="tel:+36301234567">+36 30 123 4567</a>
+      </nav>
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-title">Lakó- és nem<br>lakóingatlanok építése</div>
+          <div class="hero-underline"></div>
+          <div class="hero-sub">Megbízható kivitelezés Miskolcon és környékén, 2018 óta</div>
+        </div>
+        <div class="hero-frame"><span class="ph"></span></div>
+        <div class="e5-scroll"></div>
+      </div>
+    </div>
+  </article>
+
+  <article id="e6" class="e6">
+    <span class="entry-name">06 · <b>Hover zoom kép</b></span>
+    <p class="entry-rationale">Ha az egeret a kép fölé viszed, finoman kizoomol — apró, élő részlet, ami asztali böngészőben érezhetővé teszi az oldalt. <span class="e6-hint">(Próbáld ki: vidd a kurzort a kép fölé.)</span></p>
+    <div class="mock-wrap">
+      <nav class="navbar">
+        <div class="nav-left"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="logo"><div class="logo-box">PW</div><div class="logo-text"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <a class="phone-btn" href="tel:+36301234567">+36 30 123 4567</a>
+      </nav>
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-title">Lakó- és nem<br>lakóingatlanok építése</div>
+          <div class="hero-underline"></div>
+          <div class="hero-sub">Megbízható kivitelezés Miskolcon és környékén, 2018 óta</div>
+        </div>
+        <div class="hero-frame"><span class="ph"></span></div>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<footer class="note">
+  Mindegyik ötlet önmagában is bevethető, de a legjobb kombináció valószínűleg 2-3 együtt (pl. CTA gomb + jelvény + hover zoom) — ha túl sokat rakunk egyszerre, elveszik a jelenlegi hero csendes, szerkesztői hangulata.
+</footer>

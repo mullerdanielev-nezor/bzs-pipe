@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Pipe Work Kft — Referencia oldal, 5 elrendezési ötlet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body{font-family:'Inter',sans-serif; background:#f4f1ea; color:#1a1712;}
+  .ph{background-size:cover; background-position:center;}
+
+  header.intro{max-width:1180px; margin:0 auto; padding:56px 28px 32px; border-bottom:1px solid #ddd5c4;}
+  .eyebrow{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#c99a00; font-weight:700; margin:0 0 14px;}
+  h1{font-family:'Oswald',sans-serif; font-weight:600; font-size:clamp(26px,3.6vw,38px); margin:0 0 14px; text-transform:uppercase; letter-spacing:0.5px;}
+  .lede{font-size:15px; line-height:1.6; color:#6b6355; max-width:66ch; margin:0;}
+
+  nav.jump{position:sticky; top:0; z-index:50; background:#f4f1ea; border-bottom:1px solid #ddd5c4; overflow-x:auto; white-space:nowrap; padding:12px 28px;}
+  nav.jump a{font-size:12.5px; color:#6b6355; text-decoration:none; margin-right:20px;}
+  nav.jump a:hover{color:#1a1712;}
+
+  .shell{max-width:1180px; margin:0 auto; padding:44px 28px 100px; display:flex; flex-direction:column; gap:64px;}
+  .entry-name{font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:#6b6355; font-weight:700;}
+  .entry-rationale{font-size:13.5px; color:#6b6355; max-width:66ch; line-height:1.5; margin:6px 0 14px;}
+  .wrap{border-radius:4px; overflow:hidden; border:1px solid #ddd5c4; box-shadow:0 16px 36px -20px rgba(0,0,0,0.35); background:#fff;}
+
+  footer.note{max-width:1180px; margin:24px auto 0; padding:28px 28px 0; border-top:1px solid #ddd5c4; font-size:13px; color:#6b6355; line-height:1.6;}
+
+  /* =========================================================
+     01 — KATEGÓRIA FÜLEK (TABS)
+  ========================================================= */
+  .d1{padding:36px;}
+  .d1-tabs{display:flex; gap:10px; margin-bottom:24px; flex-wrap:wrap;}
+  .d1-tab{font-family:'Oswald',sans-serif; font-weight:600; font-size:12.5px; letter-spacing:0.5px; text-transform:uppercase; padding:10px 18px; border-radius:999px; border:1.5px solid #ddd5c4; background:#fff; color:#5c5646; cursor:pointer;}
+  .d1-tab.active{background:#1a1712; border-color:#1a1712; color:#fff;}
+  .d1-panel{display:none; grid-template-columns:repeat(4,1fr); gap:10px;}
+  .d1-panel.active{display:grid;}
+  .d1-panel img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:6px; display:block;}
+
+  /* =========================================================
+     02 — MASONRY + SZŰRŐ CHIPEK
+  ========================================================= */
+  .d2{padding:36px;}
+  .d2-chips{display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap;}
+  .d2-chip{font-family:'Oswald',sans-serif; font-weight:600; font-size:11.5px; letter-spacing:0.5px; text-transform:uppercase; padding:7px 14px; border-radius:6px; border:1px solid #ddd5c4; background:#f7f4ec; color:#5c5646; cursor:pointer;}
+  .d2-chip.active{background:#ffd400; border-color:#ffd400; color:#1a1712;}
+  .d2-masonry{column-count:4; column-gap:10px;}
+  .d2-masonry img{width:100%; display:block; margin-bottom:10px; border-radius:6px; break-inside:avoid;}
+  .d2-item[data-hidden="true"]{display:none;}
+
+  /* =========================================================
+     03 — NAGY KIEMELT KÉP + KISRÁCS (magazin)
+  ========================================================= */
+  .d3{padding:36px;}
+  .d3-cat{margin-bottom:36px;}
+  .d3-cat:last-child{margin-bottom:0;}
+  .d3-cat-title{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:15px; letter-spacing:0.5px; margin-bottom:12px; color:#1a1712; display:flex; align-items:center; gap:8px;}
+  .d3-cat-title::before{content:""; width:20px; height:2px; background:#ffd400; display:inline-block;}
+  .d3-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:8px; height:280px;}
+  .d3-grid img{width:100%; height:100%; object-fit:cover; border-radius:6px; display:block;}
+  .d3-grid .big{grid-row:1/3;}
+
+  /* =========================================================
+     04 — VÍZSZINTES GÖRGETŐS KATEGÓRIA-SÁVOK
+  ========================================================= */
+  .d4{padding:36px 0;}
+  .d4-row{margin-bottom:32px;}
+  .d4-row:last-child{margin-bottom:0;}
+  .d4-row-head{display:flex; align-items:baseline; justify-content:space-between; padding:0 36px; margin-bottom:12px;}
+  .d4-row-head h3{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:15px;}
+  .d4-row-head span{font-size:11.5px; color:#8a8270;}
+  .d4-track{display:flex; gap:10px; overflow-x:auto; padding:0 36px 8px; scroll-snap-type:x mandatory;}
+  .d4-track img{flex:0 0 200px; height:150px; object-fit:cover; border-radius:6px; scroll-snap-align:start; display:block;}
+
+  /* =========================================================
+     05 — BENTO-CSEMPÉZETT VEGYES RÁCS
+  ========================================================= */
+  .d5{padding:36px;}
+  .d5-grid{display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:90px; gap:8px;}
+  .d5-grid img{width:100%; height:100%; object-fit:cover; border-radius:6px; display:block;}
+  .d5-grid .s1{grid-column:span 3; grid-row:span 3;}
+  .d5-grid .s2{grid-column:span 3; grid-row:span 2;}
+  .d5-grid .s3{grid-column:span 2; grid-row:span 2;}
+  .d5-grid .s4{grid-column:span 2; grid-row:span 1;}
+  .d5-grid .s5{grid-column:span 2; grid-row:span 1;}
+  .d5-grid .s6{grid-column:span 2; grid-row:span 2;}
+  .d5-grid .s7{grid-column:span 4; grid-row:span 2;}
+
+  @media (max-width:760px){
+    .d1-panel, .d2-masonry{grid-template-columns:repeat(2,1fr); column-count:2;}
+    .d3-grid{grid-template-columns:1fr 1fr; grid-template-rows:auto auto auto; height:auto;}
+    .d3-grid .big{grid-row:auto; grid-column:1/3; height:200px;}
+    .d3-grid img{height:130px;}
+    .d5-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:110px;}
+    .d5-grid .s1,.d5-grid .s2,.d5-grid .s3,.d5-grid .s4,.d5-grid .s5,.d5-grid .s6,.d5-grid .s7{grid-column:span 2; grid-row:span 2;}
+  }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="eyebrow">Pipe Work Kft — Referenciák</p>
+  <h1>5 elrendezési ötlet a referencia oldalhoz</h1>
+  <p class="lede">Ugyanazokból a valódi, feltöltött munkafotókból építve — mind az öt máshogy szervezi a sok képet: van, ami fülekre bontja, van, ami egy hosszú, vegyes rácsban mutatja meg mindet.</p>
+</header>
+
+<nav class="jump">
+  <a href="#d1">01 Kategória fülek</a>
+  <a href="#d2">02 Masonry + szűrő</a>
+  <a href="#d3">03 Kiemelt kép + kisrács</a>
+  <a href="#d4">04 Vízszintes sávok</a>
+  <a href="#d5">05 Bento vegyes rács</a>
+</nav>
+
+<div class="shell">
+
+  <article id="d1">
+    <span class="entry-name">01 · Kategória fülek (tabs)</span>
+    <p class="entry-rationale">Nincs hosszú görgetés — kattints egy fülre, csak az adott kategória képei látszanak. A legkompaktabb, leginkább "katalógus"-szerű megoldás.</p>
+    <div class="wrap d1">
+      <div class="d1-tabs">
+        <button class="d1-tab active" data-tab="t-lapostetos">Lapostető (24)</button>
+        <button class="d1-tab" data-tab="t-badogozas">Bádogozás (10)</button>
+        <button class="d1-tab" data-tab="t-erkely">Erkély (3)</button>
+        <button class="d1-tab" data-tab="t-ipari">Ipari (1)</button>
+        <button class="d1-tab" data-tab="t-alapozas">Alapozás (1)</button>
+      </div>
+      <div class="d1-panel active" id="t-lapostetos">
+        <img src="images/site/referencia/thumb/lapostetos-01.jpg" alt="">
+        <img src="images/site/referencia/thumb/lapostetos-07.jpg" alt="">
+        <img src="images/site/referencia/thumb/lapostetos-13.jpg" alt="">
+        <img src="images/site/referencia/thumb/lapostetos-19.jpg" alt="">
+      </div>
+      <div class="d1-panel" id="t-badogozas">
+        <img src="images/site/referencia/thumb/badogozas-03.jpg" alt="">
+        <img src="images/site/referencia/thumb/badogozas-05.jpg" alt="">
+        <img src="images/site/referencia/thumb/badogozas-08.jpg" alt="">
+        <img src="images/site/referencia/thumb/badogozas-10.jpg" alt="">
+      </div>
+      <div class="d1-panel" id="t-erkely">
+        <img src="images/site/referencia/thumb/erkely-01.jpg" alt="">
+        <img src="images/site/referencia/thumb/erkely-02.jpg" alt="">
+        <img src="images/site/referencia/thumb/erkely-03.jpg" alt="">
+      </div>
+      <div class="d1-panel" id="t-ipari">
+        <img src="images/site/referencia/thumb/ipari-01.jpg" alt="">
+      </div>
+      <div class="d1-panel" id="t-alapozas">
+        <img src="images/site/referencia/thumb/alapozas-01.jpg" alt="">
+      </div>
+    </div>
+  </article>
+
+  <article id="d2">
+    <span class="entry-name">02 · Masonry + szűrő chipek</span>
+    <p class="entry-rationale">Pinterest-stílusú, változó magasságú rács, minden kép egyben — chipekkel lehet rászűrni egy kategóriára. Vizuálisan a leggazdagabb, "portfólió" jellegű.</p>
+    <div class="wrap d2">
+      <div class="d2-chips">
+        <button class="d2-chip active" data-filter="all">Összes</button>
+        <button class="d2-chip" data-filter="lapostetos">Lapostető</button>
+        <button class="d2-chip" data-filter="badogozas">Bádogozás</button>
+        <button class="d2-chip" data-filter="erkely">Erkély</button>
+      </div>
+      <div class="d2-masonry" id="d2masonry">
+        <div class="d2-item" data-cat="lapostetos"><img src="images/site/referencia/thumb/lapostetos-02.jpg"></div>
+        <div class="d2-item" data-cat="badogozas"><img src="images/site/referencia/thumb/badogozas-06.jpg"></div>
+        <div class="d2-item" data-cat="lapostetos"><img src="images/site/referencia/thumb/lapostetos-09.jpg"></div>
+        <div class="d2-item" data-cat="erkely"><img src="images/site/referencia/thumb/erkely-02.jpg"></div>
+        <div class="d2-item" data-cat="lapostetos"><img src="images/site/referencia/thumb/lapostetos-17.jpg"></div>
+        <div class="d2-item" data-cat="badogozas"><img src="images/site/referencia/thumb/badogozas-04.jpg"></div>
+        <div class="d2-item" data-cat="lapostetos"><img src="images/site/referencia/thumb/lapostetos-21.jpg"></div>
+        <div class="d2-item" data-cat="lapostetos"><img src="images/site/referencia/thumb/lapostetos-05.jpg"></div>
+        <div class="d2-item" data-cat="badogozas"><img src="images/site/referencia/thumb/badogozas-08.jpg"></div>
+        <div class="d2-item" data-cat="lapostetos"><img src="images/site/referencia/thumb/lapostetos-24.jpg"></div>
+        <div class="d2-item" data-cat="erkely"><img src="images/site/referencia/thumb/erkely-03.jpg"></div>
+        <div class="d2-item" data-cat="lapostetos"><img src="images/site/referencia/thumb/lapostetos-10.jpg"></div>
+      </div>
+    </div>
+  </article>
+
+  <article id="d3">
+    <span class="entry-name">03 · Kiemelt kép + kisrács (magazin)</span>
+    <p class="entry-rationale">Kategóriánként egy nagy, kiemelt kép vezet, mellette kisebb támogató képek — mint egy magazin fotóriportja, minden kategóriának van egy "borítóképe".</p>
+    <div class="wrap d3">
+      <div class="d3-cat">
+        <div class="d3-cat-title">Lapostető szigetelés</div>
+        <div class="d3-grid">
+          <img class="big" src="images/site/referencia/thumb/lapostetos-01.jpg">
+          <img src="images/site/referencia/thumb/lapostetos-13.jpg">
+          <img src="images/site/referencia/thumb/lapostetos-19.jpg">
+          <img src="images/site/referencia/thumb/lapostetos-07.jpg">
+          <img src="images/site/referencia/thumb/lapostetos-22.jpg">
+        </div>
+      </div>
+      <div class="d3-cat">
+        <div class="d3-cat-title">Bádogozás és szegélyezés</div>
+        <div class="d3-grid">
+          <img class="big" src="images/site/referencia/thumb/badogozas-01.jpg">
+          <img src="images/site/referencia/thumb/badogozas-05.jpg">
+          <img src="images/site/referencia/thumb/badogozas-08.jpg">
+          <img src="images/site/referencia/thumb/badogozas-03.jpg">
+          <img src="images/site/referencia/thumb/badogozas-09.jpg">
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="d4">
+    <span class="entry-name">04 · Vízszintes görgetős kategória-sávok</span>
+    <p class="entry-rationale">Minden kategória egy önálló, oldalra görgethető sor — mobilon ez a legtermészetesebb gesztus, és jól bővíthető új képekkel anélkül, hogy a rács szétesne.</p>
+    <div class="wrap d4">
+      <div class="d4-row">
+        <div class="d4-row-head"><h3>Lapostető szigetelés</h3><span>24 kép</span></div>
+        <div class="d4-track">
+          <img src="images/site/referencia/thumb/lapostetos-01.jpg"><img src="images/site/referencia/thumb/lapostetos-02.jpg"><img src="images/site/referencia/thumb/lapostetos-05.jpg"><img src="images/site/referencia/thumb/lapostetos-09.jpg"><img src="images/site/referencia/thumb/lapostetos-13.jpg"><img src="images/site/referencia/thumb/lapostetos-17.jpg"><img src="images/site/referencia/thumb/lapostetos-21.jpg">
+        </div>
+      </div>
+      <div class="d4-row">
+        <div class="d4-row-head"><h3>Bádogozás és szegélyezés</h3><span>10 kép</span></div>
+        <div class="d4-track">
+          <img src="images/site/referencia/thumb/badogozas-01.jpg"><img src="images/site/referencia/thumb/badogozas-03.jpg"><img src="images/site/referencia/thumb/badogozas-05.jpg"><img src="images/site/referencia/thumb/badogozas-07.jpg"><img src="images/site/referencia/thumb/badogozas-09.jpg"><img src="images/site/referencia/thumb/badogozas-10.jpg">
+        </div>
+      </div>
+      <div class="d4-row">
+        <div class="d4-row-head"><h3>Erkély és terasz</h3><span>3 kép</span></div>
+        <div class="d4-track">
+          <img src="images/site/referencia/thumb/erkely-01.jpg"><img src="images/site/referencia/thumb/erkely-02.jpg"><img src="images/site/referencia/thumb/erkely-03.jpg">
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="d5">
+    <span class="entry-name">05 · Bento vegyes rács</span>
+    <p class="entry-rationale">Nincs kategória-elválasztás — egyetlen nagy, változó méretű csempés rács, ahol néhány erős kép kiemelt méretet kap. Legmerészebb, leginkább "portfólió showreel" hatású.</p>
+    <div class="wrap d5">
+      <div class="d5-grid">
+        <img class="s1" src="images/site/referencia/thumb/lapostetos-01.jpg">
+        <img class="s4" src="images/site/referencia/thumb/badogozas-02.jpg">
+        <img class="s5" src="images/site/referencia/thumb/erkely-01.jpg">
+        <img class="s3" src="images/site/referencia/thumb/lapostetos-13.jpg">
+        <img class="s6" src="images/site/referencia/thumb/badogozas-06.jpg">
+        <img class="s2" src="images/site/referencia/thumb/lapostetos-19.jpg">
+        <img class="s7" src="images/site/referencia/thumb/ipari-01.jpg">
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<footer class="note">
+  Mind az öt a jóváhagyott referencia-kategóriákat használja — a 03-as (kiemelt kép + kisrács) a legbiztonságosabb választás, az 01 (fülek) a leggyorsabban böngészhető, az 05 (bento) a legerősebb első benyomás.
+</footer>
+
+<script>
+  // 01 — tabs
+  document.querySelectorAll('.d1-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.d1-tab').forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('.d1-panel').forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // 02 — masonry filter
+  document.querySelectorAll('.d2-chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      document.querySelectorAll('.d2-chip').forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      var f = chip.dataset.filter;
+      document.querySelectorAll('#d2masonry .d2-item').forEach(function(it){
+        it.setAttribute('data-hidden', (f !== 'all' && it.dataset.cat !== f) ? 'true' : 'false');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

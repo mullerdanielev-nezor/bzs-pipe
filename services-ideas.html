@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Pipe Work Kft — Szolgáltatások, 8 modern koncepció</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif; background:#f4f1ea; color:#1a1712;}
+
+  header.intro{max-width:1180px; margin:0 auto; padding:56px 28px 32px; border-bottom:1px solid #ddd5c4;}
+  .eyebrow{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#c99a00; font-weight:700; margin:0 0 14px;}
+  h1{font-family:'Oswald',sans-serif; font-weight:600; font-size:clamp(26px,3.6vw,38px); margin:0 0 14px; text-transform:uppercase; letter-spacing:0.5px;}
+  .lede{font-size:15px; line-height:1.6; color:#6b6355; max-width:66ch; margin:0;}
+
+  nav.jump{position:sticky; top:0; z-index:50; background:#f4f1ea; border-bottom:1px solid #ddd5c4; overflow-x:auto; white-space:nowrap; padding:12px 28px;}
+  nav.jump a{font-size:12.5px; color:#6b6355; text-decoration:none; margin-right:20px;}
+  nav.jump a:hover{color:#1a1712;}
+
+  .shell{max-width:1180px; margin:0 auto; padding:44px 28px 100px; display:flex; flex-direction:column; gap:56px;}
+  .entry-name{font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:#6b6355; font-weight:700;}
+  .entry-rationale{font-size:13.5px; color:#6b6355; max-width:64ch; line-height:1.5; margin:6px 0 14px;}
+  .wrap{border-radius:4px; overflow:hidden; border:1px solid #ddd5c4; box-shadow:0 16px 36px -20px rgba(0,0,0,0.35);}
+
+  footer.note{max-width:1180px; margin:24px auto 0; padding:28px 28px 0; border-top:1px solid #ddd5c4; font-size:13px; color:#6b6355; line-height:1.6;}
+
+  /* =========================================================
+     01 — BENTO GRID DASHBOARD (aszimmetrikus, sötét, üveg)
+  ========================================================= */
+  .s1{background:#14171c; padding:64px 56px;}
+  .s1-head{display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:32px; flex-wrap:wrap; gap:16px;}
+  .s1-head h2{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:26px;}
+  .s1-head span{color:#8a92a0; font-size:13px;}
+  .s1-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr; grid-template-rows:auto auto; gap:14px;}
+  .s1-card{background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:26px; transition:transform 0.25s ease, background 0.25s ease;}
+  .s1-card:hover{transform:translateY(-4px); background:rgba(255,255,255,0.08);}
+  .s1-card.big{grid-row:1/3; display:flex; flex-direction:column; justify-content:space-between;}
+  .s1-card h3{font-family:'Oswald',sans-serif; color:#fff; font-size:19px; text-transform:uppercase; margin-bottom:10px;}
+  .s1-card p{color:#a9b0bd; font-size:13.5px; line-height:1.55;}
+  .s1-card.big p{font-size:14.5px; max-width:26ch;}
+  .s1-tag{display:inline-block; font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#ffd400; border:1px solid rgba(255,212,0,0.4); border-radius:999px; padding:5px 12px; width:fit-content; margin-bottom:16px;}
+
+  /* =========================================================
+     02 — VÍZSZINTES GÖRGETŐS KÁRTYÁK (snap-scroll)
+  ========================================================= */
+  .s2{background:#f7f4ec; padding:64px 0;}
+  .s2-head{padding:0 56px; margin-bottom:28px;}
+  .s2-head h2{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:26px; color:#1a1712;}
+  .s2-track{display:flex; gap:18px; overflow-x:auto; padding:0 56px 12px; scroll-snap-type:x mandatory;}
+  .s2-card{scroll-snap-align:start; flex:0 0 280px; background:#fff; border-radius:12px; border:1px solid #e4ddc9; padding:28px; box-shadow:0 12px 26px -18px rgba(0,0,0,0.25);}
+  .s2-num{font-family:'Oswald',sans-serif; font-weight:700; font-size:34px; color:#ffd400; -webkit-text-stroke:1.5px #1a1712; margin-bottom:18px;}
+  .s2-card h3{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:16px; margin-bottom:10px;}
+  .s2-card p{font-size:13.5px; color:#5c5646; line-height:1.55;}
+  .s2-hint{padding:0 56px; font-size:12px; color:#8a8270; font-style:italic;}
+
+  /* =========================================================
+     03 — AKKORDEON LISTA (natív details/summary, nincs JS)
+  ========================================================= */
+  .s3{background:#eef0f2; padding:64px 56px;}
+  .s3-head{max-width:600px; margin-bottom:32px;}
+  .s3-head h2{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:26px; margin-bottom:10px;}
+  .s3-head p{color:#5c6570; font-size:14.5px;}
+  .s3-list{max-width:820px; border-top:1px solid #cfd5da;}
+  .s3-item{border-bottom:1px solid #cfd5da;}
+  .s3-item summary{cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between; padding:22px 4px; font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:16px; letter-spacing:0.5px;}
+  .s3-item summary::-webkit-details-marker{display:none;}
+  .s3-item summary .plus{font-size:22px; color:#ffd400; -webkit-text-stroke:1px #1a1712; transition:transform 0.25s ease;}
+  .s3-item[open] summary .plus{transform:rotate(45deg);}
+  .s3-item .body{padding:0 4px 22px; font-size:14px; color:#5c6570; max-width:60ch; line-height:1.6;}
+
+  /* =========================================================
+     04 — ÓRIÁS SZÁMOK, EDITORIÁLIS LISTA
+  ========================================================= */
+  .s4{background:#f4f1ea; padding:72px 56px;}
+  .s4-head{margin-bottom:12px;}
+  .s4-head h2{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:26px;}
+  .s4-row{display:flex; align-items:baseline; gap:32px; padding:30px 0; border-top:1px solid #ddd5c4;}
+  .s4-row:last-child{border-bottom:1px solid #ddd5c4;}
+  .s4-row .big-num{font-family:'Oswald',sans-serif; font-weight:700; font-size:56px; color:transparent; -webkit-text-stroke:1.5px #d8cba8; flex:0 0 auto; line-height:1;}
+  .s4-row .txt h3{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:20px; margin-bottom:6px;}
+  .s4-row .txt p{font-size:14px; color:#5c5646; max-width:52ch;}
+  .s4-row:hover .big-num{color:#ffd400; -webkit-text-stroke:1.5px #1a1712;}
+
+  /* =========================================================
+     05 — HOVER-REVEAL KÉPKÁRTYÁK
+  ========================================================= */
+  .s5{background:#14171c; padding:64px 56px;}
+  .s5-head h2{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:26px; margin-bottom:28px;}
+  .s5-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .s5-card{position:relative; height:300px; border-radius:8px; overflow:hidden; background:linear-gradient(160deg,#7a6a52,#4a4238 55%,#2c2721);}
+  .s5-scrim{position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,10,8,0.9) 0%, rgba(10,10,8,0.1) 55%); display:flex; align-items:flex-end; padding:22px;}
+  .s5-card h3{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:16px; transition:transform 0.3s ease;}
+  .s5-card p{color:#e9e4d4; font-size:13px; line-height:1.5; max-height:0; opacity:0; overflow:hidden; transition:max-height 0.35s ease, opacity 0.35s ease, margin 0.35s ease;}
+  .s5-card:hover p{max-height:120px; opacity:1; margin-top:10px;}
+  .s5-card .inner{position:relative;}
+
+  /* =========================================================
+     06 — SPLIT STICKY (bal fix cím, jobb görgethető lista)
+  ========================================================= */
+  .s6{background:#f7f4ec; display:grid; grid-template-columns:1fr 1.4fr;}
+  .s6-left{padding:64px 48px; position:sticky; top:0; align-self:start; height:100%; display:flex; flex-direction:column; justify-content:center;}
+  .s6-left .eyebrow{color:#a5843c;}
+  .s6-left h2{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:30px; margin-bottom:14px;}
+  .s6-left p{color:#5c5646; font-size:14.5px; max-width:32ch;}
+  .s6-right{background:#fff; border-left:1px solid #e4ddc9;}
+  .s6-row{padding:34px 40px; border-bottom:1px solid #e4ddc9; display:flex; gap:24px; align-items:flex-start;}
+  .s6-row .idx{font-family:'Oswald',sans-serif; font-weight:700; color:#ffd400; -webkit-text-stroke:1px #1a1712; font-size:15px; flex:0 0 30px;}
+  .s6-row h3{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:16px; margin-bottom:6px;}
+  .s6-row p{font-size:13.5px; color:#5c5646; line-height:1.55; max-width:48ch;}
+
+  /* =========================================================
+     07 — GRADIENS MESH GLASSMORPHIZMUS
+  ========================================================= */
+  .s7{position:relative; padding:72px 56px; background:#0f1115; overflow:hidden;}
+  .s7-blob{position:absolute; border-radius:50%; filter:blur(60px); opacity:0.55;}
+  .s7-blob.b1{width:340px; height:340px; background:#ffd400; top:-80px; left:-60px;}
+  .s7-blob.b2{width:280px; height:280px; background:#3b6fd1; bottom:-60px; right:60px;}
+  .s7-blob.b3{width:220px; height:220px; background:#c94f4f; bottom:40px; left:40%;}
+  .s7-head{position:relative; margin-bottom:28px;}
+  .s7-head h2{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:26px;}
+  .s7-grid{position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .s7-card{background:rgba(255,255,255,0.08); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,0.15); border-radius:16px; padding:24px;}
+  .s7-card h3{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:15px; margin-bottom:8px;}
+  .s7-card p{color:#d8dbe2; font-size:13px; line-height:1.5;}
+
+  /* =========================================================
+     08 — MARQUEE SZALAG + TISZTA 2×2 RÁCS
+  ========================================================= */
+  .s8-marquee{background:#ffd400; overflow:hidden; white-space:nowrap; padding:10px 0;}
+  .s8-marquee-track{display:inline-block; animation:marquee 18s linear infinite;}
+  .s8-marquee-track span{font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; color:#1a1712; margin-right:36px;}
+  @keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  .s8{background:#1a1712; padding:64px 56px;}
+  .s8-head h2{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:26px; margin-bottom:28px;}
+  .s8-grid{display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(255,255,255,0.12);}
+  .s8-card{background:#1a1712; padding:36px; transition:background 0.25s ease;}
+  .s8-card:hover{background:#242019;}
+  .s8-card h3{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:18px; margin-bottom:10px;}
+  .s8-card p{color:#c9c3b3; font-size:14px; line-height:1.55;}
+  .s8-card .line{width:36px; height:3px; background:#ffd400; margin-bottom:16px;}
+
+  @media (max-width:900px){
+    .s1-grid{grid-template-columns:1fr 1fr;}
+    .s1-card.big{grid-row:auto; grid-column:1/3;}
+    .s5-grid{grid-template-columns:1fr 1fr;}
+    .s6{grid-template-columns:1fr;}
+    .s6-left{position:static;}
+    .s7-grid{grid-template-columns:1fr 1fr;}
+    .s8-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:600px){
+    .s1{padding:44px 24px;}
+    .s1-grid{grid-template-columns:1fr;}
+    .s1-card.big{grid-column:1;}
+    .s4{padding:48px 24px;}
+    .s4-row{gap:16px;}
+    .s4-row .big-num{font-size:38px;}
+    .s5-grid{grid-template-columns:1fr;}
+    .s7-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="eyebrow">Pipe Work Kft — Miskolc</p>
+  <h1>Szolgáltatások szekció — 8 nagyon eltérő, modern koncepció</h1>
+  <p class="lede">Ugyanaz a négy szolgáltatás (lakóépület kivitelezés, ipari &amp; kereskedelmi épületek, felújítás &amp; bővítés, tervezés &amp; engedélyeztetés), nyolc szerkezetileg teljesen más, mai design-nyelven — van, ami sötét és üveges, van, ami világos és editoriális, van, ami interaktív.</p>
+</header>
+
+<nav class="jump">
+  <a href="#s1">01 Bento dashboard</a>
+  <a href="#s2">02 Görgethető kártyák</a>
+  <a href="#s3">03 Akkordeon</a>
+  <a href="#s4">04 Óriás számok</a>
+  <a href="#s5">05 Hover-reveal képek</a>
+  <a href="#s6">06 Split sticky</a>
+  <a href="#s7">07 Gradiens mesh glass</a>
+  <a href="#s8">08 Marquee + rács</a>
+</nav>
+
+<div class="shell">
+
+  <article id="s1">
+    <span class="entry-name">01 · Bento dashboard</span>
+    <p class="entry-rationale">Aszimmetrikus, "bento grid" elrendezés sötét, üveges kártyákkal — dashboard-szerű, a jelenleg legelterjedtebb SaaS/portfólió trend.</p>
+    <div class="wrap">
+      <div class="s1">
+        <div class="s1-head"><h2>Szolgáltatások</h2><span>Miskolc · 2018 óta</span></div>
+        <div class="s1-grid">
+          <div class="s1-card big">
+            <div>
+              <span class="s1-tag">Kiemelt</span>
+              <h3>Lakóépület kivitelezés</h3>
+              <p>Családi házak és társasházak teljes körű kivitelezése, alaptól a kulcsrakész átadásig.</p>
+            </div>
+          </div>
+          <div class="s1-card"><h3>Ipari &amp; kereskedelmi</h3><p>Csarnokok, üzletek, irodaépületek.</p></div>
+          <div class="s1-card"><h3>Felújítás &amp; bővítés</h3><p>Korszerűsítés, energetikai fejlesztés.</p></div>
+          <div class="s1-card" style="grid-column:2/4;"><h3>Tervezés &amp; engedélyeztetés</h3><p>Engedélyek beszerzése, kiviteli tervek egyeztetése a kivitelezés előtt.</p></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="s2">
+    <span class="entry-name">02 · Vízszintesen görgethető kártyák</span>
+    <p class="entry-rationale">Snap-scroll kártyasor, mobilon és asztalin is természetes gesztus — jól bővíthető, ha később több szolgáltatás jön.</p>
+    <div class="wrap">
+      <div class="s2">
+        <div class="s2-head"><h2>Amit kínálunk</h2></div>
+        <div class="s2-track">
+          <div class="s2-card"><div class="s2-num">01</div><h3>Lakóépület kivitelezés</h3><p>Családi házak és társasházak teljes körű kivitelezése.</p></div>
+          <div class="s2-card"><div class="s2-num">02</div><h3>Ipari &amp; kereskedelmi épületek</h3><p>Csarnokok, üzletek, irodaépületek pontos ütemezéssel.</p></div>
+          <div class="s2-card"><div class="s2-num">03</div><h3>Felújítás &amp; bővítés</h3><p>Meglévő épületek korszerűsítése, energetikai fejlesztése.</p></div>
+          <div class="s2-card"><div class="s2-num">04</div><h3>Tervezés &amp; engedélyeztetés</h3><p>Engedélyek beszerzése, kiviteli tervek egyeztetése.</p></div>
+        </div>
+        <p class="s2-hint">(Görgesd oldalra a kártyákat.)</p>
+      </div>
+    </div>
+  </article>
+
+  <article id="s3">
+    <span class="entry-name">03 · Akkordeon lista</span>
+    <p class="entry-rationale">Minimál, sorokra bontott lista, ami kattintásra nyílik ki — kevés helyet foglal, mégis minden részletet elmond, natív HTML-elemekkel, JS nélkül.</p>
+    <div class="wrap">
+      <div class="s3">
+        <div class="s3-head"><h2>Szolgáltatások</h2><p>Kattints egy sorra a részletekért.</p></div>
+        <div class="s3-list">
+          <details class="s3-item" open>
+            <summary>Lakóépület kivitelezés <span class="plus">+</span></summary>
+            <div class="body">Családi házak és társasházak teljes körű kivitelezése, alaptól a kulcsrakész átadásig.</div>
+          </details>
+          <details class="s3-item">
+            <summary>Ipari &amp; kereskedelmi épületek <span class="plus">+</span></summary>
+            <div class="body">Csarnokok, üzletek és irodaépületek építése, pontos ütemezéssel és minőségi garanciával.</div>
+          </details>
+          <details class="s3-item">
+            <summary>Felújítás &amp; bővítés <span class="plus">+</span></summary>
+            <div class="body">Meglévő épületek korszerűsítése, bővítése, energetikai fejlesztése.</div>
+          </details>
+          <details class="s3-item">
+            <summary>Tervezés &amp; engedélyeztetés <span class="plus">+</span></summary>
+            <div class="body">Építési engedélyek beszerzése, kiviteli tervek egyeztetése a kivitelezés előtt.</div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="s4">
+    <span class="entry-name">04 · Óriás számok, editoriális lista</span>
+    <p class="entry-rationale">Nagy, körvonalas számok vezetik a szemet soronként — magazin/portfólió hangulat, hover-re a szám kitöltődik sárgára.</p>
+    <div class="wrap">
+      <div class="s4">
+        <div class="s4-head"><h2>Szolgáltatások</h2></div>
+        <div class="s4-row"><div class="big-num">01</div><div class="txt"><h3>Lakóépület kivitelezés</h3><p>Családi házak és társasházak teljes körű kivitelezése, alaptól a kulcsrakész átadásig.</p></div></div>
+        <div class="s4-row"><div class="big-num">02</div><div class="txt"><h3>Ipari &amp; kereskedelmi épületek</h3><p>Csarnokok, üzletek és irodaépületek építése, pontos ütemezéssel.</p></div></div>
+        <div class="s4-row"><div class="big-num">03</div><div class="txt"><h3>Felújítás &amp; bővítés</h3><p>Meglévő épületek korszerűsítése, bővítése, energetikai fejlesztése.</p></div></div>
+        <div class="s4-row"><div class="big-num">04</div><div class="txt"><h3>Tervezés &amp; engedélyeztetés</h3><p>Építési engedélyek beszerzése, kiviteli tervek egyeztetése.</p></div></div>
+      </div>
+    </div>
+  </article>
+
+  <article id="s5">
+    <span class="entry-name">05 · Hover-reveal képkártyák</span>
+    <p class="entry-rationale">Négy teli-képes kártya, a leírás csak hoverre bukkan elő — vizuálisabb, "portfólió" jellegű, asztali böngészőben él igazán.</p>
+    <div class="wrap">
+      <div class="s5">
+        <div class="s5-head"><h2>Szolgáltatások</h2></div>
+        <div class="s5-grid">
+          <div class="s5-card"><div class="s5-scrim"><div class="inner"><h3>Lakóépület kivitelezés</h3><p>Családi házak, társasházak teljes körű kivitelezése.</p></div></div></div>
+          <div class="s5-card"><div class="s5-scrim"><div class="inner"><h3>Ipari &amp; kereskedelmi</h3><p>Csarnokok, üzletek, irodaépületek.</p></div></div></div>
+          <div class="s5-card"><div class="s5-scrim"><div class="inner"><h3>Felújítás &amp; bővítés</h3><p>Korszerűsítés, energetikai fejlesztés.</p></div></div></div>
+          <div class="s5-card"><div class="s5-scrim"><div class="inner"><h3>Tervezés &amp; engedély</h3><p>Engedélyek, kiviteli tervek egyeztetése.</p></div></div></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="s6">
+    <span class="entry-name">06 · Split sticky</span>
+    <p class="entry-rationale">Bal oldalon fix cím és bevezető, jobb oldalon görgethető lista — storytelling-elrendezés, amit sok mai ügynökségi oldal használ.</p>
+    <div class="wrap">
+      <div class="s6">
+        <div class="s6-left">
+          <p class="eyebrow">Szolgáltatások</p>
+          <h2>Amit kínálunk</h2>
+          <p>Négy fő terület, amiben a Pipe Work Kft 2018 óta dolgozik Miskolcon és környékén.</p>
+        </div>
+        <div class="s6-right">
+          <div class="s6-row"><span class="idx">01</span><div><h3>Lakóépület kivitelezés</h3><p>Családi házak és társasházak teljes körű kivitelezése, alaptól a kulcsrakész átadásig.</p></div></div>
+          <div class="s6-row"><span class="idx">02</span><div><h3>Ipari &amp; kereskedelmi épületek</h3><p>Csarnokok, üzletek és irodaépületek építése, pontos ütemezéssel.</p></div></div>
+          <div class="s6-row"><span class="idx">03</span><div><h3>Felújítás &amp; bővítés</h3><p>Meglévő épületek korszerűsítése, bővítése, energetikai fejlesztése.</p></div></div>
+          <div class="s6-row"><span class="idx">04</span><div><h3>Tervezés &amp; engedélyeztetés</h3><p>Építési engedélyek beszerzése, kiviteli tervek egyeztetése.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="s7">
+    <span class="entry-name">07 · Gradiens mesh glassmorphizmus</span>
+    <p class="entry-rationale">Elmosott, színes fényfoltok sötét alapon, üveges kártyák fölöttük — a legmerészebb, legszínesebb irány, erős vizuális benyomás, kevésbé "építőipari komoly", inkább tech/startup hangulat.</p>
+    <div class="wrap">
+      <div class="s7">
+        <div class="s7-blob b1"></div><div class="s7-blob b2"></div><div class="s7-blob b3"></div>
+        <div class="s7-head"><h2>Szolgáltatások</h2></div>
+        <div class="s7-grid">
+          <div class="s7-card"><h3>Lakóépület kivitelezés</h3><p>Családi házak, társasházak teljes körű kivitelezése.</p></div>
+          <div class="s7-card"><h3>Ipari &amp; kereskedelmi</h3><p>Csarnokok, üzletek, irodaépületek.</p></div>
+          <div class="s7-card"><h3>Felújítás &amp; bővítés</h3><p>Korszerűsítés, energetikai fejlesztés.</p></div>
+          <div class="s7-card"><h3>Tervezés &amp; engedély</h3><p>Engedélyek, kiviteli tervek egyeztetése.</p></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="s8">
+    <span class="entry-name">08 · Marquee szalag + tiszta 2×2 rács</span>
+    <p class="entry-rationale">Egy folyamatosan mozgó sárga kulcsszó-szalag vezeti be a szekciót, alatta letisztult, rácsos, elválasztóvonalas kártyák — energikus nyitás, nyugodt tartalom.</p>
+    <div class="wrap">
+      <div class="s8-marquee">
+        <div class="s8-marquee-track">
+          <span>LAKÓÉPÜLETEK</span><span>IPARI CSARNOKOK</span><span>FELÚJÍTÁS</span><span>TERVEZÉS</span><span>MISKOLC · 2018 ÓTA</span>
+          <span>LAKÓÉPÜLETEK</span><span>IPARI CSARNOKOK</span><span>FELÚJÍTÁS</span><span>TERVEZÉS</span><span>MISKOLC · 2018 ÓTA</span>
+        </div>
+      </div>
+      <div class="s8">
+        <div class="s8-head"><h2>Szolgáltatások</h2></div>
+        <div class="s8-grid">
+          <div class="s8-card"><div class="line"></div><h3>Lakóépület kivitelezés</h3><p>Családi házak és társasházak teljes körű kivitelezése, alaptól a kulcsrakész átadásig.</p></div>
+          <div class="s8-card"><div class="line"></div><h3>Ipari &amp; kereskedelmi épületek</h3><p>Csarnokok, üzletek és irodaépületek építése, pontos ütemezéssel.</p></div>
+          <div class="s8-card"><div class="line"></div><h3>Felújítás &amp; bővítés</h3><p>Meglévő épületek korszerűsítése, bővítése, energetikai fejlesztése.</p></div>
+          <div class="s8-card"><div class="line"></div><h3>Tervezés &amp; engedélyeztetés</h3><p>Építési engedélyek beszerzése, kiviteli tervek egyeztetése.</p></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<footer class="note">
+  Mindegyik a négy valódi szolgáltatást viszi tovább, csak a szerkezet és az interakció más — melyik áll közel a hero mostani, sötét acélszürke + sárga karakteréhez?
+</footer>
+
+</body>
+</html>

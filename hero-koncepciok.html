@@ -1,0 +1,510 @@
+<title>Pipe Work Kft — 10 hero koncepció</title>
+<style>
+  :root{
+    --page-bg:#f4f0e8;
+    --page-panel:#ffffff;
+    --page-ink:#211d17;
+    --page-muted:#6b6255;
+    --page-accent:#b5502e;
+    --page-line:#ddd5c4;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --page-bg:#17140f;
+      --page-panel:#211d17;
+      --page-ink:#efe9dd;
+      --page-muted:#a89d8a;
+      --page-accent:#e2794f;
+      --page-line:#3a3327;
+    }
+  }
+  :root[data-theme="dark"]{
+    --page-bg:#17140f; --page-panel:#211d17; --page-ink:#efe9dd; --page-muted:#a89d8a; --page-accent:#e2794f; --page-line:#3a3327;
+  }
+  :root[data-theme="light"]{
+    --page-bg:#f4f0e8; --page-panel:#ffffff; --page-ink:#211d17; --page-muted:#6b6255; --page-accent:#b5502e; --page-line:#ddd5c4;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;overflow-x:hidden;}
+  body{
+    background:var(--page-bg);
+    color:var(--page-ink);
+    font-family:Georgia,'Times New Roman',serif;
+  }
+
+  .shell{max-width:1180px;margin:0 auto;padding:0 28px 120px;}
+
+  header.intro{
+    padding:72px 28px 40px;
+    max-width:1180px;
+    margin:0 auto;
+    border-bottom:1px solid var(--page-line);
+  }
+  .intro-eyebrow{
+    font-family:'Trebuchet MS',Verdana,sans-serif;
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--page-accent);
+    margin:0 0 18px;
+    font-weight:700;
+  }
+  h1{
+    font-size:clamp(30px,4.4vw,50px);
+    line-height:1.12;
+    margin:0 0 18px;
+    text-wrap:balance;
+    max-width:16ch;
+  }
+  .intro-lede{
+    font-family:'Trebuchet MS',Verdana,sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    color:var(--page-muted);
+    max-width:62ch;
+    margin:0;
+  }
+
+  nav.jump{
+    position:sticky; top:0; z-index:50;
+    background:var(--page-bg);
+    border-bottom:1px solid var(--page-line);
+    overflow-x:auto;
+    white-space:nowrap;
+    padding:14px 28px;
+    -webkit-overflow-scrolling:touch;
+  }
+  nav.jump a{
+    font-family:'Trebuchet MS',Verdana,sans-serif;
+    font-size:12.5px;
+    letter-spacing:0.5px;
+    color:var(--page-muted);
+    text-decoration:none;
+    margin-right:22px;
+    padding-bottom:4px;
+    border-bottom:2px solid transparent;
+  }
+  nav.jump a:hover, nav.jump a:focus-visible{
+    color:var(--page-ink);
+    border-bottom-color:var(--page-accent);
+  }
+
+  .grid{padding-top:56px; display:flex; flex-direction:column; gap:64px;}
+
+  .entry{display:flex; flex-direction:column; gap:14px;}
+  .entry-head{
+    display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .entry-name{
+    font-family:'Trebuchet MS',Verdana,sans-serif;
+    font-size:13px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--page-muted); font-weight:700;
+  }
+  .entry-name b{color:var(--page-ink);}
+  .entry-rationale{
+    font-family:'Trebuchet MS',Verdana,sans-serif;
+    font-size:14px; color:var(--page-muted); max-width:52ch; line-height:1.5; margin:0;
+  }
+
+  .mock-wrap{
+    border-radius:3px;
+    overflow:hidden;
+    border:1px solid var(--page-line);
+    box-shadow:0 18px 40px -22px rgba(0,0,0,0.35);
+  }
+  .mock{
+    position:relative;
+    min-height:460px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:64px 72px;
+    color:var(--h-fg);
+    background:var(--h-bg);
+    isolation:isolate;
+  }
+  .mock-eyebrow{
+    font-size:12.5px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--h-accent); margin:0 0 22px; font-weight:700;
+  }
+  .mock-title{
+    font-size:var(--h-title-size,42px);
+    line-height:1.08;
+    margin:0 0 22px;
+    max-width:14ch;
+    text-wrap:balance;
+    font-family:var(--h-title-font);
+    font-weight:var(--h-title-weight,700);
+    text-transform:var(--h-title-case,none);
+    letter-spacing:var(--h-title-tracking,normal);
+  }
+  .mock-sub{
+    font-family:var(--h-sub-font,'Trebuchet MS',sans-serif);
+    font-size:17px; line-height:1.6; max-width:38ch;
+    color:var(--h-sub, var(--h-fg)); margin:0 0 30px;
+  }
+  .mock-cta{
+    font-family:'Trebuchet MS',Verdana,sans-serif;
+    font-size:13.5px; letter-spacing:1.5px; text-transform:uppercase;
+    font-weight:700;
+    color:var(--h-cta-fg); background:var(--h-cta-bg);
+    border:var(--h-cta-border,none);
+    padding:15px 28px;
+    width:fit-content;
+    text-decoration:none;
+  }
+
+  /* ---------- 1. TERVRAJZ / BLUEPRINT ---------- */
+  .c1{
+    --h-bg:#123249; --h-fg:#e7f0f5; --h-accent:#ff7a3d; --h-sub:#bcd3de;
+    --h-title-font:Consolas,'Courier New',monospace; --h-title-weight:700; --h-title-case:uppercase; --h-title-tracking:1px; --h-title-size:38px;
+    --h-cta-bg:#ff7a3d; --h-cta-fg:#123249;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 40px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 40px);
+  }
+  .c1::after{
+    content:"58°N MISKOLC — M 1:100";
+    position:absolute; bottom:24px; right:28px;
+    font-family:Consolas,monospace; font-size:11px; letter-spacing:1px; color:#7fa2b5;
+  }
+  .c1 .mock-sub{border-left:2px solid #ff7a3d; padding-left:16px;}
+
+  /* ---------- 2. NYERSBETON / CONCRETE ---------- */
+  .c2{
+    --h-bg:#8f8a80; --h-fg:#1c1a16; --h-accent:#a3452a; --h-sub:#3a362f;
+    --h-title-font:'Arial Black',Arial,sans-serif; --h-title-weight:900; --h-title-size:46px; --h-title-tracking:-0.5px;
+    --h-cta-bg:#1c1a16; --h-cta-fg:#f1ede4;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(0,0,0,0.12) 0 2px, transparent 3px),
+      radial-gradient(circle at 70% 65%, rgba(0,0,0,0.1) 0 2px, transparent 3px),
+      radial-gradient(circle at 40% 80%, rgba(255,255,255,0.15) 0 1px, transparent 2px),
+      linear-gradient(155deg,#96917f,#726d61 60%,#57534a);
+  }
+  .c2 .mock-eyebrow{font-family:Consolas,monospace; letter-spacing:2px;}
+
+  /* ---------- 3. MISKOLCI HORIZONT ---------- */
+  .c3{
+    --h-bg:linear-gradient(180deg,#4a3352 0%,#7a4a4c 55%,#c97a44 100%);
+    --h-fg:#f7ead3; --h-accent:#f2c46b; --h-sub:#e8cdb0;
+    --h-title-font:'Palatino Linotype','Book Antiqua',Palatino,serif; --h-title-weight:700; --h-title-tracking:0.5px; --h-title-size:44px;
+    --h-cta-bg:transparent; --h-cta-fg:#f7ead3; --h-cta-border:1px solid #f7ead3;
+    background:var(--h-bg);
+  }
+  .c3-skyline{position:absolute; left:0; right:0; bottom:0; height:150px; display:flex; align-items:flex-end; z-index:0;}
+  .c3-skyline span{display:block; background:#1c1420; margin-right:3px;}
+  .c3 .mock-title, .c3 .mock-sub, .c3 .mock-eyebrow, .c3 .mock-cta{position:relative; z-index:1;}
+
+  /* ---------- 4. ANYAGMINTÁK ---------- */
+  .c4{
+    --h-bg:#efe9dd; --h-fg:#2a2620; --h-accent:#9c4a2e; --h-sub:#5a5346;
+    --h-title-font:'Arial Black',Arial,sans-serif; --h-title-weight:900; --h-title-size:40px;
+    --h-cta-bg:#2a2620; --h-cta-fg:#efe9dd;
+  }
+  .c4-strip{position:absolute; top:0; left:0; right:0; height:14px; display:flex;}
+  .c4-strip span{flex:1;}
+  .c4 .mock{padding-top:88px;}
+
+  /* ---------- 5. MUNKAVÉDELEM / SAFETY ---------- */
+  .c5{
+    --h-bg:#141210; --h-fg:#f7f4ea; --h-accent:#f5c518; --h-sub:#d8d3c4;
+    --h-title-font:'Arial Narrow',Arial,sans-serif; --h-title-weight:900; --h-title-case:uppercase; --h-title-tracking:1.5px; --h-title-size:44px;
+    --h-cta-bg:#f5c518; --h-cta-fg:#141210;
+    border-top:14px solid; border-bottom:14px solid;
+    border-image:repeating-linear-gradient(45deg,#f5c518 0 22px,#141210 22px 44px) 14;
+  }
+
+  /* ---------- 6. 2018 ÓTA / TIMELINE ---------- */
+  .c6{
+    --h-bg:#eee7d8; --h-fg:#26221a; --h-accent:#8a6a3a; --h-sub:#5c5646;
+    --h-title-font:Georgia,serif; --h-title-weight:700; --h-title-size:42px;
+    --h-cta-bg:transparent; --h-cta-fg:#26221a; --h-cta-border:1px solid #26221a;
+  }
+  .c6-line{position:absolute; left:72px; right:72px; bottom:120px; height:1px; background:#26221a; opacity:0.35;}
+  .c6-marks{position:absolute; left:72px; right:72px; bottom:110px; display:flex; justify-content:space-between; font-family:Consolas,monospace; font-variant-numeric:tabular-nums; font-size:12px; letter-spacing:1px; color:#5c5646;}
+  .c6-marks b{color:#8a6a3a; display:block; font-size:11px;}
+
+  /* ---------- 7. TERV / MEGVALÓSULÁS (split) ---------- */
+  .c7{padding:0; --h-fg:#efe9dc;}
+  .c7-split{display:grid; grid-template-columns:1fr 1fr; min-height:460px;}
+  .c7-plan, .c7-built{padding:64px 48px; display:flex; flex-direction:column; justify-content:center;}
+  .c7-plan{
+    background:#152a38;
+    background-image:repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 28px), repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 28px);
+  }
+  .c7-built{background:linear-gradient(160deg,#8a5a34,#5c3c22);}
+  .c7-tag{font-family:Consolas,monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin:0 0 16px; opacity:0.75;}
+  .c7-plan h3{font-family:Consolas,monospace; color:#cfe4ee; font-size:26px; margin:0 0 10px; line-height:1.25;}
+  .c7-built h3{font-family:'Palatino Linotype',Palatino,serif; color:#f7ecdb; font-size:26px; margin:0 0 10px; line-height:1.25;}
+  .c7-plan p, .c7-built p{font-family:'Trebuchet MS',sans-serif; font-size:14.5px; line-height:1.55; color:#dfe7ea; max-width:32ch; margin:0;}
+  .c7-built p{color:#f0e2cd;}
+
+  /* ---------- 8. CSENDES / QUIET ---------- */
+  .c8{
+    --h-bg:#f6f2e8; --h-fg:#231f19; --h-accent:#a5573a; --h-sub:#6b6255;
+    --h-title-font:Georgia,serif; --h-title-weight:400; --h-title-size:52px;
+    --h-cta-bg:transparent; --h-cta-fg:#a5573a;
+  }
+  .c8 .mock{align-items:flex-start; padding-left:96px;}
+  .c8 .mock-title{font-style:italic; max-width:11ch;}
+  .c8-stat{
+    position:absolute; right:64px; top:64px; text-align:right;
+    font-family:Consolas,monospace; font-size:12px; letter-spacing:1px; color:#a5573a;
+  }
+  .c8-stat b{display:block; font-family:Georgia,serif; font-size:30px; color:#231f19; font-style:normal; letter-spacing:0;}
+  .c8 .mock-cta{padding:0; text-decoration:underline; text-underline-offset:5px;}
+
+  /* ---------- 9. ACÉLSZERKEZET / STEEL NIGHT ---------- */
+  .c9{
+    --h-bg:#1a1c1e; --h-fg:#eef1f2; --h-accent:#ff7a1a; --h-sub:#a9b0b3;
+    --h-title-font:'Arial Narrow',Arial,sans-serif; --h-title-weight:700; --h-title-case:uppercase; --h-title-tracking:1px; --h-title-size:42px;
+    --h-cta-bg:transparent; --h-cta-fg:#ff7a1a; --h-cta-border:1px solid #ff7a1a;
+    background-image:
+      linear-gradient(115deg, transparent 0 46%, rgba(255,122,26,0.12) 46% 47%, transparent 47% 100%),
+      linear-gradient(115deg, transparent 0 60%, rgba(255,255,255,0.05) 60% 61%, transparent 61% 100%),
+      linear-gradient(155deg,#202325,#151719);
+  }
+
+  /* ---------- 10. OTTHON ÉPÜL / WARM RESIDENTIAL ---------- */
+  .c10{
+    --h-bg:radial-gradient(circle at 82% 20%, rgba(201,138,63,0.35), transparent 55%), linear-gradient(165deg,#f1e9d8,#e3d7bd);
+    --h-fg:#332c22; --h-accent:#7c8b6f; --h-sub:#5c5240;
+    --h-title-font:'Palatino Linotype','Book Antiqua',Palatino,serif; --h-title-weight:700; --h-title-size:42px;
+    --h-cta-bg:#7c8b6f; --h-cta-fg:#f6f4ee;
+    background:var(--h-bg);
+  }
+  .c10 .mock-title{max-width:12ch;}
+
+  footer.note{
+    max-width:1180px; margin:24px auto 0; padding:32px 28px 0;
+    border-top:1px solid var(--page-line);
+    font-family:'Trebuchet MS',Verdana,sans-serif; font-size:13.5px; color:var(--page-muted); line-height:1.6;
+  }
+
+  @media (max-width:760px){
+    header.intro{padding:48px 20px 28px;}
+    .shell{padding:0 20px 100px;}
+    .mock{padding:44px 28px; min-height:400px;}
+    .mock-title{font-size:32px !important; max-width:100% !important;}
+    .c7-split{grid-template-columns:1fr;}
+    .c8 .mock{padding-left:28px;}
+    .c8-stat{position:static; margin-bottom:24px; text-align:left;}
+    .c6-line, .c6-marks{left:28px; right:28px;}
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .entry{animation:none;}
+  }
+</style>
+
+<header class="intro">
+  <p class="intro-eyebrow">Pipe Work Kft — Miskolc</p>
+  <h1>Tíz hero koncepció, egy építőipari cégnek</h1>
+  <p class="intro-lede">Lakó- és nem lakóingatlanok építése, 2018 óta. Az alábbi tíz irány mind más anyagból, más nézőpontból közelíti meg ugyanazt a tényt — válassza ki, amelyik leginkább Önökre hasonlít, vagy vigyünk össze kettőt.</p>
+</header>
+
+<nav class="jump" aria-label="Ugrás a koncepcióhoz">
+  <a href="#c1">01 Tervrajz</a>
+  <a href="#c2">02 Nyersbeton</a>
+  <a href="#c3">03 Miskolci horizont</a>
+  <a href="#c4">04 Anyagminták</a>
+  <a href="#c5">05 Munkavédelem</a>
+  <a href="#c6">06 2018 óta</a>
+  <a href="#c7">07 Terv / Megvalósulás</a>
+  <a href="#c8">08 Csendes</a>
+  <a href="#c9">09 Acélszerkezet</a>
+  <a href="#c10">10 Otthon épül</a>
+</nav>
+
+<div class="shell">
+<div class="grid">
+
+  <article class="entry" id="c1">
+    <div class="entry-head">
+      <span class="entry-name">01 · <b>Tervrajz</b></span>
+    </div>
+    <p class="entry-rationale">Kékmásolat-rács, monospace felirat, koordináta a sarokban — a pontosságot adja el, mielőtt egy tégla is a helyére kerülne.</p>
+    <div class="mock-wrap">
+      <div class="mock c1">
+        <p class="mock-eyebrow">M 1:100 — Miskolc</p>
+        <h2 class="mock-title">Építészeti pontosság, kivitelezői fegyelem</h2>
+        <p class="mock-sub">Lakó- és nem lakóingatlanok tervezéstől az átadásig — Pipe Work Kft, Miskolc, 2018 óta.</p>
+        <a class="mock-cta" href="#">Tervek bekérése</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry" id="c2">
+    <div class="entry-head">
+      <span class="entry-name">02 · <b>Nyersbeton</b></span>
+    </div>
+    <p class="entry-rationale">Súlyos, texturált felület és tömör Arial Black cím — nyers anyag, nyers magabiztosság, minimál dísz.</p>
+    <div class="mock-wrap">
+      <div class="mock c2">
+        <p class="mock-eyebrow">Nyersanyag: beton, acél, idő</p>
+        <h2 class="mock-title">Amit építünk, kiállja az időt</h2>
+        <p class="mock-sub">Pipe Work Kft — lakóépületek és ipari ingatlanok Miskolcon, 2018 óta.</p>
+        <a class="mock-cta" href="#">Kérjen árajánlatot</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry" id="c3">
+    <div class="entry-head">
+      <span class="entry-name">03 · <b>Miskolci horizont</b></span>
+    </div>
+    <p class="entry-rationale">Alkonyati égbolt és a város sziluettje — helyi identitás, nem elvont "építőipar", hanem konkrétan Miskolc.</p>
+    <div class="mock-wrap">
+      <div class="mock c3">
+        <div class="c3-skyline">
+          <span style="width:48px;height:70px;"></span>
+          <span style="width:34px;height:96px;"></span>
+          <span style="width:60px;height:56px;"></span>
+          <span style="width:26px;height:120px;"></span>
+          <span style="width:44px;height:64px;"></span>
+          <span style="width:70px;height:84px;"></span>
+          <span style="width:30px;height:44px;"></span>
+          <span style="width:52px;height:104px;"></span>
+          <span style="width:38px;height:60px;"></span>
+          <span style="width:64px;height:76px;"></span>
+        </div>
+        <p class="mock-eyebrow">Miskolc, Avas felett</p>
+        <h2 class="mock-title">Otthonok, amelyek beleillenek a városba</h2>
+        <p class="mock-sub">Pipe Work Kft — helyi kivitelező, lakó- és nem lakóingatlanok építése 2018 óta.</p>
+        <a class="mock-cta" href="#">Ismerje meg munkáinkat</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry" id="c4">
+    <div class="entry-head">
+      <span class="entry-name">04 · <b>Anyagminták</b></span>
+    </div>
+    <p class="entry-rationale">Tégla, fa, acél, beton, habarcs — a fejléc maga a raktár. Kézzelfogható, nem illusztratív.</p>
+    <div class="mock-wrap">
+      <div class="mock c4">
+        <div class="c4-strip">
+          <span style="background:#9c4a2e;"></span>
+          <span style="background:#b3895a;"></span>
+          <span style="background:#6d7278;"></span>
+          <span style="background:#c8c0ab;"></span>
+          <span style="background:#2b2b2b;"></span>
+        </div>
+        <p class="mock-eyebrow">Tégla · fa · acél · beton</p>
+        <h2 class="mock-title">Minden anyagot ismerünk, minden falat értünk</h2>
+        <p class="mock-sub">Pipe Work Kft — teljes körű kivitelezés Miskolcon, 2018 óta.</p>
+        <a class="mock-cta" href="#">Árajánlatot kérek</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry" id="c5">
+    <div class="entry-head">
+      <span class="entry-name">05 · <b>Munkavédelem</b></span>
+    </div>
+    <p class="entry-rationale">Fekete-sárga jelzőcsíkos keret, ahogy egy aktív építési területet lezárnak — a betartott szabályokból lesz a bizalom.</p>
+    <div class="mock-wrap">
+      <div class="mock c5">
+        <p class="mock-eyebrow">Aktív építési terület</p>
+        <h2 class="mock-title">Biztonságos munka, pontos határidő</h2>
+        <p class="mock-sub">Pipe Work Kft — lakó- és nem lakóingatlanok építése Miskolcon, 2018 óta.</p>
+        <a class="mock-cta" href="#">Lépjen kapcsolatba</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry" id="c6">
+    <div class="entry-head">
+      <span class="entry-name">06 · <b>2018 óta</b></span>
+    </div>
+    <p class="entry-rationale">Az egyetlen koncepció, ahol a számozás valódi információ: egy idővonal, ami ténylegesen 2018-ban indul.</p>
+    <div class="mock-wrap">
+      <div class="mock c6">
+        <p class="mock-eyebrow">Pipe Work Kft</p>
+        <h2 class="mock-title">Hét év, folyamatos építkezés</h2>
+        <p class="mock-sub">Lakó- és nem lakóingatlanok építése Miskolcon — alapítás óta helyben, megszakítás nélkül.</p>
+        <a class="mock-cta" href="#">Kapcsolatfelvétel</a>
+        <div class="c6-line"></div>
+        <div class="c6-marks">
+          <span><b>2018</b>Alapítás</span>
+          <span style="text-align:right;"><b>Ma</b>Aktív projektek Miskolcon</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry" id="c7">
+    <div class="entry-head">
+      <span class="entry-name">07 · <b>Terv / Megvalósulás</b></span>
+    </div>
+    <p class="entry-rationale">Osztott kompozíció: bal oldalon a rajz nyelve, jobb oldalon a kész épületé — két tipográfia, egy mondat.</p>
+    <div class="mock-wrap">
+      <div class="mock c7">
+        <div class="c7-split">
+          <div class="c7-plan">
+            <p class="c7-tag" style="color:#8fb4c8;">Terv</p>
+            <h3>A rajztáblától</h3>
+            <p>Minden projekt pontos tervezéssel indul — méretezve, egyeztetve, jóváhagyva.</p>
+          </div>
+          <div class="c7-built">
+            <p class="c7-tag" style="color:#f0d9b8;">Megvalósulás</p>
+            <h3>az átadásig</h3>
+            <p>Pipe Work Kft — lakó- és nem lakóingatlanok építése, Miskolc, 2018 óta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry" id="c8">
+    <div class="entry-head">
+      <span class="entry-name">08 · <b>Csendes</b></span>
+    </div>
+    <p class="entry-rationale">Nincs fotó, nincs zaj — egy mondat és egy szám. Azoknak, akiknek a visszafogottság önmagában bizonyíték.</p>
+    <div class="mock-wrap">
+      <div class="mock c8">
+        <div class="c8-stat">Miskolcon<b>2018</b>óta</div>
+        <h2 class="mock-title">Építünk.<br>Csendben.</h2>
+        <p class="mock-sub">Pipe Work Kft — lakó- és nem lakóingatlanok kivitelezése Miskolcon.</p>
+        <a class="mock-cta" href="#">Kapcsolatfelvétel →</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry" id="c9">
+    <div class="entry-head">
+      <span class="entry-name">09 · <b>Acélszerkezet</b></span>
+    </div>
+    <p class="entry-rationale">Sötét, éjszakai ipari hangulat, átlós gerenda-vonalakkal — ipari csarnokoknak, nem családi háznak szól.</p>
+    <div class="mock-wrap">
+      <div class="mock c9">
+        <p class="mock-eyebrow">Acélszerkezet · vasbeton · kivitelezés</p>
+        <h2 class="mock-title">Erős szerkezet, erős szó</h2>
+        <p class="mock-sub">Pipe Work Kft — lakó- és nem lakóingatlanok építése Miskolcon, 2018 óta.</p>
+        <a class="mock-cta" href="#">Ajánlatkérés</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry" id="c10">
+    <div class="entry-head">
+      <span class="entry-name">10 · <b>Otthon épül</b></span>
+    </div>
+    <p class="entry-rationale">Meleg fény, zsálya-akcentus, lágyabb szerif — családi házakra fókuszáló ügyfeleknek, nem ipari megrendelőknek.</p>
+    <div class="mock-wrap">
+      <div class="mock c10">
+        <p class="mock-eyebrow">Családi házak, otthonok</p>
+        <h2 class="mock-title">Ahol a család otthonra talál</h2>
+        <p class="mock-sub">Pipe Work Kft — lakóingatlanok építése Miskolcon és környékén, 2018 óta.</p>
+        <a class="mock-cta" href="#">Beszéljünk az álomházáról</a>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<footer class="note">
+  Mind a tíz makett ugyanazt a három tényt viszi tovább — Pipe Work Kft, Miskolc, lakó- és nem lakóingatlanok építése 2018 óta — csak más anyagból, más nézőpontból építve fel. Telefonszám és valódi projektfotók nélkül készültek; ha kiválaszt egy irányt, a következő körben ezekkel töltjük fel.
+</footer>
+</div>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Pipe Work Kft — Referencia oldal, 5 másfajta elrendezés</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body{font-family:'Inter',sans-serif; background:#f4f1ea; color:#1a1712;}
+
+  header.intro{max-width:1180px; margin:0 auto; padding:56px 28px 32px; border-bottom:1px solid #ddd5c4;}
+  .eyebrow{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#c99a00; font-weight:700; margin:0 0 14px;}
+  h1{font-family:'Oswald',sans-serif; font-weight:600; font-size:clamp(26px,3.6vw,38px); margin:0 0 14px; text-transform:uppercase; letter-spacing:0.5px;}
+  .lede{font-size:15px; line-height:1.6; color:#6b6355; max-width:66ch; margin:0;}
+
+  nav.jump{position:sticky; top:0; z-index:50; background:#f4f1ea; border-bottom:1px solid #ddd5c4; overflow-x:auto; white-space:nowrap; padding:12px 28px;}
+  nav.jump a{font-size:12.5px; color:#6b6355; text-decoration:none; margin-right:20px;}
+  nav.jump a:hover{color:#1a1712;}
+
+  .shell{max-width:1180px; margin:0 auto; padding:44px 28px 100px; display:flex; flex-direction:column; gap:64px;}
+  .entry-name{font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:#6b6355; font-weight:700;}
+  .entry-rationale{font-size:13.5px; color:#6b6355; max-width:66ch; line-height:1.5; margin:6px 0 14px;}
+  .wrap{border-radius:4px; overflow:hidden; border:1px solid #ddd5c4; box-shadow:0 16px 36px -20px rgba(0,0,0,0.35); background:#fff;}
+  footer.note{max-width:1180px; margin:24px auto 0; padding:28px 28px 0; border-top:1px solid #ddd5c4; font-size:13px; color:#6b6355; line-height:1.6;}
+
+  /* =========================================================
+     01 — TELJES KÉPERNYŐS SLIDESHOW
+  ========================================================= */
+  .e1{background:#14171c; position:relative; height:460px; overflow:hidden;}
+  .e1-slide{position:absolute; inset:0; opacity:0; transition:opacity 0.5s ease;}
+  .e1-slide.active{opacity:1;}
+  .e1-slide img{width:100%; height:100%; object-fit:cover;}
+  .e1-scrim{position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,10,8,0.85) 0%, transparent 45%);}
+  .e1-cap{position:absolute; bottom:28px; left:36px; z-index:2;}
+  .e1-cap b{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:18px; display:block; margin-bottom:4px;}
+  .e1-cap span{color:#ffd400; font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:1px;}
+  .e1-nav{position:absolute; bottom:26px; right:36px; z-index:2; display:flex; gap:10px;}
+  .e1-btn{width:40px; height:40px; border-radius:50%; border:1px solid rgba(255,255,255,0.4); background:rgba(255,255,255,0.08); color:#fff; font-size:18px; cursor:pointer;}
+  .e1-btn:hover{background:#ffd400; color:#1a1712;}
+  .e1-dots{position:absolute; top:26px; left:36px; z-index:2; display:flex; gap:6px;}
+  .e1-dot{width:22px; height:3px; background:rgba(255,255,255,0.3); cursor:pointer;}
+  .e1-dot.active{background:#ffd400;}
+
+  /* =========================================================
+     02 — SZÓRT "PARAFATÁBLA" POLAROID
+  ========================================================= */
+  .e2{background:#eae4d3; padding:56px 40px; position:relative; min-height:520px;
+      background-image:radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px); background-size:16px 16px;}
+  .e2-pin{position:absolute; background:#fff; padding:10px 10px 34px; box-shadow:0 14px 26px -10px rgba(0,0,0,0.35); width:190px;}
+  .e2-pin img{width:100%; height:150px; object-fit:cover; display:block;}
+  .e2-pin span{position:absolute; bottom:8px; left:10px; right:10px; font-family:'Oswald',sans-serif; font-size:10.5px; text-transform:uppercase; letter-spacing:0.5px; color:#5c5646;}
+  .e2-pin::before{content:""; position:absolute; top:-8px; left:50%; transform:translateX(-50%); width:14px; height:14px; border-radius:50%; background:#c94f4f; box-shadow:0 3px 6px rgba(0,0,0,0.3);}
+
+  /* =========================================================
+     03 — ALTERNÁLÓ EDITORIÁLIS SOROK
+  ========================================================= */
+  .e3{padding:0;}
+  .e3-row{display:grid; grid-template-columns:1fr 1fr; min-height:280px;}
+  .e3-row:nth-child(even) .e3-img{order:2;}
+  .e3-img{background-size:cover; background-position:center;}
+  .e3-text{padding:44px 48px; display:flex; flex-direction:column; justify-content:center; background:#fff;}
+  .e3-text .tag{font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#a5843c; margin-bottom:10px;}
+  .e3-text h3{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:22px; margin-bottom:10px;}
+  .e3-text p{font-size:14px; color:#5c5646; line-height:1.6; max-width:40ch;}
+
+  /* =========================================================
+     04 — FÜGGŐLEGES IDŐVONAL, GÖRGETÉS-BEÚSZÁSSAL
+  ========================================================= */
+  .e4{padding:48px 40px; position:relative;}
+  .e4-line{position:absolute; left:50%; top:0; bottom:0; width:2px; background:#ddd0ac;}
+  .e4-step{position:relative; width:44%; margin-bottom:40px; opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease;}
+  .e4-step.in{opacity:1; transform:translateY(0);}
+  .e4-step.left{margin-right:56%; text-align:right;}
+  .e4-step.right{margin-left:56%;}
+  .e4-step img{width:100%; height:150px; object-fit:cover; border-radius:6px; margin-bottom:10px;}
+  .e4-step b{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:13.5px; display:block; margin-bottom:4px;}
+  .e4-step span{font-size:12px; color:#8a8270;}
+  .e4-dot{position:absolute; top:66px; width:12px; height:12px; border-radius:50%; background:#ffd400; border:3px solid #f4f1ea; outline:2px solid #1a1712;}
+  .e4-step.left .e4-dot{right:-64px;}
+  .e4-step.right .e4-dot{left:-64px;}
+
+  /* =========================================================
+     05 — OLDALSÁV SZŰRŐ + RÁCS (katalógus)
+  ========================================================= */
+  .e5{display:grid; grid-template-columns:220px 1fr;}
+  .e5-side{background:#f7f4ec; padding:32px 24px; border-right:1px solid #e4ddc9;}
+  .e5-side h4{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:12px; letter-spacing:1px; color:#8a8270; margin-bottom:14px;}
+  .e5-side label{display:flex; align-items:center; gap:8px; font-size:13px; color:#3a362f; margin-bottom:12px; cursor:pointer;}
+  .e5-side input{accent-color:#ffd400;}
+  .e5-grid{padding:28px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px; align-content:start;}
+  .e5-grid img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:6px; display:block;}
+  .e5-item[data-hidden="true"]{display:none;}
+
+  @media (max-width:760px){
+    .e3-row{grid-template-columns:1fr;}
+    .e3-row .e3-img{height:220px; order:0 !important;}
+    .e4-step, .e4-step.left, .e4-step.right{width:100%; margin:0 0 32px !important; text-align:left;}
+    .e4-line{left:20px;}
+    .e4-dot, .e4-step.left .e4-dot, .e4-step.right .e4-dot{left:-32px; right:auto;}
+    .e5{grid-template-columns:1fr;}
+    .e5-side{border-right:none; border-bottom:1px solid #e4ddc9;}
+    .e5-grid{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="eyebrow">Pipe Work Kft — Referenciák</p>
+  <h1>5 másfajta elrendezés</h1>
+  <p class="lede">Az előző öt (fülek, masonry, kiemelt+rács, vízszintes sávok, bento) helyett most öt teljesen más szerkezeti logika — van, ami storytelling-szerű, van, ami katalógus-jellegű.</p>
+</header>
+
+<nav class="jump">
+  <a href="#e1">01 Teljes képernyős slideshow</a>
+  <a href="#e2">02 Szórt parafatábla</a>
+  <a href="#e3">03 Alternáló editoriális sorok</a>
+  <a href="#e4">04 Függőleges idővonal</a>
+  <a href="#e5">05 Oldalsáv szűrő + rács</a>
+</nav>
+
+<div class="shell">
+
+  <article id="e1">
+    <span class="entry-name">01 · Teljes képernyős slideshow</span>
+    <p class="entry-rationale">Egyszerre csak egy kép, nagyban, filmszerűen — nem rács, hanem egy vezetett bemutató. Kevésbé böngészhető, de sokkal erősebb az első benyomás.</p>
+    <div class="wrap e1" id="slideshow">
+      <div class="e1-slide active"><img src="images/site/referencia/thumb/lapostetos-01.jpg"></div>
+      <div class="e1-slide"><img src="images/site/referencia/thumb/badogozas-02.jpg"></div>
+      <div class="e1-slide"><img src="images/site/referencia/thumb/erkely-01.jpg"></div>
+      <div class="e1-slide"><img src="images/site/referencia/thumb/lapostetos-13.jpg"></div>
+      <div class="e1-scrim"></div>
+      <div class="e1-dots" id="e1dots"></div>
+      <div class="e1-cap"><b>Lapostető szigetelés</b><span>01 / 04</span></div>
+      <div class="e1-nav">
+        <button class="e1-btn" id="e1prev">&#8249;</button>
+        <button class="e1-btn" id="e1next">&#8250;</button>
+      </div>
+    </div>
+  </article>
+
+  <article id="e2">
+    <span class="entry-name">02 · Szórt "parafatábla" polaroid</span>
+    <p class="entry-rationale">A képek enyhén elforgatva, "kitűzve" szóródnak szét, mint egy műhely faliújságán — kevésbé formális, kézzelfoghatóbb, kézműves hangulat.</p>
+    <div class="wrap e2">
+      <div class="e2-pin" style="top:20px; left:5%; transform:rotate(-4deg);"><img src="images/site/referencia/thumb/lapostetos-05.jpg"><span>Lapostető</span></div>
+      <div class="e2-pin" style="top:60px; left:28%; transform:rotate(3deg);"><img src="images/site/referencia/thumb/badogozas-04.jpg"><span>Bádogozás</span></div>
+      <div class="e2-pin" style="top:10px; left:52%; transform:rotate(-2deg);"><img src="images/site/referencia/thumb/erkely-02.jpg"><span>Erkély</span></div>
+      <div class="e2-pin" style="top:70px; left:75%; transform:rotate(5deg);"><img src="images/site/referencia/thumb/lapostetos-19.jpg"><span>Lapostető</span></div>
+      <div class="e2-pin" style="top:280px; left:12%; transform:rotate(2deg);"><img src="images/site/referencia/thumb/badogozas-08.jpg"><span>Bádogozás</span></div>
+      <div class="e2-pin" style="top:300px; left:40%; transform:rotate(-5deg);"><img src="images/site/referencia/thumb/lapostetos-22.jpg"><span>Lapostető</span></div>
+      <div class="e2-pin" style="top:260px; left:64%; transform:rotate(3deg);"><img src="images/site/referencia/thumb/ipari-01.jpg"><span>Ipari tetőfedés</span></div>
+      <div class="e2-pin" style="top:320px; left:86%; transform:rotate(-3deg); display:none;"></div>
+    </div>
+  </article>
+
+  <article id="e3">
+    <span class="entry-name">03 · Alternáló editoriális sorok</span>
+    <p class="entry-rationale">Nem rács — teljes szélességű sorok, kép és szöveg felváltva balra-jobbra, mint egy hosszú magazincikk. Legjobban a történetmesélést, nem a mennyiséget hangsúlyozza.</p>
+    <div class="wrap e3">
+      <div class="e3-row">
+        <div class="e3-img" style="background-image:url('images/site/referencia/thumb/lapostetos-01.jpg');"></div>
+        <div class="e3-text">
+          <span class="tag">01 · Lapostető szigetelés</span>
+          <h3>Bitumenes és PVC membrán</h3>
+          <p>Társasházaktól az ipari épületekig — 24 elkészült munka, teljes körű kivitelezéssel.</p>
+        </div>
+      </div>
+      <div class="e3-row">
+        <div class="e3-img" style="background-image:url('images/site/referencia/thumb/badogozas-01.jpg');"></div>
+        <div class="e3-text">
+          <span class="tag">02 · Bádogozás és szegélyezés</span>
+          <h3>A részletek, amiken a tartósság múlik</h3>
+          <p>Szegélylemezek, kéményszegélyek, ereszcsatornák — precíz, egyedi méretre hajlított kivitelben.</p>
+        </div>
+      </div>
+      <div class="e3-row">
+        <div class="e3-img" style="background-image:url('images/site/referencia/thumb/erkely-01.jpg');"></div>
+        <div class="e3-text">
+          <span class="tag">03 · Erkély és terasz szigetelés</span>
+          <h3>Csúszásmentes, tartós felület</h3>
+          <p>Lakóépület erkélyek és teraszok vízszigetelése, azonnal használható kivitelben.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="e4">
+    <span class="entry-name">04 · Függőleges idővonal, görgetés-beúszással</span>
+    <p class="entry-rationale">A képek egy középső vonal mentén, felváltva balra-jobbra jelennek meg, ahogy görgetsz — inkább egy "hogyan dolgozunk" történetet mesél el, mint egy statikus katalógus.</p>
+    <div class="wrap e4" id="timeline">
+      <div class="e4-line"></div>
+      <div class="e4-step left"><img src="images/site/referencia/thumb/alapozas-01.jpg"><b>Alapozás</b><span>A láthatatlan, de legfontosabb réteg</span><div class="e4-dot"></div></div>
+      <div class="e4-step right"><img src="images/site/referencia/thumb/lapostetos-07.jpg"><b>Lapostető szigetelés</b><span>A felület, ami mindent megvéd</span><div class="e4-dot"></div></div>
+      <div class="e4-step left"><img src="images/site/referencia/thumb/badogozas-05.jpg"><b>Bádogozás</b><span>A szegélyek, amik lezárják a munkát</span><div class="e4-dot"></div></div>
+      <div class="e4-step right"><img src="images/site/referencia/thumb/erkely-03.jpg"><b>Erkély és terasz</b><span>Az utolsó, látható réteg</span><div class="e4-dot"></div></div>
+    </div>
+  </article>
+
+  <article id="e5">
+    <span class="entry-name">05 · Oldalsáv szűrő + rács (katalógus)</span>
+    <p class="entry-rationale">Bal oldalon fix szűrőlista (pipálható kategóriák), jobbra a találatok rácsa — a legfunkcionálisabb, "webshop"-szerű böngészés, ha sok kép közül kell gyorsan válogatni.</p>
+    <div class="wrap e5">
+      <div class="e5-side">
+        <h4>Kategória</h4>
+        <label><input type="checkbox" class="e5-filter" data-cat="lapostetos" checked> Lapostető (24)</label>
+        <label><input type="checkbox" class="e5-filter" data-cat="badogozas" checked> Bádogozás (10)</label>
+        <label><input type="checkbox" class="e5-filter" data-cat="erkely" checked> Erkély (3)</label>
+        <label><input type="checkbox" class="e5-filter" data-cat="ipari" checked> Ipari (1)</label>
+        <label><input type="checkbox" class="e5-filter" data-cat="alapozas" checked> Alapozás (1)</label>
+      </div>
+      <div class="e5-grid" id="e5grid">
+        <div class="e5-item" data-cat="lapostetos"><img src="images/site/referencia/thumb/lapostetos-01.jpg"></div>
+        <div class="e5-item" data-cat="lapostetos"><img src="images/site/referencia/thumb/lapostetos-09.jpg"></div>
+        <div class="e5-item" data-cat="badogozas"><img src="images/site/referencia/thumb/badogozas-02.jpg"></div>
+        <div class="e5-item" data-cat="erkely"><img src="images/site/referencia/thumb/erkely-01.jpg"></div>
+        <div class="e5-item" data-cat="lapostetos"><img src="images/site/referencia/thumb/lapostetos-17.jpg"></div>
+        <div class="e5-item" data-cat="badogozas"><img src="images/site/referencia/thumb/badogozas-07.jpg"></div>
+        <div class="e5-item" data-cat="ipari"><img src="images/site/referencia/thumb/ipari-01.jpg"></div>
+        <div class="e5-item" data-cat="alapozas"><img src="images/site/referencia/thumb/alapozas-01.jpg"></div>
+        <div class="e5-item" data-cat="lapostetos"><img src="images/site/referencia/thumb/lapostetos-21.jpg"></div>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<footer class="note">
+  Ez az öt inkább strukturálisan/hangulatilag más, mint az előző kör — a 03 és 04 storytelling-jellegű (kevés kép, sok kontextus), az 05 a legfunkcionálisabb sok kép gyors böngészésére, az 01 és 02 a legmerészebb, leginkább "márka" jellegű.
+</footer>
+
+<script>
+  // 01 — slideshow
+  (function(){
+    var slides = document.querySelectorAll('#slideshow .e1-slide');
+    var dotsWrap = document.getElementById('e1dots');
+    var cap = document.querySelector('#slideshow .e1-cap');
+    var titles = ['Lapostető szigetelés','Bádogozás és szegélyezés','Erkély és terasz szigetelés','Lapostető szigetelés'];
+    var idx = 0;
+    slides.forEach(function(_, i){
+      var d = document.createElement('div');
+      d.className = 'e1-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', function(){ show(i); });
+      dotsWrap.appendChild(d);
+    });
+    function show(i){
+      slides[idx].classList.remove('active');
+      dotsWrap.children[idx].classList.remove('active');
+      idx = (i + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+      dotsWrap.children[idx].classList.add('active');
+      cap.querySelector('b').textContent = titles[idx];
+      cap.querySelector('span').textContent = String(idx + 1).padStart(2,'0') + ' / ' + String(slides.length).padStart(2,'0');
+    }
+    document.getElementById('e1prev').addEventListener('click', function(){ show(idx - 1); });
+    document.getElementById('e1next').addEventListener('click', function(){ show(idx + 1); });
+  })();
+
+  // 04 — timeline scroll reveal
+  (function(){
+    var steps = document.querySelectorAll('.e4-step');
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('in'); });
+      }, { threshold:0.3 });
+      steps.forEach(function(s){ io.observe(s); });
+    } else {
+      steps.forEach(function(s){ s.classList.add('in'); });
+    }
+  })();
+
+  // 05 — sidebar filter
+  (function(){
+    var boxes = document.querySelectorAll('.e5-filter');
+    function apply(){
+      var active = Array.prototype.filter.call(boxes, function(b){ return b.checked; }).map(function(b){ return b.dataset.cat; });
+      document.querySelectorAll('#e5grid .e5-item').forEach(function(it){
+        it.setAttribute('data-hidden', active.indexOf(it.dataset.cat) === -1 ? 'true' : 'false');
+      });
+    }
+    boxes.forEach(function(b){ b.addEventListener('change', apply); });
+  })();
+</script>
+
+</body>
+</html>

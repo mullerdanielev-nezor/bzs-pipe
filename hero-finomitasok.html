@@ -1,0 +1,365 @@
+<title>Pipe Work Kft — Hero, 10 finomítás</title>
+<style>
+  :root{
+    --page-bg:#f6f3ec; --page-panel:#fff; --page-ink:#1a1712; --page-muted:#6b6355; --page-accent:#c99a00; --page-line:#e2dbc9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --page-bg:#14120e; --page-panel:#1e1b15; --page-ink:#f1ece0; --page-muted:#a89d87; --page-accent:#ffd400; --page-line:#332e22; }
+  }
+  :root[data-theme="dark"]{ --page-bg:#14120e; --page-panel:#1e1b15; --page-ink:#f1ece0; --page-muted:#a89d87; --page-accent:#ffd400; --page-line:#332e22; }
+  :root[data-theme="light"]{ --page-bg:#f6f3ec; --page-panel:#fff; --page-ink:#1a1712; --page-muted:#6b6355; --page-accent:#c99a00; --page-line:#e2dbc9; }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;overflow-x:hidden;}
+  body{background:var(--page-bg); color:var(--page-ink); font-family:'Segoe UI',system-ui,-apple-system,sans-serif;}
+
+  header.intro{max-width:1180px; margin:0 auto; padding:72px 28px 40px; border-bottom:1px solid var(--page-line);}
+  .intro-eyebrow{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--page-accent); font-weight:700; margin:0 0 18px;}
+  h1{font-family:'Arial Narrow','Helvetica Neue Condensed',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,48px); letter-spacing:0.5px; line-height:1.1; margin:0 0 18px; text-wrap:balance; max-width:20ch; text-transform:uppercase;}
+  .intro-lede{font-size:16px; line-height:1.65; color:var(--page-muted); max-width:64ch; margin:0;}
+
+  nav.jump{position:sticky; top:0; z-index:50; background:var(--page-bg); border-bottom:1px solid var(--page-line); overflow-x:auto; white-space:nowrap; padding:14px 28px;}
+  nav.jump a{font-size:12.5px; letter-spacing:0.5px; color:var(--page-muted); text-decoration:none; margin-right:22px; padding-bottom:4px; border-bottom:2px solid transparent;}
+  nav.jump a:hover, nav.jump a:focus-visible{color:var(--page-ink); border-bottom-color:var(--page-accent);}
+
+  .shell{max-width:1180px; margin:0 auto; padding:56px 28px 120px;}
+  .grid{display:flex; flex-direction:column; gap:60px;}
+  .entry{display:flex; flex-direction:column; gap:14px;}
+  .entry-name{font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--page-muted); font-weight:700;}
+  .entry-name b{color:var(--page-ink);}
+  .entry-rationale{font-size:14px; color:var(--page-muted); max-width:60ch; line-height:1.5; margin:0;}
+
+  .mock-wrap{border-radius:2px; overflow:hidden; border:1px solid var(--page-line); box-shadow:0 18px 40px -22px rgba(0,0,0,0.35);}
+
+  /* ===== shared brand tokens (from source hero) ===== */
+  .m-navbar{display:flex; align-items:center; justify-content:space-between; padding:20px 44px; background:#f3f0ea; box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+  .m-navleft{display:flex; gap:28px;}
+  .m-navleft a{text-decoration:none; color:#1a1a1a; font-family:'Arial Narrow','Helvetica Neue Condensed',sans-serif; font-weight:700; font-size:14px; letter-spacing:1.5px; text-transform:uppercase;}
+  .m-logo{display:flex; align-items:center; gap:10px;}
+  .m-logobox{width:42px; height:42px; border:2px solid #1a1a1a; display:flex; align-items:center; justify-content:center; font-family:'Arial Narrow',sans-serif; font-weight:700; font-size:18px; color:#1a1a1a;}
+  .m-logotext{font-family:'Arial Narrow',sans-serif; line-height:1.1;}
+  .m-logotext .top{font-size:17px; font-weight:700; letter-spacing:1px; color:#1a1a1a;}
+  .m-logotext .bottom{font-size:10.5px; letter-spacing:2px; color:#4a4a4a;}
+  .m-navright{display:flex; align-items:center; gap:16px;}
+  .m-phone{background:#1a1a1a; color:#fff; padding:12px 22px; font-family:'Arial Narrow',sans-serif; font-weight:700; letter-spacing:1.5px; font-size:13px; text-decoration:none;}
+  .m-bar{height:12px; background:#ffd400;}
+
+  .m-hero{position:relative; min-height:440px; display:flex; align-items:center; overflow:hidden;}
+  .m-title{font-family:'Arial Narrow','Helvetica Neue Condensed',sans-serif; font-weight:700; text-transform:uppercase; color:#fff; line-height:1.12; text-shadow:0 4px 14px rgba(0,0,0,0.5);}
+  .m-sub{font-family:'Segoe UI',sans-serif; font-weight:700; font-style:italic; color:#ffd400; line-height:1.5; text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+  .m-eyebrow{font-family:'Segoe UI',sans-serif; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; font-size:12px;}
+
+  /* base dark backdrop, CSS-built (no external photo) shared across variants, tuned per-entry */
+  .m-bg1{background:
+    linear-gradient(120deg, rgba(10,12,10,0.05) 0%, rgba(10,12,10,0.55) 100%),
+    repeating-linear-gradient(115deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 46px),
+    linear-gradient(150deg,#3a362f,#211f1b 55%,#151412);}
+
+  /* ---------- 1. Letisztult alap ---------- */
+  .h1 .m-hero{padding-left:96px;}
+  .h1 .m-title{font-size:42px; letter-spacing:1.5px; max-width:9ch; margin-bottom:18px;}
+  .h1 .m-sub{font-size:17px; max-width:34ch;}
+  .h1 .m-block{border-left:4px solid #ffd400; border-right:4px solid #ffd400; padding:32px 36px;}
+
+  /* ---------- 2. Középre rendezett ---------- */
+  .h2 .m-hero{justify-content:center; text-align:center;}
+  .h2 .m-title{font-size:48px; letter-spacing:2px; max-width:11ch; margin:0 auto 16px;}
+  .h2 .m-sub{font-size:17px; max-width:36ch; margin:0 auto;}
+  .h2 .m-badge{display:inline-block; border:1px solid #ffd400; color:#ffd400; font-family:'Segoe UI',sans-serif; font-size:11.5px; letter-spacing:2px; text-transform:uppercase; padding:7px 16px; margin-bottom:22px;}
+  .h2 .m-block{display:flex; flex-direction:column; align-items:center; margin:0 auto;}
+
+  /* ---------- 3. Osztott kompozíció ---------- */
+  .h3 .m-hero{padding:0; display:grid; grid-template-columns:1.2fr 0.8fr; align-items:stretch;}
+  .h3 .m-textcol{display:flex; flex-direction:column; justify-content:center; padding:56px 64px;}
+  .h3 .m-title{font-size:38px; letter-spacing:1px; max-width:10ch; margin-bottom:16px;}
+  .h3 .m-sub{font-size:16px; max-width:30ch;}
+  .h3 .m-swatchcol{display:grid; grid-template-rows:repeat(4,1fr);}
+  .h3 .m-swatchcol span{display:block;}
+
+  /* ---------- 4. Adatsáv ---------- */
+  .h4 .m-hero{flex-direction:column; align-items:flex-start; justify-content:center; padding-left:96px; padding-bottom:0;}
+  .h4 .m-title{font-size:40px; letter-spacing:1.5px; max-width:10ch; margin-bottom:16px;}
+  .h4 .m-sub{font-size:16px; max-width:34ch; margin-bottom:0;}
+  .h4-stats{display:flex; gap:0; margin-top:auto;}
+  .h4-stats div{flex:1; padding:18px 24px; border-top:1px solid rgba(255,255,255,0.18); border-right:1px solid rgba(255,255,255,0.18);}
+  .h4-stats div:last-child{border-right:none;}
+  .h4-stats b{display:block; font-family:'Arial Narrow',sans-serif; color:#ffd400; font-size:22px;}
+  .h4-stats span{font-size:11.5px; letter-spacing:1px; text-transform:uppercase; color:#d8d3c4;}
+
+  /* ---------- 5. Vékony keret ---------- */
+  .h5 .m-hero{align-items:center; padding-left:96px;}
+  .h5 .m-block{border-top:1px solid #ffd400; padding-top:26px; max-width:480px;}
+  .h5 .m-title{font-size:36px; letter-spacing:2.5px; font-weight:400; max-width:12ch; margin-bottom:14px;}
+  .h5 .m-sub{font-size:15px; font-style:normal; font-weight:400; color:#eee6cf; max-width:32ch;}
+
+  /* ---------- 6. Nagybetűs súly ---------- */
+  .h6 .m-hero{align-items:flex-end; padding:0 0 48px 88px;}
+  .h6 .m-title{font-size:64px; letter-spacing:0; max-width:9ch; margin-bottom:18px; line-height:1.02;}
+  .h6 .m-sub{font-size:16px; max-width:30ch;}
+  .h6-corner{position:absolute; top:0; right:0; width:120px; height:120px; background:#ffd400; clip-path:polygon(100% 0,0 0,100% 100%);}
+
+  /* ---------- 7. Címke fent ---------- */
+  .h7 .m-hero{padding-left:96px;}
+  .h7 .m-eyebrow{color:#ffd400; margin-bottom:18px; display:flex; align-items:center; gap:10px;}
+  .h7 .m-eyebrow::before{content:""; width:26px; height:2px; background:#ffd400; display:inline-block;}
+  .h7 .m-title{font-size:40px; letter-spacing:1.5px; max-width:10ch; margin-bottom:16px;}
+  .h7 .m-sub{font-size:16px; max-width:34ch; font-style:normal; font-weight:400; color:#e7e2d2;}
+
+  /* ---------- 8. Átlós szalag ---------- */
+  .h8 .m-hero{padding-left:96px;}
+  .h8-ribbon{position:absolute; top:26px; right:-64px; width:280px; text-align:center; background:#ffd400; color:#1a1a1a; font-family:'Arial Narrow',sans-serif; font-weight:700; font-size:12.5px; letter-spacing:2px; text-transform:uppercase; padding:8px 0; transform:rotate(38deg); box-shadow:0 4px 10px rgba(0,0,0,0.3);}
+  .h8 .m-title{font-size:42px; letter-spacing:1.5px; max-width:9ch; margin-bottom:18px;}
+  .h8 .m-sub{font-size:17px; max-width:34ch;}
+
+  /* ---------- 9. Üveg kártya ---------- */
+  .h9 .m-hero{align-items:center; justify-content:center;}
+  .h9-card{background:rgba(15,14,12,0.55); backdrop-filter:blur(6px); border:1px solid rgba(255,212,0,0.4); padding:44px 52px; max-width:560px;}
+  .h9 .m-title{font-size:38px; letter-spacing:1px; max-width:11ch; margin-bottom:16px;}
+  .h9 .m-sub{font-size:16px; max-width:34ch;}
+
+  /* ---------- 10. Aláhúzott szerkesztői ---------- */
+  .h10 .m-hero{padding-left:96px; align-items:flex-start; flex-direction:column; justify-content:center;}
+  .h10 .m-title{font-size:44px; letter-spacing:1px; max-width:11ch; margin-bottom:10px;}
+  .h10-underline{width:96px; height:5px; background:#ffd400; margin-bottom:22px;}
+  .h10 .m-sub{font-size:17px; max-width:36ch; font-style:normal; font-weight:400; color:#e9e4d4;}
+
+  footer.note{max-width:1180px; margin:24px auto 0; padding:32px 28px 0; border-top:1px solid var(--page-line); font-size:13.5px; color:var(--page-muted); line-height:1.6;}
+
+  @media (max-width:760px){
+    header.intro{padding:48px 20px 28px;}
+    .shell{padding:40px 20px 100px;}
+    .m-navbar{flex-wrap:wrap; gap:12px; padding:16px 20px;}
+    .m-hero{padding-left:28px !important; min-height:380px;}
+    .m-title{font-size:30px !important; max-width:100% !important;}
+    .h3 .m-hero{grid-template-columns:1fr;}
+    .h3 .m-swatchcol{grid-template-rows:none; grid-template-columns:repeat(4,1fr); height:14px;}
+    .h6 .m-hero{padding-left:28px !important;}
+    .h9-card{padding:28px 24px;}
+  }
+</style>
+
+<header class="intro">
+  <p class="intro-eyebrow">Pipe Work Kft — Miskolc</p>
+  <h1>A hero finomítva, tíz irányban</h1>
+  <p class="intro-lede">Ugyanabból a hero szekcióből indulunk ki, amit eddig építettünk — a krémszínű navigáció, a "PW" logó, a sárga keret és a sárga záró sáv marad. A tíz változat ugyanazt a márkát viszi tovább, csak a kompozíciót, a hangsúlyokat és a részleteket csiszolja tovább.</p>
+</header>
+
+<nav class="jump" aria-label="Ugrás a változathoz">
+  <a href="#h1">01 Letisztult alap</a>
+  <a href="#h2">02 Középre rendezett</a>
+  <a href="#h3">03 Osztott kompozíció</a>
+  <a href="#h4">04 Adatsáv</a>
+  <a href="#h5">05 Vékony keret</a>
+  <a href="#h6">06 Nagybetűs súly</a>
+  <a href="#h7">07 Címke fent</a>
+  <a href="#h8">08 Átlós szalag</a>
+  <a href="#h9">09 Üveg kártya</a>
+  <a href="#h10">10 Aláhúzott szerkesztői</a>
+</nav>
+
+<div class="shell">
+<div class="grid">
+
+  <article class="entry" id="h1">
+    <span class="entry-name">01 · <b>Letisztult alap</b></span>
+    <p class="entry-rationale">A jelenlegi elrendezés, de csiszolt tipográfiával és arányokkal — ez a legbiztonságosabb, azonnal használható verzió.</p>
+    <div class="mock-wrap h1">
+      <div class="m-navbar">
+        <div class="m-navleft"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="m-logo"><div class="m-logobox">PW</div><div class="m-logotext"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <div class="m-navright"><a class="m-phone" href="tel:+36301234567">+36 30 123 4567</a></div>
+      </div>
+      <div class="m-hero m-bg1">
+        <div class="m-block">
+          <div class="m-title">Lakó- és<br>Nem Lakóingatlanok<br>Építése</div>
+          <div class="m-sub">Megbízható kivitelezés Miskolcon és környékén, 2018 óta</div>
+        </div>
+      </div>
+      <div class="m-bar"></div>
+    </div>
+  </article>
+
+  <article class="entry" id="h2">
+    <span class="entry-name">02 · <b>Középre rendezett</b></span>
+    <p class="entry-rationale">Szimmetrikus, plakátszerű kompozíció egy apró jelvénnyel ("2018 óta") — nyugodtabb, magabiztosabb hatás.</p>
+    <div class="mock-wrap h2">
+      <div class="m-navbar">
+        <div class="m-navleft"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="m-logo"><div class="m-logobox">PW</div><div class="m-logotext"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <div class="m-navright"><a class="m-phone" href="tel:+36301234567">+36 30 123 4567</a></div>
+      </div>
+      <div class="m-hero m-bg1">
+        <div class="m-block">
+          <span class="m-badge">Miskolc · 2018 óta</span>
+          <div class="m-title">Lakó- és Nem<br>Lakóingatlanok Építése</div>
+          <div class="m-sub">Megbízható kivitelezés Miskolcon és környékén</div>
+        </div>
+      </div>
+      <div class="m-bar"></div>
+    </div>
+  </article>
+
+  <article class="entry" id="h3">
+    <span class="entry-name">03 · <b>Osztott kompozíció</b></span>
+    <p class="entry-rationale">A szöveg mellett egy anyagminta-sáv (tégla, fa, acél, beton) fut végig — konkrétabb, kevésbé stock-fotó-függő.</p>
+    <div class="mock-wrap h3">
+      <div class="m-navbar">
+        <div class="m-navleft"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="m-logo"><div class="m-logobox">PW</div><div class="m-logotext"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <div class="m-navright"><a class="m-phone" href="tel:+36301234567">+36 30 123 4567</a></div>
+      </div>
+      <div class="m-hero" style="background:#211f1b;">
+        <div class="m-textcol">
+          <div class="m-title">Lakó- és Nem<br>Lakóingatlanok<br>Építése</div>
+          <div class="m-sub">Megbízható kivitelezés<br>Miskolcon, 2018 óta</div>
+        </div>
+        <div class="m-swatchcol">
+          <span style="background:#9c4a2e;"></span>
+          <span style="background:#b3895a;"></span>
+          <span style="background:#6d7278;"></span>
+          <span style="background:#ffd400;"></span>
+        </div>
+      </div>
+      <div class="m-bar"></div>
+    </div>
+  </article>
+
+  <article class="entry" id="h4">
+    <span class="entry-name">04 · <b>Adatsáv</b></span>
+    <p class="entry-rationale">A hero alján egy tényadat-sor (alapítás éve, helyszín, szakterület) — konkrét bizalmi jelek, nem csak hangulat.</p>
+    <div class="mock-wrap h4">
+      <div class="m-navbar">
+        <div class="m-navleft"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="m-logo"><div class="m-logobox">PW</div><div class="m-logotext"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <div class="m-navright"><a class="m-phone" href="tel:+36301234567">+36 30 123 4567</a></div>
+      </div>
+      <div class="m-hero m-bg1" style="padding-top:56px;">
+        <div class="m-title">Lakó- és Nem<br>Lakóingatlanok Építése</div>
+        <div class="m-sub">Megbízható kivitelezés Miskolcon és környékén</div>
+        <div class="h4-stats">
+          <div><b>2018</b><span>Alapítva</span></div>
+          <div><b>Miskolc</b><span>Székhely</span></div>
+          <div><b>Lakó + ipari</b><span>Szakterület</span></div>
+        </div>
+      </div>
+      <div class="m-bar"></div>
+    </div>
+  </article>
+
+  <article class="entry" id="h5">
+    <span class="entry-name">05 · <b>Vékony keret</b></span>
+    <p class="entry-rationale">A vastag sárga oldalkeret helyett egy vékony felső vonal — visszafogottabb, a szöveg maga viszi a súlyt.</p>
+    <div class="mock-wrap h5">
+      <div class="m-navbar">
+        <div class="m-navleft"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="m-logo"><div class="m-logobox">PW</div><div class="m-logotext"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <div class="m-navright"><a class="m-phone" href="tel:+36301234567">+36 30 123 4567</a></div>
+      </div>
+      <div class="m-hero m-bg1">
+        <div class="m-block">
+          <div class="m-title">Lakó- és nem<br>lakóingatlanok építése</div>
+          <div class="m-sub">Megbízható kivitelezés Miskolcon és környékén, 2018 óta</div>
+        </div>
+      </div>
+      <div class="m-bar"></div>
+    </div>
+  </article>
+
+  <article class="entry" id="h6">
+    <span class="entry-name">06 · <b>Nagybetűs súly</b></span>
+    <p class="entry-rationale">Óriási, sarokba futó cím és egy sárga vágott sarok-elem — a legerősebb, legmagabiztosabb változat.</p>
+    <div class="mock-wrap h6">
+      <div class="m-navbar">
+        <div class="m-navleft"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="m-logo"><div class="m-logobox">PW</div><div class="m-logotext"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <div class="m-navright"><a class="m-phone" href="tel:+36301234567">+36 30 123 4567</a></div>
+      </div>
+      <div class="m-hero m-bg1">
+        <div class="h6-corner"></div>
+        <div class="m-title">ÉPÍTÜNK<br>MISKOLCON</div>
+        <div class="m-sub">Lakó- és nem lakóingatlanok, 2018 óta</div>
+      </div>
+      <div class="m-bar"></div>
+    </div>
+  </article>
+
+  <article class="entry" id="h7">
+    <span class="entry-name">07 · <b>Címke fent</b></span>
+    <p class="entry-rationale">Kis, vonalas eyebrow-címke a cím felett — rendezettebb hierarchia, jól skálázódik aloldalakra is.</p>
+    <div class="mock-wrap h7">
+      <div class="m-navbar">
+        <div class="m-navleft"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="m-logo"><div class="m-logobox">PW</div><div class="m-logotext"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <div class="m-navright"><a class="m-phone" href="tel:+36301234567">+36 30 123 4567</a></div>
+      </div>
+      <div class="m-hero m-bg1">
+        <div>
+          <div class="m-eyebrow">Miskolc · Kivitelezés 2018 óta</div>
+          <div class="m-title">Lakó- és Nem<br>Lakóingatlanok Építése</div>
+          <div class="m-sub">Megbízható kivitelezés Miskolcon és környékén</div>
+        </div>
+      </div>
+      <div class="m-bar"></div>
+    </div>
+  </article>
+
+  <article class="entry" id="h8">
+    <span class="entry-name">08 · <b>Átlós szalag</b></span>
+    <p class="entry-rationale">Egy klasszikus, átlósan futó sárga szalag a sarokban — figyelemfelkeltő, kicsit playful, mégis a márkán belül marad.</p>
+    <div class="mock-wrap h8">
+      <div class="m-navbar">
+        <div class="m-navleft"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="m-logo"><div class="m-logobox">PW</div><div class="m-logotext"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <div class="m-navright"><a class="m-phone" href="tel:+36301234567">+36 30 123 4567</a></div>
+      </div>
+      <div class="m-hero m-bg1">
+        <div class="h8-ribbon">2018 óta Miskolcon</div>
+        <div class="m-title">Lakó- és Nem<br>Lakóingatlanok<br>Építése</div>
+        <div class="m-sub">Megbízható kivitelezés Miskolcon és környékén</div>
+      </div>
+      <div class="m-bar"></div>
+    </div>
+  </article>
+
+  <article class="entry" id="h9">
+    <span class="entry-name">09 · <b>Üveg kártya</b></span>
+    <p class="entry-rationale">A szöveg egy matt üvegkártyán ül a háttér felett — a legjobb olvashatóság bármilyen fotó mögött, prémium hatás.</p>
+    <div class="mock-wrap h9">
+      <div class="m-navbar">
+        <div class="m-navleft"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="m-logo"><div class="m-logobox">PW</div><div class="m-logotext"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <div class="m-navright"><a class="m-phone" href="tel:+36301234567">+36 30 123 4567</a></div>
+      </div>
+      <div class="m-hero m-bg1">
+        <div class="h9-card">
+          <div class="m-title">Lakó- és Nem<br>Lakóingatlanok<br>Építése</div>
+          <div class="m-sub">Megbízható kivitelezés Miskolcon és környékén, 2018 óta</div>
+        </div>
+      </div>
+      <div class="m-bar"></div>
+    </div>
+  </article>
+
+  <article class="entry" id="h10">
+    <span class="entry-name">10 · <b>Aláhúzott szerkesztői</b></span>
+    <p class="entry-rationale">A sárga keret helyett egy rövid aláhúzás a cím alatt — a legcsendesebb, legszerkesztőibb változat, sok légtérrel.</p>
+    <div class="mock-wrap h10">
+      <div class="m-navbar">
+        <div class="m-navleft"><a href="#">Rólunk</a><a href="#">Szolgáltatások</a><a href="#">Referenciák</a></div>
+        <div class="m-logo"><div class="m-logobox">PW</div><div class="m-logotext"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div></div>
+        <div class="m-navright"><a class="m-phone" href="tel:+36301234567">+36 30 123 4567</a></div>
+      </div>
+      <div class="m-hero m-bg1">
+        <div class="m-title">Lakó- és nem<br>lakóingatlanok építése</div>
+        <div class="h10-underline"></div>
+        <div class="m-sub">Megbízható kivitelezés Miskolcon és környékén, 2018 óta</div>
+      </div>
+      <div class="m-bar"></div>
+    </div>
+  </article>
+
+</div>
+
+<footer class="note">
+  Mind a tíz változat a jelenlegi hero márkanyelvét viszi tovább — krém navigáció, "PW" jelvény, sárga (#ffd400) akcentus, sötét, fotószerű háttér. Ez a verzió valódi fotó helyett CSS-alapú háttérrel készült; a végleges verzióba visszakerülhet a saját projektfotó.
+</footer>

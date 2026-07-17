@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referenciák — Pipe Work Kft</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { overflow-x:hidden; scroll-padding-top:100px; scroll-behavior:smooth; }
+  body { font-family:'Inter', sans-serif; background:#f7f4ec; color:#1a1712; }
+
+  /* LEBEGŐ GLASS NAVBAR — ugyanaz, mint a főoldalon */
+  .navbar {
+    position:fixed; top:20px; left:50%; transform:translateX(-50%);
+    width:calc(100% - 64px); max-width:920px; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 22px; background:rgba(20,23,28,0.55);
+    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.14); border-radius:999px;
+    box-shadow:0 12px 30px -14px rgba(0,0,0,0.5);
+    transition:background 0.3s ease, border-color 0.3s ease;
+  }
+  .nav-left { display:flex; gap:24px; }
+  .nav-left a {
+    text-decoration:none; color:#fff; font-family:'Oswald', sans-serif;
+    font-weight:600; font-size:13px; letter-spacing:1.2px; text-transform:uppercase;
+  }
+  .nav-left a.active { color:#ffd400; }
+  .logo { display:flex; align-items:center; gap:9px; }
+  .logo-box {
+    width:36px; height:36px; border:2px solid #ffd400; color:#ffd400; display:flex;
+    align-items:center; justify-content:center; font-family:'Oswald', sans-serif;
+    font-weight:700; font-size:16px; border-radius:50%;
+  }
+  .logo-text { font-family:'Oswald', sans-serif; line-height:1.05; }
+  .logo-text .top { font-size:14px; font-weight:600; letter-spacing:1px; color:#fff; }
+  .logo-text .bottom { font-size:9px; letter-spacing:1.5px; color:#c9c3b3; }
+  .nav-right { display:flex; align-items:center; gap:16px; }
+  .fb-icon { width:16px; height:16px; fill:#fff; }
+  .phone-btn {
+    background:#ffd400; color:#1a1a1a; padding:9px 18px; font-family:'Oswald', sans-serif;
+    font-weight:700; letter-spacing:1px; font-size:12px; text-decoration:none; border-radius:999px;
+  }
+
+  .nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; width:34px; height:34px; border:none; background:transparent; cursor:pointer; padding:0; }
+  .nav-burger span { display:block; width:100%; height:2px; background:#fff; border-radius:2px; transition:background 0.3s ease, transform 0.3s ease, opacity 0.3s ease; }
+  .navbar.menu-open .nav-burger span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .navbar.menu-open .nav-burger span:nth-child(2) { opacity:0; }
+  .navbar.menu-open .nav-burger span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    position:fixed; inset:0; z-index:40; background:#14171c;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:32px;
+    opacity:0; pointer-events:none; transform:translateY(-12px);
+    transition:opacity 0.3s ease, transform 0.3s ease;
+  }
+  .mobile-menu.open { opacity:1; pointer-events:auto; transform:translateY(0); }
+  .mobile-menu a { text-decoration:none; color:#fff; font-family:'Oswald', sans-serif; font-weight:600; font-size:24px; letter-spacing:1px; text-transform:uppercase; }
+  .mobile-menu .phone-btn { font-size:15px; padding:14px 28px; }
+
+  @media (max-width:700px) {
+    .navbar { top:14px; width:calc(100% - 32px); padding:10px 16px; }
+    .nav-left { display:none; }
+    .nav-burger { display:flex; }
+  }
+
+  /* PAGE HEADER */
+  .ref-hero {
+    position:relative;
+    padding:150px 80px 80px;
+    background:
+      linear-gradient(120deg, rgba(10,13,17,0.05) 0%, rgba(10,13,17,0.45) 100%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 46px),
+      linear-gradient(150deg,#2b3038,#1c1f25 55%,#14171c);
+    overflow:hidden;
+  }
+  .ref-hero::before {
+    content:"";
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity:0.05; mix-blend-mode:overlay; pointer-events:none;
+  }
+  .ref-hero-inner { position:relative; max-width:1180px; margin:0 auto; }
+  .ref-eyebrow {
+    display:flex; align-items:center; gap:10px;
+    font-family:'Oswald', sans-serif; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+    font-size:12px; color:#ffd400; margin-bottom:16px;
+  }
+  .ref-eyebrow::before { content:""; width:26px; height:2px; background:#ffd400; display:inline-block; }
+  .ref-hero h1 {
+    font-family:'Oswald', sans-serif; font-weight:600; font-size:clamp(30px,4vw,48px);
+    text-transform:uppercase; color:#fff; letter-spacing:0.5px; margin-bottom:16px; max-width:16ch;
+  }
+  .ref-hero p { font-size:16px; line-height:1.65; color:#e9e4d4; max-width:60ch; }
+
+  /* JUMP NAV a kategóriák között */
+  .ref-jump {
+    position:sticky; top:0; z-index:30;
+    background:#f7f4ec; border-bottom:1px solid #e4ddc9;
+    padding:16px 80px; display:flex; gap:24px; overflow-x:auto; white-space:nowrap;
+  }
+  .ref-jump a {
+    font-family:'Oswald', sans-serif; font-weight:600; font-size:12.5px; letter-spacing:1px; text-transform:uppercase;
+    color:#5c5646; text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+  }
+  .ref-jump a:hover { color:#1a1712; }
+  .ref-jump a span { background:#ffd400; color:#1a1712; font-size:10px; border-radius:999px; padding:1px 7px; font-weight:700; }
+
+  /* KATEGÓRIA SZEKCIÓK */
+  .ref-cat { padding:64px 80px; max-width:1180px; margin:0 auto; scroll-margin-top:64px; }
+  .ref-cat:nth-child(odd) { }
+  .ref-cat-head { max-width:720px; margin-bottom:32px; }
+  .ref-cat-head h2 {
+    font-family:'Oswald', sans-serif; font-weight:600; font-size:26px; text-transform:uppercase;
+    color:#1a1712; margin-bottom:10px; letter-spacing:0.3px;
+  }
+  .ref-cat-head p { font-size:14.5px; color:#5c5646; line-height:1.6; margin-bottom:8px; }
+  .ref-count {
+    display:inline-block; font-family:'Oswald', sans-serif; font-weight:700; font-size:11px;
+    letter-spacing:1px; text-transform:uppercase; color:#a5843c;
+  }
+  .ref-grid {
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:14px;
+  }
+  .ref-item {
+    position:relative; display:block; border-radius:8px; overflow:hidden;
+    aspect-ratio:4/3; border:1px solid #e4ddc9;
+  }
+  .ref-item picture, .ref-item img { display:block; width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease; }
+  .ref-item:hover img { transform:scale(1.06); }
+  .ref-item::after {
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(0,0,0,0.25) 0%, transparent 40%);
+    pointer-events:none;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    position:fixed; inset:0; z-index:100; background:rgba(10,10,8,0.94);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transition:opacity 0.25s ease;
+  }
+  .lightbox.open { opacity:1; pointer-events:auto; }
+  .lightbox img {
+    max-width:88vw; max-height:82vh; border-radius:6px; box-shadow:0 30px 60px -20px rgba(0,0,0,0.7);
+  }
+  .lightbox-caption {
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+    font-family:'Oswald', sans-serif; font-size:13px; letter-spacing:1px; text-transform:uppercase;
+    color:#e9e4d4; text-align:center;
+  }
+  .lightbox-close, .lightbox-prev, .lightbox-next {
+    position:absolute; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25);
+    color:#fff; border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:20px; font-family:'Oswald', sans-serif;
+  }
+  .lightbox-close { top:24px; right:24px; }
+  .lightbox-prev { left:24px; top:50%; transform:translateY(-50%); }
+  .lightbox-next { right:24px; top:50%; transform:translateY(-50%); }
+  .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background:#ffd400; color:#1a1712; }
+
+  /* LÁBLÉC — ugyanaz, mint a főoldalon */
+  .site-footer { background:#0f1115; padding:64px 80px 28px; }
+  .footer-top {
+    max-width:1180px; margin:0 auto; display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1.1fr; gap:40px; padding-bottom:44px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .footer-brand { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .footer-brand .logo-box { width:38px; height:38px; border:2px solid #ffd400; color:#ffd400; display:flex; align-items:center; justify-content:center; font-family:'Oswald', sans-serif; font-weight:700; font-size:16px; border-radius:50%; }
+  .footer-brand .logo-text { font-family:'Oswald', sans-serif; line-height:1.05; }
+  .footer-brand .logo-text .top { font-size:15px; font-weight:600; letter-spacing:1px; color:#fff; }
+  .footer-brand .logo-text .bottom { font-size:9.5px; letter-spacing:1.5px; color:#8a8270; }
+  .footer-col p { font-size:13.5px; color:#8a8270; line-height:1.7; max-width:32ch; }
+  .footer-col h4 {
+    font-family:'Oswald', sans-serif; font-weight:600; font-size:12px; letter-spacing:1.5px; text-transform:uppercase;
+    color:#fff; margin-bottom:16px;
+  }
+  .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .footer-col a { color:#a9a294; text-decoration:none; font-size:13.5px; }
+  .footer-col a:hover { color:#ffd400; }
+  .footer-social { display:flex; gap:10px; margin-top:18px; }
+  .footer-social a {
+    width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.15);
+    display:flex; align-items:center; justify-content:center; transition:border-color 0.25s ease, background 0.25s ease;
+  }
+  .footer-social a:hover { background:#ffd400; border-color:#ffd400; }
+  .footer-social svg { width:16px; height:16px; fill:#e9e4d4; }
+  .footer-social a:hover svg { fill:#1a1712; }
+  .footer-bottom {
+    max-width:1180px; margin:0 auto; padding-top:22px; display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:12px;
+  }
+  .footer-bottom p { font-size:12.5px; color:#6b6459; }
+  .footer-legal { display:flex; gap:20px; }
+  .footer-legal a { font-size:12.5px; color:#6b6459; text-decoration:none; }
+  .footer-legal a:hover { color:#ffd400; }
+
+  @media (max-width:900px) {
+    .ref-hero, .ref-cat, .ref-jump { padding-left:32px; padding-right:32px; }
+    .ref-grid { grid-template-columns:repeat(3, 1fr); }
+    .site-footer { padding:56px 32px 24px; }
+    .footer-top { grid-template-columns:1fr 1fr; gap:32px; }
+  }
+  @media (max-width:600px) {
+    .ref-hero { padding-top:130px; padding-bottom:56px; }
+    .ref-hero, .ref-cat, .ref-jump { padding-left:20px; padding-right:20px; }
+    .ref-grid { grid-template-columns:repeat(2, 1fr); gap:8px; }
+    .lightbox-prev, .lightbox-next { width:38px; height:38px; }
+    .footer-top { grid-template-columns:1fr; gap:28px; }
+    .footer-bottom { flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <a href="index.html#rolunk">Rólunk</a>
+      <a href="index.html#szolgaltatasok">Szolgáltatások</a>
+      <a href="referenciak.html" class="active">Referenciák</a>
+      <a href="index.html#kapcsolat">Kapcsolat</a>
+    </div>
+    <div class="logo">
+      <div class="logo-box">PW</div>
+      <div class="logo-text">
+        <div class="top">PIPE WORK</div>
+        <div class="bottom">KFT</div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <svg class="fb-icon" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12"/></svg>
+      <a class="phone-btn" href="tel:+36301234567">+36 30 123 4567</a>
+      <button class="nav-burger" id="navBurger" aria-label="Menü megnyitása" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#rolunk">Rólunk</a>
+    <a href="index.html#szolgaltatasok">Szolgáltatások</a>
+    <a href="referenciak.html">Referenciák</a>
+    <a href="index.html#kapcsolat">Kapcsolat</a>
+    <a class="phone-btn" href="tel:+36301234567">+36 30 123 4567</a>
+  </div>
+
+  <header class="ref-hero">
+    <div class="ref-hero-inner">
+      <div class="ref-eyebrow">Referenciák</div>
+      <h1>Munkáink, kategorizálva</h1>
+      <p>Válogatás a Pipe Work Kft eddigi munkáiból — lapostető-szigetelés, bádogozás, erkély- és teraszszigetelés, ipari tetőfedés és alapozás. Kattints egy képre a nagyításhoz.</p>
+    </div>
+  </header>
+
+  <nav class="ref-jump">
+{{JUMPNAV}}
+  </nav>
+
+{{SECTIONS}}
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <div class="logo-box">PW</div>
+          <div class="logo-text"><div class="top">PIPE WORK</div><div class="bottom">KFT</div></div>
+        </div>
+        <p>Lakó- és nem lakóingatlanok építése, lapostető-szigetelés és felújítás Miskolcon és környékén, 2018 óta.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.06.01 4.12.06 1.07.05 1.79.22 2.43.46.66.26 1.22.6 1.77 1.15.55.55.9 1.11 1.15 1.77.24.64.41 1.36.46 2.43.05 1.06.06 1.42.06 4.12s-.01 3.06-.06 4.12c-.05 1.07-.22 1.79-.46 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.64.24-1.36.41-2.43.46-1.06.05-1.42.06-4.12.06s-3.06-.01-4.12-.06c-1.07-.05-1.79-.22-2.43-.46a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.24-.64-.41-1.36-.46-2.43C2.01 15.06 2 14.7 2 12s.01-3.06.06-4.12c.05-1.07.22-1.79.46-2.43.26-.66.6-1.22 1.15-1.77A4.9 4.9 0 0 1 5.44 2.53c.64-.24 1.36-.41 2.43-.46C8.94 2.01 9.3 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm5.2-8.4a1.17 1.17 0 1 0 0-2.34 1.17 1.17 0 0 0 0 2.34Z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigáció</h4>
+        <ul>
+          <li><a href="index.html#rolunk">Rólunk</a></li>
+          <li><a href="index.html#szolgaltatasok">Szolgáltatások</a></li>
+          <li><a href="referenciak.html">Referenciák</a></li>
+          <li><a href="index.html#gyik">GYIK</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kategóriák</h4>
+        <ul>
+{{FOOTERCATS}}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Elérhetőség</h4>
+        <ul>
+          <li><a href="tel:+36301234567">+36 30 123 4567</a></li>
+          <li><a href="mailto:info@pipework.hu">info@pipework.hu</a></li>
+          <li><a href="index.html#terkep">Miskolc és környéke</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pipe Work Kft. Minden jog fenntartva.</p>
+      <div class="footer-legal">
+        <a href="index.html#">Adatvédelem</a>
+        <a href="index.html#">ÁSZF</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose">&times;</button>
+    <button class="lightbox-prev" id="lbPrev">&#8249;</button>
+    <img id="lbImg" src="" alt="">
+    <div class="lightbox-caption" id="lbCaption"></div>
+    <button class="lightbox-next" id="lbNext">&#8250;</button>
+  </div>
+
+  <script>
+    // mobil hamburger menü
+    (function(){
+      var nav = document.getElementById('navbar');
+      var burger = document.getElementById('navBurger');
+      var menu = document.getElementById('mobileMenu');
+      function toggle(open){
+        var isOpen = open !== undefined ? open : !menu.classList.contains('open');
+        menu.classList.toggle('open', isOpen);
+        nav.classList.toggle('menu-open', isOpen);
+        burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      }
+      burger.addEventListener('click', function(){ toggle(); });
+      menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ toggle(false); }); });
+    })();
+
+    // lightbox kategóriánkénti navigációval
+    (function(){
+      var cats = {{CATS_JSON}};
+      var lightbox = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lbImg');
+      var lbCaption = document.getElementById('lbCaption');
+      var items = Array.prototype.slice.call(document.querySelectorAll('.ref-item'));
+      var current = null;
+
+      function itemsInCat(cat){
+        return items.filter(function(el){ return el.dataset.cat === cat; });
+      }
+
+      function open(el){
+        current = el;
+        lbImg.src = el.dataset.full;
+        lbImg.alt = el.dataset.title;
+        var catItems = itemsInCat(el.dataset.cat);
+        var idx = parseInt(el.dataset.index, 10) + 1;
+        lbCaption.textContent = el.dataset.title + ' — ' + idx + ' / ' + catItems.length;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function close(){
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      function nav(dir){
+        if (!current) return;
+        var catItems = itemsInCat(current.dataset.cat);
+        var idx = parseInt(current.dataset.index, 10);
+        var nextIdx = (idx + dir + catItems.length) % catItems.length;
+        open(catItems[nextIdx]);
+      }
+
+      items.forEach(function(el){
+        el.addEventListener('click', function(e){ e.preventDefault(); open(el); });
+      });
+      document.getElementById('lbClose').addEventListener('click', close);
+      document.getElementById('lbPrev').addEventListener('click', function(){ nav(-1); });
+      document.getElementById('lbNext').addEventListener('click', function(){ nav(1); });
+      lightbox.addEventListener('click', function(e){ if (e.target === lightbox) close(); });
+      document.addEventListener('keydown', function(e){
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') nav(-1);
+        if (e.key === 'ArrowRight') nav(1);
+      });
+    })();
+  </script>
+
+</body>
+</html>

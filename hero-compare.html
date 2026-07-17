@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Hero összehasonlítás</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI', system-ui, sans-serif; background:#161412; }
+  .panel { position:relative; }
+  .label {
+    position:sticky; top:0; z-index:10;
+    display:flex; align-items:center; gap:10px;
+    background:#161412; color:#f1ece0;
+    padding:10px 20px; font-size:13px; letter-spacing:1.5px; text-transform:uppercase;
+    border-bottom:2px solid #ffd400;
+  }
+  .label.now { border-bottom-color:#6b6355; }
+  .label b { color:#ffd400; }
+  .label.now b { color:#e9e4d4; }
+  iframe {
+    display:block;
+    width:100%;
+    height:100vh;
+    border:0;
+  }
+  .divider { height:6px; background:repeating-linear-gradient(45deg,#ffd400 0 14px,#161412 14px 28px); }
+</style>
+</head>
+<body>
+
+  <div class="panel">
+    <div class="label now"><b>Jelenlegi</b> — hero (5).html</div>
+    <iframe src="hero (5).html" title="Jelenlegi hero"></iframe>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="panel">
+    <div class="label"><b>Felturbózva</b> — grain textúra, lépcsőzetes szövegbelépés, számláló jelvény, ferde alsó vágás, parallax kép</div>
+    <iframe src="hero-turbo-final.html" title="Felturbózott hero"></iframe>
+  </div>
+
+</body>
+</html>

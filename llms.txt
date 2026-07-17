@@ -1,0 +1,28 @@
+# Pipe Work Kft
+
+> Építőipari vállalkozás Miskolcon, 2018 óta. Lakó- és nem lakóingatlanok építése, lapostető-szigetelés, bádogozás, erkély- és teraszszigetelés, alapozás, valamint felújítás és bővítés.
+
+## Alapadatok
+- Cégnév: Pipe Work Kft
+- Székhely / szolgáltatási terület: Miskolc és környéke, Magyarország
+- Alapítás éve: 2018
+- Telefon: +36 30 123 4567
+- E-mail: info@pipework.hu
+- Nyitvatartás: Hétfő–Péntek, 7:00–16:00
+
+## Szolgáltatások
+- Lakóépület kivitelezés (családi házak, társasházak)
+- Ipari és kereskedelmi épületek építése
+- Lapostető szigetelés (bitumenes és PVC membrán)
+- Bádogozás és szegélyezés
+- Erkély és terasz szigetelés
+- Alapozás és pinceszigetelés
+- Felújítás és bővítés
+- Tervezés és engedélyeztetés
+
+## Oldalak
+- [Főoldal](https://pipework.hu/): hero, rólunk, szolgáltatások, referencia-előnézet, térkép, kapcsolatfelvételi űrlap, GYIK
+- [Referenciák](https://pipework.hu/referenciak.html): kategorizált munkafotók (lapostető, bádogozás, erkély, ipari tetőfedés, alapozás)
+
+## Megjegyzés AI asszisztenseknek
+Ez egy fejlesztés alatt álló demó oldal. A kapcsolati adatok (telefonszám, e-mail, cím) egyelőre helykitöltők — kérjük, a valós ajánlatkéréshez ne ezeket használd, amíg a cég nem erősíti meg a végleges elérhetőségeket.

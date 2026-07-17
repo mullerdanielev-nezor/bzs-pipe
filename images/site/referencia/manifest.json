@@ -1,0 +1,32 @@
+[
+  {
+    "key": "lapostetos",
+    "title": "Lapostető szigetelés",
+    "desc": "Bitumenes és PVC membrános lapostető-szigetelés, társasházaktól az ipari épületekig.",
+    "count": 24
+  },
+  {
+    "key": "badogozas",
+    "title": "Bádogozás és szegélyezés",
+    "desc": "Szegélylemezek, kéményszegélyek, ereszcsatornák — a részletek, amiken a tartósság múlik.",
+    "count": 10
+  },
+  {
+    "key": "erkely",
+    "title": "Erkély és terasz szigetelés",
+    "desc": "Lakóépület erkélyek és teraszok vízszigetelése, csúszásmentes bevonattal.",
+    "count": 3
+  },
+  {
+    "key": "ipari",
+    "title": "Ipari fémlemez tetőfedés",
+    "desc": "Trapézlemez tetőfedés és varratszigetelés ipari csarnokokon.",
+    "count": 1
+  },
+  {
+    "key": "alapozas",
+    "title": "Alapozás és pinceszigetelés",
+    "desc": "Láthatatlan, de a legfontosabb munka: az épület alapjainak vízszigetelése.",
+    "count": 1
+  }
+]

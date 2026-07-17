@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pipe Work Kft — Hero szöveg körüli design, 5 változat</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body{font-family:'Inter',sans-serif; background:#f4f1ea; color:#1a1712;}
+
+  header.intro{max-width:1180px; margin:0 auto; padding:56px 28px 32px; border-bottom:1px solid #ddd5c4;}
+  .eyebrow{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#c99a00; font-weight:700; margin:0 0 14px;}
+  h1{font-family:'Oswald',sans-serif; font-weight:600; font-size:clamp(24px,3.4vw,34px); margin:0 0 14px; text-transform:uppercase; letter-spacing:0.5px;}
+  .lede{font-size:15px; line-height:1.6; color:#6b6355; max-width:66ch; margin:0;}
+
+  nav.jump{position:sticky; top:0; z-index:50; background:#f4f1ea; border-bottom:1px solid #ddd5c4; overflow-x:auto; white-space:nowrap; padding:12px 28px;}
+  nav.jump a{font-size:12.5px; color:#6b6355; text-decoration:none; margin-right:20px;}
+  nav.jump a:hover{color:#1a1712;}
+
+  .shell{max-width:1180px; margin:0 auto; padding:44px 28px 100px; display:flex; flex-direction:column; gap:56px;}
+  .entry-name{font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:#6b6355; font-weight:700;}
+  .entry-rationale{font-size:13px; color:#6b6355; line-height:1.5; margin:6px 0 14px; max-width:70ch;}
+  .wrap{border-radius:6px; overflow:hidden; border:1px solid #ddd5c4; box-shadow:0 16px 36px -20px rgba(0,0,0,0.35);}
+
+  /* ===== a valódi hero CSS-e, változtatás nélkül átemelve ===== */
+  .hero {
+    position:relative;
+    background:
+      linear-gradient(120deg, rgba(10,13,17,0.05) 0%, rgba(10,13,17,0.45) 100%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 46px),
+      linear-gradient(150deg,#2b3038,#1c1f25 55%,#14171c);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+    padding:96px 56px;
+    overflow:hidden;
+  }
+  .hero::before {
+    content:"";
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity:0.05;
+    mix-blend-mode:overlay;
+    pointer-events:none;
+  }
+  .hero-content {
+    position:relative;
+    z-index:2;
+    flex:1 1 380px;
+    min-width:0;
+    max-width:560px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .hero-title {
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    font-size:56px;
+    line-height:1.08;
+    letter-spacing:1px;
+    color:#fff;
+    text-transform:uppercase;
+    margin-bottom:16px;
+    text-shadow: 0 4px 14px rgba(0,0,0,0.5);
+  }
+  .hero-underline { height:7px; width:110px; background:#ffd400; margin-bottom:22px; }
+  .hero-sub {
+    font-family:'Inter', sans-serif;
+    font-size:17px; line-height:1.6; color:#e9e4d4; max-width:42ch; margin-bottom:28px;
+  }
+  .hero-ctas { display:flex; gap:16px; flex-wrap:wrap; }
+  .hero-cta-solid {
+    background:#ffd400; color:#1a1a1a; font-family:'Oswald', sans-serif; font-weight:700;
+    letter-spacing:1.5px; text-transform:uppercase; font-size:13.5px; padding:15px 28px;
+    text-decoration:none; border-radius:999px;
+  }
+  .hero-cta-outline {
+    background:transparent; color:#fff; border:1.5px solid #fff; font-family:'Oswald', sans-serif;
+    font-weight:700; letter-spacing:1.5px; text-transform:uppercase; font-size:13.5px;
+    padding:13.5px 26px; text-decoration:none; border-radius:999px;
+  }
+  .hero-image-wrap { position:relative; flex:0 1 400px; min-width:0; z-index:2; }
+  .hero-image-frame {
+    position:relative; background:#f3f0ea; padding:10px; border:3px solid #ffd400;
+    box-shadow:0 20px 40px -18px rgba(0,0,0,0.55);
+  }
+  .hero-image-frame img { display:block; width:100%; height:400px; object-fit:cover; }
+  .hero-badge {
+    position:absolute; top:-16px; right:-16px; width:72px; height:72px; border-radius:50%;
+    background:#ffd400; color:#1a1a1a; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    line-height:1.05; font-family:'Oswald', sans-serif; transform:rotate(8deg); box-shadow:0 8px 18px rgba(0,0,0,0.35);
+  }
+  .hero-badge b{font-size:19px; font-weight:700;} .hero-badge span{font-size:8.5px; letter-spacing:0.5px; text-transform:uppercase; font-weight:600;}
+
+  /* =========================================================
+     01 — HALVÁNY ÓRIÁS HÁTTÉRSZÖVEG
+  ========================================================= */
+  .v1 .hero-bg-word {
+    position:absolute; z-index:1; left:20px; top:50%; transform:translateY(-50%);
+    font-family:'Oswald', sans-serif; font-weight:700; font-size:220px; line-height:1;
+    color:transparent; -webkit-text-stroke:1px rgba(255,255,255,0.07);
+    white-space:nowrap; user-select:none; pointer-events:none;
+  }
+
+  /* =========================================================
+     02 — SAROK-KERET (BRACKET) A SZÖVEG KÖRÜL
+  ========================================================= */
+  .v2 .hero-content { padding:34px 40px; }
+  .v2 .hero-bracket { position:absolute; z-index:1; width:26px; height:26px; border-color:#ffd400; border-style:solid; }
+  .v2 .b-tl { top:0; left:0; border-width:2px 0 0 2px; }
+  .v2 .b-br { bottom:0; right:0; border-width:0 2px 2px 0; }
+
+  /* =========================================================
+     03 — RÁCSOS TEXTÚRA-ZÓNA A SZÖVEG MÖGÖTT
+  ========================================================= */
+  .v3 .hero-content {
+    padding:36px 40px;
+    background-color:rgba(0,0,0,0.18);
+    background-image:
+      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size:22px 22px;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:4px;
+  }
+
+  /* =========================================================
+     04 — FÜGGŐLEGES VONAL A BAL SZÉLEN
+  ========================================================= */
+  .v4 .hero-content { padding-left:28px; border-left:3px solid #ffd400; }
+
+  /* =========================================================
+     05 — LEBEGŐ GEOMETRIAI ALAKZATOK (mint a Rólunk szekcióban)
+  ========================================================= */
+  @keyframes shapeDrift { 0%,100%{transform:translate(0,0);} 50%{transform:translate(14px,-10px);} }
+  .v5 .shape { position:absolute; z-index:1; border:1px solid rgba(255,212,0,0.25); border-radius:50%; pointer-events:none; }
+  .v5 .s1 { width:120px; height:120px; top:-30px; left:-10%; animation:shapeDrift 6s ease-in-out infinite; }
+  .v5 .s2 { width:70px; height:70px; bottom:10%; left:30%; animation:shapeDrift 5s ease-in-out infinite reverse; }
+  .v5 .s3 { width:180px; height:180px; bottom:-60px; right:20%; animation:shapeDrift 8s ease-in-out infinite; }
+
+  @media (max-width:900px){
+    .hero{flex-direction:column; padding:56px 28px;}
+    .hero-title{font-size:38px;}
+    .hero-image-frame img{height:280px;}
+    .v1 .hero-bg-word{font-size:110px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="eyebrow">Pipe Work Kft — Hero</p>
+  <h1>Szöveg körüli design — 5 változat, valódi heróba építve</h1>
+  <p class="lede">Ugyanaz a hero (pontos szín, tipográfia, kép, gombok), mint az élő oldalon — csak a cím körüli extra design elem változik változatonként, hogy valódi kontextusban lásd, melyik illik.</p>
+</header>
+
+<nav class="jump">
+  <a href="#v1">01 Óriás háttérszöveg</a>
+  <a href="#v2">02 Sarok-keret</a>
+  <a href="#v3">03 Rácsos textúra-zóna</a>
+  <a href="#v4">04 Függőleges vonal</a>
+  <a href="#v5">05 Lebegő alakzatok</a>
+</nav>
+
+<div class="shell">
+
+  <article id="v1">
+    <span class="entry-name">01 · Halvány óriás háttérszöveg</span>
+    <p class="entry-rationale">Egy hatalmas, körvonalas "PIPE" felirat fut a cím mögött, alig látható erősséggel — mélységet ad, plakátszerű, magabiztos hatás.</p>
+    <div class="wrap">
+      <section class="hero v1">
+        <span class="hero-bg-word">PIPE</span>
+        <div class="hero-content">
+          <div class="hero-title">Pipe Work Kft</div>
+          <div class="hero-underline"></div>
+          <div class="hero-sub">Lakó- és nem lakóingatlanok építése Miskolcon és környékén, 2018 óta</div>
+          <div class="hero-ctas">
+            <a class="hero-cta-solid" href="#">Kérjen ajánlatot</a>
+            <a class="hero-cta-outline" href="#">Hívjon minket</a>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <div class="hero-image-frame">
+            <div class="hero-badge"><b>7+</b><span>év</span></div>
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800&auto=format&fit=crop" alt="">
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article id="v2">
+    <span class="entry-name">02 · Sarok-keret (bracket) a szöveg körül</span>
+    <p class="entry-rationale">Két diszkrét sarokvonal (mint egy fényképező keresőjében) jelöli ki a szövegblokk határait — technikai, "precíz" érzetet ad.</p>
+    <div class="wrap">
+      <section class="hero v2">
+        <div class="hero-content">
+          <span class="hero-bracket b-tl"></span>
+          <span class="hero-bracket b-br"></span>
+          <div class="hero-title">Pipe Work Kft</div>
+          <div class="hero-underline"></div>
+          <div class="hero-sub">Lakó- és nem lakóingatlanok építése Miskolcon és környékén, 2018 óta</div>
+          <div class="hero-ctas">
+            <a class="hero-cta-solid" href="#">Kérjen ajánlatot</a>
+            <a class="hero-cta-outline" href="#">Hívjon minket</a>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <div class="hero-image-frame">
+            <div class="hero-badge"><b>7+</b><span>év</span></div>
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800&auto=format&fit=crop" alt="">
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article id="v3">
+    <span class="entry-name">03 · Rácsos textúra-zóna a szöveg mögött</span>
+    <p class="entry-rationale">A szöveg egy enyhén elsötétített, finom rácsvonalas panelen ül — vizuálisan elválik a hero többi részétől, jobban olvasható kontraszttal.</p>
+    <div class="wrap">
+      <section class="hero v3">
+        <div class="hero-content">
+          <div class="hero-title">Pipe Work Kft</div>
+          <div class="hero-underline"></div>
+          <div class="hero-sub">Lakó- és nem lakóingatlanok építése Miskolcon és környékén, 2018 óta</div>
+          <div class="hero-ctas">
+            <a class="hero-cta-solid" href="#">Kérjen ajánlatot</a>
+            <a class="hero-cta-outline" href="#">Hívjon minket</a>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <div class="hero-image-frame">
+            <div class="hero-badge"><b>7+</b><span>év</span></div>
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800&auto=format&fit=crop" alt="">
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article id="v4">
+    <span class="entry-name">04 · Függőleges vonal a bal szélen</span>
+    <p class="entry-rationale">Egy vékony sárga vonal fut a szövegblokk teljes magassága mellett — összefogja a címtől a gombokig az egészet, letisztult, editoriális érzés.</p>
+    <div class="wrap">
+      <section class="hero v4">
+        <div class="hero-content">
+          <div class="hero-title">Pipe Work Kft</div>
+          <div class="hero-underline"></div>
+          <div class="hero-sub">Lakó- és nem lakóingatlanok építése Miskolcon és környékén, 2018 óta</div>
+          <div class="hero-ctas">
+            <a class="hero-cta-solid" href="#">Kérjen ajánlatot</a>
+            <a class="hero-cta-outline" href="#">Hívjon minket</a>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <div class="hero-image-frame">
+            <div class="hero-badge"><b>7+</b><span>év</span></div>
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800&auto=format&fit=crop" alt="">
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article id="v5">
+    <span class="entry-name">05 · Lebegő geometriai alakzatok</span>
+    <p class="entry-rationale">Finom, körvonalas körök lebegnek lassan a szöveg körül — ugyanaz a motívum, amit a Rólunk szekció háttere már használ, konzisztenciát ad a két szekció között.</p>
+    <div class="wrap">
+      <section class="hero v5">
+        <div class="hero-content">
+          <span class="shape s1"></span>
+          <span class="shape s2"></span>
+          <span class="shape s3"></span>
+          <div class="hero-title">Pipe Work Kft</div>
+          <div class="hero-underline"></div>
+          <div class="hero-sub">Lakó- és nem lakóingatlanok építése Miskolcon és környékén, 2018 óta</div>
+          <div class="hero-ctas">
+            <a class="hero-cta-solid" href="#">Kérjen ajánlatot</a>
+            <a class="hero-cta-outline" href="#">Hívjon minket</a>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <div class="hero-image-frame">
+            <div class="hero-badge"><b>7+</b><span>év</span></div>
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800&auto=format&fit=crop" alt="">
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+</div>
+
+</body>
+</html>

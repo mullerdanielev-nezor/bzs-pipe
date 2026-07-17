@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Pipe Work Kft — Rólunk, extra ötletek</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body{font-family:'Inter',sans-serif; background:#f4f1ea; color:#1a1712;}
+
+  header.intro{max-width:1180px; margin:0 auto; padding:56px 28px 32px; border-bottom:1px solid #ddd5c4;}
+  .eyebrow{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#c99a00; font-weight:700; margin:0 0 14px;}
+  h1{font-family:'Oswald',sans-serif; font-weight:600; font-size:clamp(26px,3.6vw,38px); margin:0 0 14px; text-transform:uppercase; letter-spacing:0.5px;}
+  .lede{font-size:15px; line-height:1.6; color:#6b6355; max-width:66ch; margin:0;}
+
+  nav.jump{position:sticky; top:0; z-index:50; background:#f4f1ea; border-bottom:1px solid #ddd5c4; overflow-x:auto; white-space:nowrap; padding:12px 28px;}
+  nav.jump a{font-size:12.5px; color:#6b6355; text-decoration:none; margin-right:20px;}
+  nav.jump a:hover{color:#1a1712;}
+
+  .shell{max-width:1180px; margin:0 auto; padding:44px 28px 100px; display:flex; flex-direction:column; gap:56px;}
+  .entry-name{font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:#6b6355; font-weight:700;}
+  .entry-rationale{font-size:13.5px; color:#6b6355; max-width:64ch; line-height:1.5; margin:6px 0 14px;}
+  .wrap{border-radius:4px; overflow:hidden; border:1px solid #ddd5c4; box-shadow:0 16px 36px -20px rgba(0,0,0,0.35);}
+
+  footer.note{max-width:1180px; margin:24px auto 0; padding:28px 28px 0; border-top:1px solid #ddd5c4; font-size:13px; color:#6b6355; line-height:1.6;}
+
+  .ph{background:linear-gradient(160deg,#7a6a52,#4a4238 55%,#2c2721);}
+
+  /* =========================================================
+     01 — NAGY IDÉZET-STÍLUSÚ MANIFESZTUM
+  ========================================================= */
+  .a1{background:#14171c; padding:88px 64px; text-align:center;}
+  .a1 .eyebrow{color:#ffd400; justify-content:center; display:flex;}
+  .a1-quote{font-family:'Oswald',sans-serif; font-weight:600; color:#fff; font-size:clamp(24px,3vw,36px); line-height:1.3; max-width:16ch; margin:18px auto 24px; text-transform:uppercase;}
+  .a1-quote span{color:#ffd400;}
+  .a1-sub{color:#c9c3b3; font-size:15px; max-width:56ch; margin:0 auto;}
+
+  /* =========================================================
+     02 — IDŐVONAL (2018 → MA), VALÓDI SORREND
+  ========================================================= */
+  .a2{background:#f7f4ec; padding:80px 64px;}
+  .a2-head{max-width:640px; margin-bottom:48px;}
+  .a2-head h2{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:28px; margin-bottom:12px;}
+  .a2-line{position:relative; max-width:900px; padding-left:4px;}
+  .a2-line::before{content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:#ddd0ac;}
+  .a2-step{position:relative; padding-left:36px; padding-bottom:36px;}
+  .a2-step:last-child{padding-bottom:0;}
+  .a2-step::before{content:""; position:absolute; left:0; top:4px; width:16px; height:16px; border-radius:50%; background:#ffd400; border:3px solid #f7f4ec; outline:2px solid #1a1712;}
+  .a2-step b{display:block; font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:1px; color:#a5843c; margin-bottom:4px;}
+  .a2-step h3{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:17px; margin-bottom:6px;}
+  .a2-step p{font-size:14px; color:#5c5646; max-width:52ch; line-height:1.55;}
+
+  /* =========================================================
+     03 — PORTRÉ + NAGY SZÁM STATISZTIKA
+  ========================================================= */
+  .a3{background:#eef0f2; display:grid; grid-template-columns:1fr 1fr; align-items:stretch;}
+  .a3-img{min-height:420px;}
+  .a3-text{padding:64px 56px; display:flex; flex-direction:column; justify-content:center;}
+  .a3-text .eyebrow{color:#a5843c;}
+  .a3-text h2{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:28px; margin-bottom:16px;}
+  .a3-text p{font-size:15px; color:#5c5646; line-height:1.65; max-width:44ch; margin-bottom:28px;}
+  .a3-stats{display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:360px;}
+  .a3-stats b{display:block; font-family:'Oswald',sans-serif; font-size:30px; color:#1a1712;}
+  .a3-stats span{font-size:11.5px; letter-spacing:0.5px; text-transform:uppercase; color:#8a8270;}
+
+  /* =========================================================
+     04 — ÉRTÉKKÁRTYÁK (3 alapelv), ÜVEGES SÖTÉT
+  ========================================================= */
+  .a4{position:relative; background:#0f1115; padding:80px 64px; overflow:hidden;}
+  .a4-blob{position:absolute; width:320px; height:320px; border-radius:50%; background:#ffd400; filter:blur(90px); opacity:0.18; top:-100px; right:-60px;}
+  .a4-head{position:relative; margin-bottom:40px; max-width:640px;}
+  .a4-head .eyebrow{color:#ffd400;}
+  .a4-head h2{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:28px;}
+  .a4-grid{position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .a4-card{background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:28px;}
+  .a4-card .n{font-family:'Oswald',sans-serif; font-size:13px; color:#ffd400; letter-spacing:1px; margin-bottom:14px;}
+  .a4-card h3{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:16px; margin-bottom:10px;}
+  .a4-card p{color:#a9b0bd; font-size:13.5px; line-height:1.55;}
+
+  /* =========================================================
+     05 — HASADT TIPOGRÁFIA, ÓRIÁS HÁTTÉRSZÖVEG
+  ========================================================= */
+  .a5{position:relative; background:#f4f1ea; padding:96px 64px; overflow:hidden;}
+  .a5-bgtext{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'Oswald',sans-serif; font-weight:700; font-size:min(22vw,260px); color:transparent; -webkit-text-stroke:1px rgba(26,23,18,0.08); white-space:nowrap; z-index:0; user-select:none;}
+  .a5-inner{position:relative; z-index:1; max-width:640px;}
+  .a5 .eyebrow{color:#a5843c;}
+  .a5 h2{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:32px; margin-bottom:18px; line-height:1.2;}
+  .a5 p{font-size:15.5px; color:#5c5646; line-height:1.7; margin-bottom:14px;}
+
+  /* =========================================================
+     06 — GÖRGETÉS-VEZÉRELT SZÁMLÁLÓ SÁV (JS)
+  ========================================================= */
+  .a6{background:#1c1f25; padding:80px 64px;}
+  .a6-head{max-width:640px; margin-bottom:44px;}
+  .a6-head .eyebrow{color:#ffd400;}
+  .a6-head h2{font-family:'Oswald',sans-serif; color:#fff; text-transform:uppercase; font-size:28px; margin-bottom:14px;}
+  .a6-head p{color:#c9c3b3; font-size:14.5px; line-height:1.6; max-width:52ch;}
+  .a6-row{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(255,255,255,0.12);}
+  .a6-item{padding:32px 24px; border-right:1px solid rgba(255,255,255,0.12);}
+  .a6-item:last-child{border-right:none;}
+  .a6-item b{display:block; font-family:'Oswald',sans-serif; font-size:40px; color:#ffd400; font-variant-numeric:tabular-nums;}
+  .a6-item span{font-size:12px; letter-spacing:0.5px; text-transform:uppercase; color:#c9c3b3;}
+
+  @media (max-width:900px){
+    .a3{grid-template-columns:1fr;}
+    .a3-img{min-height:260px;}
+    .a4-grid{grid-template-columns:1fr;}
+    .a6-row{grid-template-columns:1fr;}
+    .a6-item{border-right:none; border-bottom:1px solid rgba(255,255,255,0.12);}
+  }
+  @media (max-width:600px){
+    .a1,.a2,.a3-text,.a4,.a5,.a6{padding:56px 24px;}
+    .a5-bgtext{font-size:22vw;}
+  }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="eyebrow">Pipe Work Kft — Miskolc</p>
+  <h1>Rólunk szekció — extrán jó kinézeti ötletek</h1>
+  <p class="lede">Az alap verzióból kiindulva (szöveg + statisztikák) hat, vizuálisan sokkal karakteresebb irány — mind ugyanazt a történetet mondja el (2018, Miskolc, 7+ év), csak más eszközzel.</p>
+</header>
+
+<nav class="jump">
+  <a href="#a1">01 Manifesztum idézet</a>
+  <a href="#a2">02 Időmark az alapítástól</a>
+  <a href="#a3">03 Kép + nagy statisztika</a>
+  <a href="#a4">04 Értékkártyák, üveges sötét</a>
+  <a href="#a5">05 Óriás háttérszöveg</a>
+  <a href="#a6">06 Számláló sáv görgetésre</a>
+</nav>
+
+<div class="shell">
+
+  <article id="a1">
+    <span class="entry-name">01 · Manifesztum idézet</span>
+    <p class="entry-rationale">Nincs kép, nincs statisztika-blokk — egy nagy, mondatszerű állítás, mint egy márka-manifesztó. A legmerészebb, legbizalom-teljesebb hangvétel.</p>
+    <div class="wrap">
+      <div class="a1">
+        <p class="eyebrow">Rólunk</p>
+        <p class="a1-quote">Miskolcon építünk, <span>2018 óta</span>, szó szerint alapoktól</p>
+        <p class="a1-sub">A Pipe Work Kft lakó- és nem lakóingatlanokat épít — a tervezéstől a kulcsrakész átadásig egy csapattal.</p>
+      </div>
+    </div>
+  </article>
+
+  <article id="a2">
+    <span class="entry-name">02 · Időmark az alapítástól</span>
+    <p class="entry-rationale">Valódi idővonal az alapítástól máig — itt jogos a szekvencia-jelölés, mert tényleg egy kronológiát mutat, nem díszítés.</p>
+    <div class="wrap">
+      <div class="a2">
+        <div class="a2-head"><p class="eyebrow" style="color:#a5843c;">Rólunk</p><h2>Az útunk eddig</h2></div>
+        <div class="a2-line">
+          <div class="a2-step"><b>2018</b><h3>Megalakulás</h3><p>A Pipe Work Kft elindul Miskolcon, kis csapattal, lakóingatlan-kivitelezésre fókuszálva.</p></div>
+          <div class="a2-step"><b>Azóta</b><h3>Bővülő szakterület</h3><p>A lakóépületek mellett ipari és kereskedelmi projektek is bekerülnek a portfólióba.</p></div>
+          <div class="a2-step"><b>Ma</b><h3>7+ év tapasztalat</h3><p>Folyamatos, aktív projektek Miskolcon és környékén.</p></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="a3">
+    <span class="entry-name">03 · Kép + nagy statisztika</span>
+    <p class="entry-rationale">Fél oldal fotó, fél oldal szöveg és 2×2 statisztika-rács — a legkonkrétabb, "cégismertető" jellegű, bizalomépítő verzió.</p>
+    <div class="wrap">
+      <div class="a3">
+        <div class="a3-img ph"></div>
+        <div class="a3-text">
+          <p class="eyebrow">Rólunk</p>
+          <h2>A Pipe Work Kft</h2>
+          <p>2018 óta építünk lakó- és nem lakóingatlanokat Miskolcon és környékén — a tervezéstől a kulcsrakész átadásig egy csapattal.</p>
+          <div class="a3-stats">
+            <div><b>2018</b><span>Alapítva</span></div>
+            <div><b>Miskolc</b><span>Székhely</span></div>
+            <div><b>7+</b><span>Év tapasztalat</span></div>
+            <div><b>2</b><span>Fő szakterület</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="a4">
+    <span class="entry-name">04 · Értékkártyák, üveges sötét</span>
+    <p class="entry-rationale">Három alapelv (nem statisztika) üveges kártyákon, halvány sárga fényfolttal — inkább arról szól, "hogyan dolgozunk", mint arról, "mióta".</p>
+    <div class="wrap">
+      <div class="a4">
+        <div class="a4-blob"></div>
+        <div class="a4-head"><p class="eyebrow">Rólunk</p><h2>Amiben hiszünk</h2></div>
+        <div class="a4-grid">
+          <div class="a4-card"><div class="n">01</div><h3>Pontos ütemezés</h3><p>A határidőket vállaljuk és tartjuk, projekttől projektig.</p></div>
+          <div class="a4-card"><div class="n">02</div><h3>Helyi jelenlét</h3><p>Miskolcon és környékén dolgozunk, gyors eléréssel.</p></div>
+          <div class="a4-card"><div class="n">03</div><h3>Teljes körű felelősség</h3><p>Tervtől az átadásig egy csapat kíséri a munkát.</p></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="a5">
+    <span class="entry-name">05 · Óriás háttérszöveg</span>
+    <p class="entry-rationale">Egy óriási, körvonalas "MISKOLC" felirat a háttérben, előtte a tényleges szöveg — editoriális, plakátszerű, erős vizuális jel a helyi kötődésre.</p>
+    <div class="wrap">
+      <div class="a5">
+        <span class="a5-bgtext">MISKOLC</span>
+        <div class="a5-inner">
+          <p class="eyebrow">Rólunk</p>
+          <h2>Helyben építünk, helyben felelünk</h2>
+          <p>A Pipe Work Kft 2018 óta dolgozik Miskolcon és környékén — lakó- és nem lakóingatlanok építésével, a tervezéstől a kulcsrakész átadásig.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="a6">
+    <span class="entry-name">06 · Számláló sáv görgetésre</span>
+    <p class="entry-rationale">A statisztikák 0-ból pörögnek fel, amint a szekció a képernyőre görget — élő, játékos részlet, ami a mostani hero jelvény-számlálójának logikáját viszi tovább.</p>
+    <div class="wrap">
+      <div class="a6" id="a6demo">
+        <div class="a6-head"><p class="eyebrow">Rólunk</p><h2>A Pipe Work Kft számokban</h2><p>Görgesd a szekciót képernyőre — a számok automatikusan felpörögnek.</p></div>
+        <div class="a6-row">
+          <div class="a6-item"><b data-target="2018" data-format="year">0</b><span>Alapítva</span></div>
+          <div class="a6-item"><b data-target="7">0</b><span>Év tapasztalat</span></div>
+          <div class="a6-item"><b data-target="2">0</b><span>Fő szakterület</span></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<footer class="note">
+  Mindegyik ugyanazt a tényanyagot viszi tovább (2018, Miskolc, 7+ év) — a 03-as a legbiztonságosabb, "cégismertető" választás, az 01 és 05 a legmerészebb, márkaépítő irány.
+</footer>
+
+<script>
+  (function(){
+    var els = document.querySelectorAll('#a6demo [data-target]');
+    var done = false;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function run(){
+      if (done) return;
+      done = true;
+      els.forEach(function(el){
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        if (reduced) { el.textContent = target; return; }
+        var current = 0;
+        var step = Math.max(1, Math.round(target / 40));
+        var timer = setInterval(function(){
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current;
+        }, 25);
+      });
+    }
+    var target = document.getElementById('a6demo');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting) run(); });
+      }, { threshold:0.4 });
+      io.observe(target);
+    } else {
+      run();
+    }
+  })();
+</script>
+
+</body>
+</html>

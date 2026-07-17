@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Pipe Work Kft — Referenciák, 5 extrém-modern koncepció</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700;900&family=Inter:wght@400;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body{font-family:'Inter',sans-serif; background:#0f0d0a; color:#f4f1ea;}
+
+  header.intro{max-width:1180px; margin:0 auto; padding:56px 28px 32px; border-bottom:1px solid #2a2620;}
+  .eyebrow{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#ffd400; font-weight:700; margin:0 0 14px;}
+  h1{font-family:'Oswald',sans-serif; font-weight:600; font-size:clamp(26px,3.6vw,38px); margin:0 0 14px; text-transform:uppercase; letter-spacing:0.5px; color:#fff;}
+  .lede{font-size:15px; line-height:1.6; color:#a9a294; max-width:66ch; margin:0;}
+
+  nav.jump{position:sticky; top:0; z-index:50; background:#0f0d0a; border-bottom:1px solid #2a2620; overflow-x:auto; white-space:nowrap; padding:12px 28px;}
+  nav.jump a{font-size:12.5px; color:#a9a294; text-decoration:none; margin-right:20px;}
+  nav.jump a:hover{color:#ffd400;}
+
+  .shell{max-width:1180px; margin:0 auto; padding:44px 28px 100px; display:flex; flex-direction:column; gap:72px;}
+  .entry-name{font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:#a9a294; font-weight:700;}
+  .entry-rationale{font-size:13.5px; color:#a9a294; max-width:70ch; line-height:1.5; margin:6px 0 14px;}
+  .wrap{border-radius:6px; overflow:hidden; border:1px solid #2a2620; box-shadow:0 24px 50px -24px rgba(0,0,0,0.7); background:#151310;}
+  footer.note{max-width:1180px; margin:24px auto 0; padding:28px 28px 0; border-top:1px solid #2a2620; font-size:13px; color:#a9a294; line-height:1.6;}
+
+  /* =========================================================
+     01 — KURZOR-KÖVETŐ LEBEGŐ ELŐNÉZET
+  ========================================================= */
+  .f1{height:440px; position:relative; display:flex; flex-direction:column; justify-content:center; padding:0 64px; cursor:none;}
+  .f1-row{font-family:'Oswald',sans-serif; font-weight:700; font-size:44px; text-transform:uppercase; color:#3a352c; letter-spacing:1px; padding:10px 0; cursor:pointer; transition:color 0.25s ease; position:relative;}
+  .f1-row:hover{color:#fff;}
+  .f1-row .count{font-size:14px; font-family:'Inter',sans-serif; font-weight:400; color:#6b6459; margin-left:16px; vertical-align:middle;}
+  .f1-preview{position:absolute; width:220px; height:160px; border-radius:8px; overflow:hidden; pointer-events:none; opacity:0; transform:translate(-50%,-50%) scale(0.9) rotate(-4deg); transition:opacity 0.2s ease, transform 0.2s ease; z-index:5; box-shadow:0 20px 40px -14px rgba(0,0,0,0.6); border:2px solid #ffd400;}
+  .f1-preview.show{opacity:1; transform:translate(-50%,-50%) scale(1) rotate(-2deg);}
+  .f1-preview img{width:100%; height:100%; object-fit:cover;}
+
+  /* =========================================================
+     02 — HÚZHATÓ VÉGTELEN FAL (drag-to-scroll)
+  ========================================================= */
+  .f2{height:420px; overflow:hidden; position:relative; cursor:grab;}
+  .f2.dragging{cursor:grabbing;}
+  .f2-track{display:flex; gap:16px; height:100%; padding:24px; will-change:transform;}
+  .f2-track img{height:100%; width:340px; object-fit:cover; border-radius:8px; flex:0 0 auto; user-select:none; -webkit-user-drag:none;}
+  .f2-hint{position:absolute; bottom:16px; left:50%; transform:translateX(-50%); font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#a9a294; background:rgba(0,0,0,0.5); padding:6px 14px; border-radius:999px; pointer-events:none;}
+
+  /* =========================================================
+     03 — GÖRGETÉS-VEZÉRELT ZOOM (pinned)
+  ========================================================= */
+  .f3-tall{height:260vh; position:relative;}
+  .f3-sticky{position:sticky; top:0; height:100vh; max-height:520px; overflow:hidden; display:flex; align-items:center; justify-content:center;}
+  .f3-img{width:220px; height:160px; border-radius:10px; overflow:hidden; position:relative; transition:none;}
+  .f3-img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .f3-cap{position:absolute; inset:0; display:flex; align-items:flex-end; padding:24px; background:linear-gradient(0deg, rgba(0,0,0,0.65), transparent 50%);}
+  .f3-cap span{font-family:'Oswald',sans-serif; text-transform:uppercase; color:#fff; font-size:14px; letter-spacing:1px; opacity:0; transition:opacity 0.3s ease;}
+
+  /* =========================================================
+     04 — DUOTON "REFLEKTOR" HOVER-MASZK
+  ========================================================= */
+  .f4{padding:32px; display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+  .f4-cell{position:relative; aspect-ratio:4/3; border-radius:6px; overflow:hidden;}
+  .f4-cell img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .f4-cell .base{filter:grayscale(1) contrast(1.1) brightness(0.65) sepia(0.15);}
+  .f4-cell .reveal{clip-path:circle(0px at 50% 50%); transition:clip-path 0.06s linear;}
+  .f4-cell:hover .reveal{transition:none;}
+
+  /* =========================================================
+     05 — KINETIKUS TIPOGRÁFIA, KÉPKIVÁGÁSSAL
+  ========================================================= */
+  .f5{padding:56px 40px; display:flex; flex-direction:column; gap:6px;}
+  .f5-word{font-family:'Oswald',sans-serif; font-weight:900; font-size:clamp(38px,7vw,88px); text-transform:uppercase; line-height:0.95; letter-spacing:-1px; background-size:cover; background-position:center; -webkit-background-clip:text; background-clip:text; color:transparent; cursor:pointer; transition:transform 0.3s ease; width:fit-content;}
+  .f5-word:hover{transform:translateX(14px) scale(1.02);}
+  .f5-sub{font-family:'Inter',sans-serif; font-size:12px; color:#6b6459; letter-spacing:0.5px; margin:2px 0 14px; text-transform:uppercase;}
+
+  @media (max-width:760px){
+    .f1{padding:0 24px;}
+    .f1-row{font-size:26px;}
+    .f1-preview{display:none;}
+    .f2-track img{width:220px;}
+    .f4{grid-template-columns:repeat(2,1fr);}
+    .f5-word{font-size:11vw;}
+  }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="eyebrow">Pipe Work Kft — Referenciák</p>
+  <h1>5 extrém, modern koncepció</h1>
+  <p class="lede">Ezek már nem "rács-variációk" — kurzort követő élő előnézet, húzható végtelen fal, görgetés-vezérelt zoom, reflektoros duoton-maszk és kép-kitöltésű óriás tipográfia. Mindegyik valódi interakcióval, próbáld ki egerekkel/görgetéssel.</p>
+</header>
+
+<nav class="jump">
+  <a href="#f1">01 Kurzor-követő előnézet</a>
+  <a href="#f2">02 Húzható végtelen fal</a>
+  <a href="#f3">03 Görgetés-vezérelt zoom</a>
+  <a href="#f4">04 Reflektor duoton-maszk</a>
+  <a href="#f5">05 Kép-kitöltésű tipográfia</a>
+</nav>
+
+<div class="shell">
+
+  <article id="f1">
+    <span class="entry-name">01 · Kurzor-követő lebegő előnézet</span>
+    <p class="entry-rationale">Nincsenek látható képek — csak kategórianevek listája. Ahogy az egér a sorok fölé ér, egy lebegő fotó követi a kurzort. Editorial/Awwwards-stílus, rendkívül letisztult, amíg nem mozdulsz.</p>
+    <div class="wrap f1" id="f1demo">
+      <div class="f1-row" data-imgs="lapostetos-01.jpg,lapostetos-13.jpg,lapostetos-19.jpg">Lapostető szigetelés <span class="count">24 munka</span></div>
+      <div class="f1-row" data-imgs="badogozas-02.jpg,badogozas-06.jpg,badogozas-09.jpg">Bádogozás &amp; szegélyezés <span class="count">10 munka</span></div>
+      <div class="f1-row" data-imgs="erkely-01.jpg,erkely-02.jpg,erkely-03.jpg">Erkély &amp; terasz <span class="count">3 munka</span></div>
+      <div class="f1-row" data-imgs="ipari-01.jpg">Ipari fémlemez tetőfedés <span class="count">1 munka</span></div>
+      <div class="f1-preview" id="f1preview"><img id="f1previewImg" src="images/site/referencia/thumb/lapostetos-01.jpg"></div>
+    </div>
+  </article>
+
+  <article id="f2">
+    <span class="entry-name">02 · Húzható végtelen fal</span>
+    <p class="entry-rationale">Nem kattintós nyilak — magát a falat húzod, mint egy fizikai tárlófalat. Nagy, filmszerű képek, momentum-mozgással. Kattintás és fogd-vidd egyszerre él rajta.</p>
+    <div class="wrap f2" id="f2demo">
+      <div class="f2-track" id="f2track">
+        <img src="images/site/referencia/thumb/lapostetos-01.jpg" draggable="false">
+        <img src="images/site/referencia/thumb/badogozas-01.jpg" draggable="false">
+        <img src="images/site/referencia/thumb/erkely-01.jpg" draggable="false">
+        <img src="images/site/referencia/thumb/lapostetos-13.jpg" draggable="false">
+        <img src="images/site/referencia/thumb/badogozas-06.jpg" draggable="false">
+        <img src="images/site/referencia/thumb/ipari-01.jpg" draggable="false">
+        <img src="images/site/referencia/thumb/lapostetos-19.jpg" draggable="false">
+        <img src="images/site/referencia/thumb/alapozas-01.jpg" draggable="false">
+      </div>
+      <div class="f2-hint">Húzd oldalra ↔</div>
+    </div>
+  </article>
+
+  <article id="f3">
+    <span class="entry-name">03 · Görgetés-vezérelt zoom</span>
+    <p class="entry-rationale">Görgess lefelé ezen a szakaszon: a kép a helyén marad, miközben apró bélyegből teljes szélességű, filmszerű fotóvá nő. Erős, "kinyíló" hatás, amit ma sok prémium ügynökségi oldal használ.</p>
+    <div class="wrap">
+      <div class="f3-tall" id="f3tall">
+        <div class="f3-sticky">
+          <div class="f3-img" id="f3img">
+            <img src="images/site/referencia/thumb/lapostetos-01.jpg">
+            <div class="f3-cap"><span id="f3cap">Lapostető szigetelés — társasház, Miskolc</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="f4">
+    <span class="entry-name">04 · Reflektor duoton-maszk</span>
+    <p class="entry-rationale">Alapból minden kép szürkés-visszafogott — a kurzor egy kör alakú "reflektort" húz maga után, ami alatt előbukkan a valódi, teljes színű fotó. Vidd az egeret a rács fölé.</p>
+    <div class="wrap f4" id="f4demo">
+      <div class="f4-cell"><img class="base" src="images/site/referencia/thumb/lapostetos-01.jpg"><img class="reveal" src="images/site/referencia/thumb/lapostetos-01.jpg"></div>
+      <div class="f4-cell"><img class="base" src="images/site/referencia/thumb/badogozas-02.jpg"><img class="reveal" src="images/site/referencia/thumb/badogozas-02.jpg"></div>
+      <div class="f4-cell"><img class="base" src="images/site/referencia/thumb/erkely-01.jpg"><img class="reveal" src="images/site/referencia/thumb/erkely-01.jpg"></div>
+      <div class="f4-cell"><img class="base" src="images/site/referencia/thumb/lapostetos-13.jpg"><img class="reveal" src="images/site/referencia/thumb/lapostetos-13.jpg"></div>
+      <div class="f4-cell"><img class="base" src="images/site/referencia/thumb/badogozas-06.jpg"><img class="reveal" src="images/site/referencia/thumb/badogozas-06.jpg"></div>
+      <div class="f4-cell"><img class="base" src="images/site/referencia/thumb/lapostetos-19.jpg"><img class="reveal" src="images/site/referencia/thumb/lapostetos-19.jpg"></div>
+      <div class="f4-cell"><img class="base" src="images/site/referencia/thumb/erkely-02.jpg"><img class="reveal" src="images/site/referencia/thumb/erkely-02.jpg"></div>
+      <div class="f4-cell"><img class="base" src="images/site/referencia/thumb/ipari-01.jpg"><img class="reveal" src="images/site/referencia/thumb/ipari-01.jpg"></div>
+    </div>
+  </article>
+
+  <article id="f5">
+    <span class="entry-name">05 · Kép-kitöltésű óriás tipográfia</span>
+    <p class="entry-rationale">A kategórianevek maguk óriási betűkként jelennek meg, a betűk belseje a saját munkafotóval van kitöltve — a tipográfia és a kép egy elemmé olvad össze. Kattints egy szóra a görgetéshez.</p>
+    <div class="wrap f5">
+      <div class="f5-word" style="background-image:url('images/site/referencia/thumb/lapostetos-01.jpg');" onclick="document.getElementById('f1demo').scrollIntoView({behavior:'smooth'})">Lapostető</div>
+      <div class="f5-sub">24 munka</div>
+      <div class="f5-word" style="background-image:url('images/site/referencia/thumb/badogozas-01.jpg');">Bádogozás</div>
+      <div class="f5-sub">10 munka</div>
+      <div class="f5-word" style="background-image:url('images/site/referencia/thumb/erkely-01.jpg');">Erkély</div>
+      <div class="f5-sub">3 munka</div>
+      <div class="f5-word" style="background-image:url('images/site/referencia/thumb/ipari-01.jpg');">Ipari</div>
+      <div class="f5-sub">1 munka</div>
+    </div>
+  </article>
+
+</div>
+
+<footer class="note">
+  Ezek erősebb, "márka-élmény" jellegű megoldások — szebbek és emlékezetesebbek, de a 01, 03 és 05 kevésbé alkalmas arra, hogy gyorsan sok képet nézzen át valaki; a 02 és 04 jobban skálázódik nagyobb mennyiségre is.
+</footer>
+
+<script>
+  // 01 — kurzor-követő előnézet
+  (function(){
+    var demo = document.getElementById('f1demo');
+    var preview = document.getElementById('f1preview');
+    var previewImg = document.getElementById('f1previewImg');
+    var rows = demo.querySelectorAll('.f1-row');
+    var current = null, imgs = [], imgIdx = 0, cycleTimer = null;
+
+    rows.forEach(function(row){
+      row.addEventListener('mouseenter', function(){
+        current = row;
+        imgs = row.dataset.imgs.split(',');
+        imgIdx = 0;
+        previewImg.src = 'images/site/referencia/thumb/' + imgs[0];
+        preview.classList.add('show');
+        clearInterval(cycleTimer);
+        if (imgs.length > 1){
+          cycleTimer = setInterval(function(){
+            imgIdx = (imgIdx + 1) % imgs.length;
+            previewImg.src = 'images/site/referencia/thumb/' + imgs[imgIdx];
+          }, 900);
+        }
+      });
+      row.addEventListener('mouseleave', function(){
+        preview.classList.remove('show');
+        clearInterval(cycleTimer);
+      });
+    });
+    demo.addEventListener('mousemove', function(e){
+      var r = demo.getBoundingClientRect();
+      preview.style.left = (e.clientX - r.left) + 'px';
+      preview.style.top = (e.clientY - r.top) + 'px';
+    });
+  })();
+
+  // 02 — húzható fal
+  (function(){
+    var demo = document.getElementById('f2demo');
+    var track = document.getElementById('f2track');
+    var isDown = false, startX, scrollStart;
+    function pos(e){ return (e.touches ? e.touches[0].clientX : e.clientX); }
+    demo.addEventListener('pointerdown', function(e){
+      isDown = true; demo.classList.add('dragging');
+      startX = pos(e); scrollStart = demo.scrollLeft || 0;
+      track.style.transform = '';
+      demo.setPointerCapture(e.pointerId);
+    });
+    demo.addEventListener('pointermove', function(e){
+      if (!isDown) return;
+      var dx = pos(e) - startX;
+      demo.scrollLeft = scrollStart - dx;
+    });
+    ['pointerup','pointerleave','pointercancel'].forEach(function(ev){
+      demo.addEventListener(ev, function(){ isDown = false; demo.classList.remove('dragging'); });
+    });
+    demo.style.overflowX = 'auto';
+    demo.style.scrollbarWidth = 'none';
+  })();
+
+  // 03 — görgetés-vezérelt zoom
+  (function(){
+    var tall = document.getElementById('f3tall');
+    var img = document.getElementById('f3img');
+    var cap = document.getElementById('f3cap');
+    function update(){
+      var rect = tall.getBoundingClientRect();
+      var total = rect.height - window.innerHeight;
+      var progress = Math.min(1, Math.max(0, -rect.top / total));
+      var minW = 220, maxW = Math.min(1000, window.innerWidth - 80);
+      var minH = 160, maxH = 480;
+      img.style.width = (minW + (maxW - minW) * progress) + 'px';
+      img.style.height = (minH + (maxH - minH) * progress) + 'px';
+      img.style.borderRadius = (10 - progress * 8) + 'px';
+      cap.style.opacity = progress > 0.7 ? 1 : 0;
+    }
+    window.addEventListener('scroll', update, { passive:true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  // 04 — reflektor duoton-maszk
+  (function(){
+    document.querySelectorAll('.f4-cell').forEach(function(cell){
+      var reveal = cell.querySelector('.reveal');
+      cell.addEventListener('mousemove', function(e){
+        var r = cell.getBoundingClientRect();
+        var x = e.clientX - r.left, y = e.clientY - r.top;
+        reveal.style.clipPath = 'circle(70px at ' + x + 'px ' + y + 'px)';
+      });
+      cell.addEventListener('mouseleave', function(){
+        reveal.style.clipPath = 'circle(0px at 50% 50%)';
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

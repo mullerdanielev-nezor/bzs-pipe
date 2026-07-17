@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Pipe Work Kft — Referenciák szekció, 5 háttér-ötlet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700;900&family=Inter:wght@400;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body{font-family:'Inter',sans-serif; background:#f4f1ea; color:#1a1712;}
+
+  header.intro{max-width:1180px; margin:0 auto; padding:56px 28px 32px; border-bottom:1px solid #ddd5c4;}
+  .eyebrow{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#c99a00; font-weight:700; margin:0 0 14px;}
+  h1{font-family:'Oswald',sans-serif; font-weight:600; font-size:clamp(26px,3.6vw,38px); margin:0 0 14px; text-transform:uppercase; letter-spacing:0.5px;}
+  .lede{font-size:15px; line-height:1.6; color:#6b6355; max-width:66ch; margin:0;}
+
+  nav.jump{position:sticky; top:0; z-index:50; background:#f4f1ea; border-bottom:1px solid #ddd5c4; overflow-x:auto; white-space:nowrap; padding:12px 28px;}
+  nav.jump a{font-size:12.5px; color:#6b6355; text-decoration:none; margin-right:20px;}
+  nav.jump a:hover{color:#1a1712;}
+
+  .shell{max-width:1180px; margin:0 auto; padding:44px 28px 100px; display:flex; flex-direction:column; gap:56px;}
+  .entry-name{font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:#6b6355; font-weight:700;}
+  .entry-rationale{font-size:13.5px; color:#6b6355; max-width:66ch; line-height:1.5; margin:6px 0 14px;}
+  .wrap{border-radius:6px; overflow:hidden; border:1px solid #ddd5c4; box-shadow:0 16px 36px -20px rgba(0,0,0,0.35);}
+  footer.note{max-width:1180px; margin:24px auto 0; padding:28px 28px 0; border-top:1px solid #ddd5c4; font-size:13px; color:#6b6355; line-height:1.6;}
+
+  /* közös szekció-váz, csak a háttér változik */
+  .refs { position:relative; padding:64px 40px 76px; overflow:hidden; }
+  .refs-head { max-width:1180px; margin:0 auto 28px; position:relative; z-index:2; }
+  .refs-eyebrow { display:flex; align-items:center; gap:10px; font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; font-size:12px; color:#ffd400; margin-bottom:14px; }
+  .refs-eyebrow::before { content:""; width:26px; height:2px; background:#ffd400; display:inline-block; }
+  .refs-title { font-family:'Oswald',sans-serif; font-weight:600; font-size:28px; text-transform:uppercase; color:#fff; letter-spacing:0.5px; }
+  .refs-row { position:relative; z-index:2; display:flex; gap:14px; max-width:1180px; margin:0 auto; overflow-x:auto; padding-bottom:6px; }
+  .refs-card { flex:0 0 190px; height:240px; border-radius:10px; overflow:hidden; position:relative; box-shadow:0 16px 32px -14px rgba(0,0,0,0.5); }
+  .refs-card img { width:100%; height:100%; object-fit:cover; display:block; }
+  .refs-card .cap { position:absolute; bottom:0; left:0; right:0; padding:10px 12px; background:linear-gradient(0deg, rgba(0,0,0,0.8), transparent); font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:0.5px; text-transform:uppercase; color:#fff; }
+
+  /* =========================================================
+     01 — ZAJTEXTÚRA + ÁTLÓS VONALAK (hero-családból)
+  ========================================================= */
+  .r1 { background:
+      linear-gradient(120deg, rgba(10,13,17,0.05) 0%, rgba(10,13,17,0.45) 100%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 46px),
+      linear-gradient(150deg,#2b3038,#1c1f25 55%,#14171c); }
+  .r1::before { content:""; position:absolute; inset:0; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); opacity:0.05; mix-blend-mode:overlay; }
+
+  /* =========================================================
+     02 — KÉKMÁSOLAT RÁCS (blueprint)
+  ========================================================= */
+  .r2 { background:#151d28; }
+  .r2::before { content:""; position:absolute; inset:0;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(120,170,210,0.14) 0 1px, transparent 1px 40px),
+        repeating-linear-gradient(90deg, rgba(120,170,210,0.14) 0 1px, transparent 1px 40px),
+        repeating-linear-gradient(0deg, rgba(120,170,210,0.06) 0 1px, transparent 1px 8px),
+        repeating-linear-gradient(90deg, rgba(120,170,210,0.06) 0 1px, transparent 1px 8px);
+  }
+  .r2::after { content:""; position:absolute; inset:0; background:radial-gradient(circle at 50% 30%, rgba(21,29,40,0) 0%, #151d28 85%); }
+
+  /* =========================================================
+     03 — LASSAN MOZGÓ FÉNYFOLTOK (animált mesh)
+  ========================================================= */
+  .r3 { background:#0f1115; }
+  .r3-blob { position:absolute; border-radius:50%; filter:blur(70px); opacity:0.32; animation:r3drift 9s ease-in-out infinite; }
+  .r3-blob.b1 { width:300px; height:300px; background:#ffd400; top:-80px; left:5%; }
+  .r3-blob.b2 { width:260px; height:260px; background:#3b6fd1; bottom:-90px; right:10%; animation-delay:2s; }
+  .r3-blob.b3 { width:200px; height:200px; background:#c94f4f; top:40px; left:50%; animation-delay:4s; }
+  @keyframes r3drift { 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(30px,-20px); } }
+
+  /* =========================================================
+     04 — ELMOSOTT HÁTTÉRFOTÓ + SÖTÉT FÁTYOL
+  ========================================================= */
+  .r4 { background-image:url('images/site/referencia/thumb/lapostetos-01.jpg'); background-size:cover; background-position:center; }
+  .r4::before { content:""; position:absolute; inset:0; backdrop-filter:blur(14px); background:rgba(10,10,8,0.72); }
+
+  /* =========================================================
+     05 — ÓRIÁS KÖRVONALAS HÁTTÉRSZÖVEG
+  ========================================================= */
+  .r5 { background:#14171c; }
+  .r5-bgtext { position:absolute; top:50%; left:50%; transform:translate(-50%,-46%); font-family:'Oswald',sans-serif; font-weight:900; font-size:min(16vw,190px); color:transparent; -webkit-text-stroke:1px rgba(255,255,255,0.08); white-space:nowrap; z-index:1; user-select:none; }
+
+  @media (max-width:760px){
+    .refs { padding:48px 20px 56px; }
+    .refs-card { flex:0 0 150px; height:190px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="eyebrow">Pipe Work Kft — Főoldal</p>
+  <h1>5 háttér-ötlet a Referenciák szekcióhoz</h1>
+  <p class="lede">Ugyanaz a kártyasor, öt különböző háttér-kezeléssel — hogy a jelenlegi sima sötét (#14171c) felület helyett legyen benne mélység, textúra vagy mozgás.</p>
+</header>
+
+<nav class="jump">
+  <a href="#r1">01 Zaj + átlós vonalak</a>
+  <a href="#r2">02 Kékmásolat rács</a>
+  <a href="#r3">03 Mozgó fényfoltok</a>
+  <a href="#r4">04 Elmosott háttérfotó</a>
+  <a href="#r5">05 Óriás háttérszöveg</a>
+</nav>
+
+<div class="shell">
+
+  <article id="r1">
+    <span class="entry-name">01 · Zaj + átlós vonalak</span>
+    <p class="entry-rationale">Ugyanaz a textúra-nyelv, mint a hero háttere — finom zaj és halvány átlós csíkozás. A legkonzervatívabb, leginkább "egy család" érzetet adó választás.</p>
+    <div class="wrap">
+      <section class="refs r1">
+        <div class="refs-head"><div class="refs-eyebrow">Referenciák</div><h2 class="refs-title">Munkáink képekben</h2></div>
+        <div class="refs-row">
+          <div class="refs-card"><img src="images/site/referencia/thumb/lapostetos-01.jpg"><div class="cap">Lapostető</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/badogozas-02.jpg"><div class="cap">Bádogozás</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/erkely-01.jpg"><div class="cap">Erkély</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/lapostetos-13.jpg"><div class="cap">Lapostető</div></div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article id="r2">
+    <span class="entry-name">02 · Kékmásolat rács (blueprint)</span>
+    <p class="entry-rationale">Technikai rajz-rács, mint egy tervlap — erősen a szakmai, "pontosan megtervezett munka" érzetet erősíti, és jól passzol egy építőipari archívumhoz.</p>
+    <div class="wrap">
+      <section class="refs r2">
+        <div class="refs-head"><div class="refs-eyebrow">Referenciák</div><h2 class="refs-title">Munkáink képekben</h2></div>
+        <div class="refs-row">
+          <div class="refs-card"><img src="images/site/referencia/thumb/lapostetos-01.jpg"><div class="cap">Lapostető</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/badogozas-02.jpg"><div class="cap">Bádogozás</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/erkely-01.jpg"><div class="cap">Erkély</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/lapostetos-13.jpg"><div class="cap">Lapostető</div></div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article id="r3">
+    <span class="entry-name">03 · Lassan mozgó fényfoltok</span>
+    <p class="entry-rationale">Elmosott, halvány színfoltok lassan sodródnak a sötét alapon — élő, "prémium tech" hangulat, de visszafogott, nem vonja el a figyelmet a képekről.</p>
+    <div class="wrap">
+      <section class="refs r3">
+        <div class="r3-blob b1"></div><div class="r3-blob b2"></div><div class="r3-blob b3"></div>
+        <div class="refs-head"><div class="refs-eyebrow">Referenciák</div><h2 class="refs-title">Munkáink képekben</h2></div>
+        <div class="refs-row">
+          <div class="refs-card"><img src="images/site/referencia/thumb/lapostetos-01.jpg"><div class="cap">Lapostető</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/badogozas-02.jpg"><div class="cap">Bádogozás</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/erkely-01.jpg"><div class="cap">Erkély</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/lapostetos-13.jpg"><div class="cap">Lapostető</div></div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article id="r4">
+    <span class="entry-name">04 · Elmosott háttérfotó + sötét fátyol</span>
+    <p class="entry-rationale">Egy valódi munkafotó erősen elmosva és elsötétítve tölti ki a hátteret — konkrétabb, "ott voltunk" érzetet ad, mint egy elvont minta.</p>
+    <div class="wrap">
+      <section class="refs r4">
+        <div class="refs-head"><div class="refs-eyebrow">Referenciák</div><h2 class="refs-title">Munkáink képekben</h2></div>
+        <div class="refs-row">
+          <div class="refs-card"><img src="images/site/referencia/thumb/lapostetos-01.jpg"><div class="cap">Lapostető</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/badogozas-02.jpg"><div class="cap">Bádogozás</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/erkely-01.jpg"><div class="cap">Erkély</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/lapostetos-13.jpg"><div class="cap">Lapostető</div></div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article id="r5">
+    <span class="entry-name">05 · Óriás körvonalas háttérszöveg</span>
+    <p class="entry-rationale">Egy hatalmas, körvonalas "REFERENCIÁK" felirat a kártyák mögött — plakátszerű, magabiztos, és önmagában is kitölti az üres teret szöveg nélküli dekoráció helyett.</p>
+    <div class="wrap">
+      <section class="refs r5">
+        <span class="r5-bgtext">MUNKÁINK</span>
+        <div class="refs-head"><div class="refs-eyebrow">Referenciák</div><h2 class="refs-title">Munkáink képekben</h2></div>
+        <div class="refs-row">
+          <div class="refs-card"><img src="images/site/referencia/thumb/lapostetos-01.jpg"><div class="cap">Lapostető</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/badogozas-02.jpg"><div class="cap">Bádogozás</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/erkely-01.jpg"><div class="cap">Erkély</div></div>
+          <div class="refs-card"><img src="images/site/referencia/thumb/lapostetos-13.jpg"><div class="cap">Lapostető</div></div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+</div>
+
+<footer class="note">
+  Mind az öt a jelenlegi sötét (#14171c körüli) tónuscsaládból indul, csak textúrát/mozgást/mélységet ad hozzá — melyik illik legjobban a coverflow körhintához?
+</footer>
+
+</body>
+</html>
