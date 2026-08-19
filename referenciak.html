@@ -22,26 +22,28 @@
     box-shadow:0 12px 30px -14px rgba(0,0,0,0.5);
     transition:background 0.3s ease, border-color 0.3s ease;
   }
-  .nav-left { display:flex; gap:24px; }
+  .nav-left { display:flex; gap:26px; }
   .nav-left a {
     text-decoration:none; color:#fff; font-family:'Oswald', sans-serif;
-    font-weight:600; font-size:13px; letter-spacing:1.2px; text-transform:uppercase;
+    font-weight:600; font-size:15px; letter-spacing:1px; text-transform:uppercase;
   }
   .nav-left a.active { color:#ffd400; }
-  .logo { display:flex; align-items:center; gap:9px; }
+  .logo { display:flex; align-items:center; gap:9px; text-decoration:none; }
   .logo-box {
-    width:36px; height:36px; border:2px solid #ffd400; color:#ffd400; display:flex;
-    align-items:center; justify-content:center; font-family:'Oswald', sans-serif;
-    font-weight:700; font-size:16px; border-radius:50%;
+    width:48px; height:48px; border:2px solid #ffd400; display:flex;
+    align-items:center; justify-content:center; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #ffffff 0%, #f3f0ea 100%);
+    flex-shrink:0;
   }
+  .logo-box img { height:26px; width:auto; object-fit:contain; display:block; }
   .logo-text { font-family:'Oswald', sans-serif; line-height:1.05; }
-  .logo-text .top { font-size:14px; font-weight:600; letter-spacing:1px; color:#fff; }
-  .logo-text .bottom { font-size:9px; letter-spacing:1.5px; color:#c9c3b3; }
+  .logo-text .top { font-size:16px; font-weight:600; letter-spacing:1px; color:#fff; }
+  .logo-text .bottom { font-size:10px; letter-spacing:1.5px; color:#c9c3b3; }
   .nav-right { display:flex; align-items:center; gap:16px; }
   .fb-icon { width:16px; height:16px; fill:#fff; }
   .phone-btn {
     background:#ffd400; color:#1a1a1a; padding:9px 18px; font-family:'Oswald', sans-serif;
-    font-weight:700; letter-spacing:1px; font-size:12px; text-decoration:none; border-radius:999px;
+    font-weight:700; letter-spacing:1px; font-size:14px; text-decoration:none; border-radius:999px;
   }
 
   .nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; width:34px; height:34px; border:none; background:transparent; cursor:pointer; padding:0; }
@@ -64,6 +66,9 @@
     .navbar { top:14px; width:calc(100% - 32px); padding:10px 16px; }
     .nav-left { display:none; }
     .nav-burger { display:flex; }
+    .logo-text { display:none; }
+    .nav-right { gap:12px; }
+    .phone-btn { white-space:nowrap; }
   }
 
   /* PAGE HEADER */
@@ -218,18 +223,20 @@
 <body>
 
   <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo" aria-label="Pipe Work Kft — vissza a főoldalra">
+      <div class="logo-box">
+        <picture><source srcset="images/site/logo-icon.webp" type="image/webp"><img src="images/site/logo-icon.png" alt="Pipe Work Kft logó"></picture>
+      </div>
+      <div class="logo-text">
+        <div class="top">PIPE WORK</div>
+        <div class="bottom">KFT</div>
+      </div>
+    </a>
     <div class="nav-left">
       <a href="index.html#rolunk">Rólunk</a>
       <a href="index.html#szolgaltatasok">Szolgáltatások</a>
       <a href="referenciak.html" class="active">Referenciák</a>
       <a href="index.html#kapcsolat">Kapcsolat</a>
-    </div>
-    <div class="logo">
-      <div class="logo-box">PW</div>
-      <div class="logo-text">
-        <div class="top">PIPE WORK</div>
-        <div class="bottom">KFT</div>
-      </div>
     </div>
     <div class="nav-right">
       <svg class="fb-icon" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12"/></svg>
@@ -257,292 +264,388 @@
   </header>
 
   <nav class="ref-jump">
-    <a href="#lapostetos">Lapostető szigetelés <span>24</span></a>
-    <a href="#badogozas">Bádogozás és szegélyezés <span>10</span></a>
-    <a href="#erkely">Erkély és terasz szigetelés <span>3</span></a>
-    <a href="#ipari">Ipari fémlemez tetőfedés <span>1</span></a>
-    <a href="#alapozas">Alapozás és pinceszigetelés <span>1</span></a>
+    <a href="#lapostetoszigeteles-miskolc">Lapostető szigetelés <span>40</span></a>
+    <a href="#badogozas-szegelyezes">Bádogozás és szegélyezés <span>10</span></a>
+    <a href="#erkely-terasz-szigeteles">Erkély és terasz szigetelés <span>3</span></a>
+    <a href="#ipari-femlemez-tetofedes">Ipari fémlemez tetőfedés <span>1</span></a>
+    <a href="#alapozas-pinceszigeteles">Alapozás és pinceszigetelés <span>1</span></a>
   </nav>
 
-  <section class="ref-cat" id="lapostetos">
+  <section class="ref-cat" id="lapostetoszigeteles-miskolc">
     <div class="ref-cat-head">
       <h2>Lapostető szigetelés</h2>
       <p>Bitumenes és PVC membrános lapostető-szigetelés, társasházaktól az ipari épületekig.</p>
-      <span class="ref-count">24 kép</span>
+      <span class="ref-count">40 kép</span>
     </div>
     <div class="ref-grid">
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="0" data-full="images/site/referencia/full/lapostetos-01.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="0" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-01.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-01.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-01.jpg" alt="Lapostető szigetelés — 01. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-01.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-01.jpg" alt="Lapostető szigetelés — 01. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="1" data-full="images/site/referencia/full/lapostetos-02.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="1" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-02.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-02.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-02.jpg" alt="Lapostető szigetelés — 02. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-02.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-02.jpg" alt="Lapostető szigetelés — 02. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="2" data-full="images/site/referencia/full/lapostetos-03.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="2" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-03.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-03.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-03.jpg" alt="Lapostető szigetelés — 03. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-03.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-03.jpg" alt="Lapostető szigetelés — 03. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="3" data-full="images/site/referencia/full/lapostetos-04.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="3" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-04.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-04.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-04.jpg" alt="Lapostető szigetelés — 04. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-04.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-04.jpg" alt="Lapostető szigetelés — 04. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="4" data-full="images/site/referencia/full/lapostetos-05.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="4" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-05.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-05.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-05.jpg" alt="Lapostető szigetelés — 05. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-05.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-05.jpg" alt="Lapostető szigetelés — 05. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="5" data-full="images/site/referencia/full/lapostetos-06.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="5" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-06.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-06.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-06.jpg" alt="Lapostető szigetelés — 06. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-06.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-06.jpg" alt="Lapostető szigetelés — 06. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="6" data-full="images/site/referencia/full/lapostetos-07.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="6" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-07.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-07.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-07.jpg" alt="Lapostető szigetelés — 07. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-07.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-07.jpg" alt="Lapostető szigetelés — 07. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="7" data-full="images/site/referencia/full/lapostetos-08.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="7" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-08.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-08.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-08.jpg" alt="Lapostető szigetelés — 08. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-08.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-08.jpg" alt="Lapostető szigetelés — 08. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="8" data-full="images/site/referencia/full/lapostetos-09.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="8" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-09.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-09.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-09.jpg" alt="Lapostető szigetelés — 09. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-09.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-09.jpg" alt="Lapostető szigetelés — 09. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="9" data-full="images/site/referencia/full/lapostetos-10.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="9" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-10.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-10.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-10.jpg" alt="Lapostető szigetelés — 10. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-10.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-10.jpg" alt="Lapostető szigetelés — 10. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="10" data-full="images/site/referencia/full/lapostetos-11.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="10" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-11.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-11.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-11.jpg" alt="Lapostető szigetelés — 11. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-11.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-11.jpg" alt="Lapostető szigetelés — 11. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="11" data-full="images/site/referencia/full/lapostetos-12.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="11" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-12.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-12.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-12.jpg" alt="Lapostető szigetelés — 12. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-12.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-12.jpg" alt="Lapostető szigetelés — 12. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="12" data-full="images/site/referencia/full/lapostetos-13.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="12" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-13.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-13.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-13.jpg" alt="Lapostető szigetelés — 13. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-13.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-13.jpg" alt="Lapostető szigetelés — 13. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="13" data-full="images/site/referencia/full/lapostetos-14.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="13" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-14.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-14.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-14.jpg" alt="Lapostető szigetelés — 14. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-14.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-14.jpg" alt="Lapostető szigetelés — 14. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="14" data-full="images/site/referencia/full/lapostetos-15.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="14" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-15.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-15.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-15.jpg" alt="Lapostető szigetelés — 15. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-15.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-15.jpg" alt="Lapostető szigetelés — 15. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="15" data-full="images/site/referencia/full/lapostetos-16.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="15" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-16.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-16.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-16.jpg" alt="Lapostető szigetelés — 16. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-16.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-16.jpg" alt="Lapostető szigetelés — 16. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="16" data-full="images/site/referencia/full/lapostetos-17.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="16" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-17.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-17.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-17.jpg" alt="Lapostető szigetelés — 17. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-17.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-17.jpg" alt="Lapostető szigetelés — 17. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="17" data-full="images/site/referencia/full/lapostetos-18.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="17" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-18.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-18.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-18.jpg" alt="Lapostető szigetelés — 18. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-18.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-18.jpg" alt="Lapostető szigetelés — 18. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="18" data-full="images/site/referencia/full/lapostetos-19.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="18" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-19.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-19.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-19.jpg" alt="Lapostető szigetelés — 19. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-19.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-19.jpg" alt="Lapostető szigetelés — 19. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="19" data-full="images/site/referencia/full/lapostetos-20.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="19" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-20.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-20.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-20.jpg" alt="Lapostető szigetelés — 20. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-20.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-20.jpg" alt="Lapostető szigetelés — 20. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="20" data-full="images/site/referencia/full/lapostetos-21.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="20" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-21.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-21.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-21.jpg" alt="Lapostető szigetelés — 21. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-21.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-21.jpg" alt="Lapostető szigetelés — 21. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="21" data-full="images/site/referencia/full/lapostetos-22.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="21" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-22.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-22.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-22.jpg" alt="Lapostető szigetelés — 22. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-22.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-22.jpg" alt="Lapostető szigetelés — 22. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="22" data-full="images/site/referencia/full/lapostetos-23.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="22" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-23.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-23.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-23.jpg" alt="Lapostető szigetelés — 23. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-23.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-23.jpg" alt="Lapostető szigetelés — 23. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="lapostetos" data-index="23" data-full="images/site/referencia/full/lapostetos-24.webp" data-title="Lapostető szigetelés">
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="23" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-24.webp" data-title="Lapostető szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/lapostetos-24.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/lapostetos-24.jpg" alt="Lapostető szigetelés — 24. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-24.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-24.jpg" alt="Lapostető szigetelés — 24. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="24" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-25.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-25.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-25.jpg" alt="Lapostető szigetelés — 25. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="25" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-26.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-26.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-26.jpg" alt="Lapostető szigetelés — 26. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="26" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-27.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-27.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-27.jpg" alt="Lapostető szigetelés — 27. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="27" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-28.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-28.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-28.jpg" alt="Lapostető szigetelés — 28. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="28" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-29.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-29.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-29.jpg" alt="Lapostető szigetelés — 29. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="29" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-30.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-30.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-30.jpg" alt="Lapostető szigetelés — 30. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="30" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-31.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-31.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-31.jpg" alt="Lapostető szigetelés — 31. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="31" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-32.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-32.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-32.jpg" alt="Lapostető szigetelés — 32. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="32" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-33.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-33.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-33.jpg" alt="Lapostető szigetelés — 33. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="33" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-34.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-34.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-34.jpg" alt="Lapostető szigetelés — 34. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="34" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-35.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-35.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-35.jpg" alt="Lapostető szigetelés — 35. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="35" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-36.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-36.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-36.jpg" alt="Lapostető szigetelés — 36. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="36" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-37.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-37.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-37.jpg" alt="Lapostető szigetelés — 37. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="37" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-38.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-38.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-38.jpg" alt="Lapostető szigetelés — 38. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="38" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-39.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-39.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-39.jpg" alt="Lapostető szigetelés — 39. munka" loading="lazy">
+          </picture>
+        </a>
+        <a href="#" class="ref-item" data-cat="lapostetoszigeteles-miskolc" data-index="39" data-full="images/site/referencia/full/lapostetoszigeteles-miskolc-40.webp" data-title="Lapostető szigetelés">
+          <picture>
+            <source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-40.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-40.jpg" alt="Lapostető szigetelés — 40. munka" loading="lazy">
           </picture>
         </a>
     </div>
   </section>
 
-  <section class="ref-cat" id="badogozas">
+  <section class="ref-cat" id="badogozas-szegelyezes">
     <div class="ref-cat-head">
       <h2>Bádogozás és szegélyezés</h2>
       <p>Szegélylemezek, kéményszegélyek, ereszcsatornák — a részletek, amiken a tartósság múlik.</p>
       <span class="ref-count">10 kép</span>
     </div>
     <div class="ref-grid">
-        <a href="#" class="ref-item" data-cat="badogozas" data-index="0" data-full="images/site/referencia/full/badogozas-01.webp" data-title="Bádogozás és szegélyezés">
+        <a href="#" class="ref-item" data-cat="badogozas-szegelyezes" data-index="0" data-full="images/site/referencia/full/badogozas-szegelyezes-01.webp" data-title="Bádogozás és szegélyezés">
           <picture>
-            <source srcset="images/site/referencia/thumb/badogozas-01.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/badogozas-01.jpg" alt="Bádogozás és szegélyezés — 01. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/badogozas-szegelyezes-01.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/badogozas-szegelyezes-01.jpg" alt="Bádogozás és szegélyezés — 01. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="badogozas" data-index="1" data-full="images/site/referencia/full/badogozas-02.webp" data-title="Bádogozás és szegélyezés">
+        <a href="#" class="ref-item" data-cat="badogozas-szegelyezes" data-index="1" data-full="images/site/referencia/full/badogozas-szegelyezes-02.webp" data-title="Bádogozás és szegélyezés">
           <picture>
-            <source srcset="images/site/referencia/thumb/badogozas-02.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/badogozas-02.jpg" alt="Bádogozás és szegélyezés — 02. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/badogozas-szegelyezes-02.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/badogozas-szegelyezes-02.jpg" alt="Bádogozás és szegélyezés — 02. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="badogozas" data-index="2" data-full="images/site/referencia/full/badogozas-03.webp" data-title="Bádogozás és szegélyezés">
+        <a href="#" class="ref-item" data-cat="badogozas-szegelyezes" data-index="2" data-full="images/site/referencia/full/badogozas-szegelyezes-03.webp" data-title="Bádogozás és szegélyezés">
           <picture>
-            <source srcset="images/site/referencia/thumb/badogozas-03.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/badogozas-03.jpg" alt="Bádogozás és szegélyezés — 03. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/badogozas-szegelyezes-03.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/badogozas-szegelyezes-03.jpg" alt="Bádogozás és szegélyezés — 03. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="badogozas" data-index="3" data-full="images/site/referencia/full/badogozas-04.webp" data-title="Bádogozás és szegélyezés">
+        <a href="#" class="ref-item" data-cat="badogozas-szegelyezes" data-index="3" data-full="images/site/referencia/full/badogozas-szegelyezes-04.webp" data-title="Bádogozás és szegélyezés">
           <picture>
-            <source srcset="images/site/referencia/thumb/badogozas-04.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/badogozas-04.jpg" alt="Bádogozás és szegélyezés — 04. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/badogozas-szegelyezes-04.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/badogozas-szegelyezes-04.jpg" alt="Bádogozás és szegélyezés — 04. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="badogozas" data-index="4" data-full="images/site/referencia/full/badogozas-05.webp" data-title="Bádogozás és szegélyezés">
+        <a href="#" class="ref-item" data-cat="badogozas-szegelyezes" data-index="4" data-full="images/site/referencia/full/badogozas-szegelyezes-05.webp" data-title="Bádogozás és szegélyezés">
           <picture>
-            <source srcset="images/site/referencia/thumb/badogozas-05.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/badogozas-05.jpg" alt="Bádogozás és szegélyezés — 05. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/badogozas-szegelyezes-05.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/badogozas-szegelyezes-05.jpg" alt="Bádogozás és szegélyezés — 05. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="badogozas" data-index="5" data-full="images/site/referencia/full/badogozas-06.webp" data-title="Bádogozás és szegélyezés">
+        <a href="#" class="ref-item" data-cat="badogozas-szegelyezes" data-index="5" data-full="images/site/referencia/full/badogozas-szegelyezes-06.webp" data-title="Bádogozás és szegélyezés">
           <picture>
-            <source srcset="images/site/referencia/thumb/badogozas-06.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/badogozas-06.jpg" alt="Bádogozás és szegélyezés — 06. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/badogozas-szegelyezes-06.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/badogozas-szegelyezes-06.jpg" alt="Bádogozás és szegélyezés — 06. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="badogozas" data-index="6" data-full="images/site/referencia/full/badogozas-07.webp" data-title="Bádogozás és szegélyezés">
+        <a href="#" class="ref-item" data-cat="badogozas-szegelyezes" data-index="6" data-full="images/site/referencia/full/badogozas-szegelyezes-07.webp" data-title="Bádogozás és szegélyezés">
           <picture>
-            <source srcset="images/site/referencia/thumb/badogozas-07.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/badogozas-07.jpg" alt="Bádogozás és szegélyezés — 07. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/badogozas-szegelyezes-07.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/badogozas-szegelyezes-07.jpg" alt="Bádogozás és szegélyezés — 07. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="badogozas" data-index="7" data-full="images/site/referencia/full/badogozas-08.webp" data-title="Bádogozás és szegélyezés">
+        <a href="#" class="ref-item" data-cat="badogozas-szegelyezes" data-index="7" data-full="images/site/referencia/full/badogozas-szegelyezes-08.webp" data-title="Bádogozás és szegélyezés">
           <picture>
-            <source srcset="images/site/referencia/thumb/badogozas-08.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/badogozas-08.jpg" alt="Bádogozás és szegélyezés — 08. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/badogozas-szegelyezes-08.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/badogozas-szegelyezes-08.jpg" alt="Bádogozás és szegélyezés — 08. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="badogozas" data-index="8" data-full="images/site/referencia/full/badogozas-09.webp" data-title="Bádogozás és szegélyezés">
+        <a href="#" class="ref-item" data-cat="badogozas-szegelyezes" data-index="8" data-full="images/site/referencia/full/badogozas-szegelyezes-09.webp" data-title="Bádogozás és szegélyezés">
           <picture>
-            <source srcset="images/site/referencia/thumb/badogozas-09.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/badogozas-09.jpg" alt="Bádogozás és szegélyezés — 09. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/badogozas-szegelyezes-09.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/badogozas-szegelyezes-09.jpg" alt="Bádogozás és szegélyezés — 09. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="badogozas" data-index="9" data-full="images/site/referencia/full/badogozas-10.webp" data-title="Bádogozás és szegélyezés">
+        <a href="#" class="ref-item" data-cat="badogozas-szegelyezes" data-index="9" data-full="images/site/referencia/full/badogozas-szegelyezes-10.webp" data-title="Bádogozás és szegélyezés">
           <picture>
-            <source srcset="images/site/referencia/thumb/badogozas-10.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/badogozas-10.jpg" alt="Bádogozás és szegélyezés — 10. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/badogozas-szegelyezes-10.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/badogozas-szegelyezes-10.jpg" alt="Bádogozás és szegélyezés — 10. munka" loading="lazy">
           </picture>
         </a>
     </div>
   </section>
 
-  <section class="ref-cat" id="erkely">
+  <section class="ref-cat" id="erkely-terasz-szigeteles">
     <div class="ref-cat-head">
       <h2>Erkély és terasz szigetelés</h2>
       <p>Lakóépület erkélyek és teraszok vízszigetelése, csúszásmentes bevonattal.</p>
       <span class="ref-count">3 kép</span>
     </div>
     <div class="ref-grid">
-        <a href="#" class="ref-item" data-cat="erkely" data-index="0" data-full="images/site/referencia/full/erkely-01.webp" data-title="Erkély és terasz szigetelés">
+        <a href="#" class="ref-item" data-cat="erkely-terasz-szigeteles" data-index="0" data-full="images/site/referencia/full/erkely-terasz-szigeteles-01.webp" data-title="Erkély és terasz szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/erkely-01.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/erkely-01.jpg" alt="Erkély és terasz szigetelés — 01. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/erkely-terasz-szigeteles-01.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/erkely-terasz-szigeteles-01.jpg" alt="Erkély és terasz szigetelés — 01. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="erkely" data-index="1" data-full="images/site/referencia/full/erkely-02.webp" data-title="Erkély és terasz szigetelés">
+        <a href="#" class="ref-item" data-cat="erkely-terasz-szigeteles" data-index="1" data-full="images/site/referencia/full/erkely-terasz-szigeteles-02.webp" data-title="Erkély és terasz szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/erkely-02.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/erkely-02.jpg" alt="Erkély és terasz szigetelés — 02. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/erkely-terasz-szigeteles-02.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/erkely-terasz-szigeteles-02.jpg" alt="Erkély és terasz szigetelés — 02. munka" loading="lazy">
           </picture>
         </a>
-        <a href="#" class="ref-item" data-cat="erkely" data-index="2" data-full="images/site/referencia/full/erkely-03.webp" data-title="Erkély és terasz szigetelés">
+        <a href="#" class="ref-item" data-cat="erkely-terasz-szigeteles" data-index="2" data-full="images/site/referencia/full/erkely-terasz-szigeteles-03.webp" data-title="Erkély és terasz szigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/erkely-03.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/erkely-03.jpg" alt="Erkély és terasz szigetelés — 03. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/erkely-terasz-szigeteles-03.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/erkely-terasz-szigeteles-03.jpg" alt="Erkély és terasz szigetelés — 03. munka" loading="lazy">
           </picture>
         </a>
     </div>
   </section>
 
-  <section class="ref-cat" id="ipari">
+  <section class="ref-cat" id="ipari-femlemez-tetofedes">
     <div class="ref-cat-head">
       <h2>Ipari fémlemez tetőfedés</h2>
       <p>Trapézlemez tetőfedés és varratszigetelés ipari csarnokokon.</p>
       <span class="ref-count">1 kép</span>
     </div>
     <div class="ref-grid">
-        <a href="#" class="ref-item" data-cat="ipari" data-index="0" data-full="images/site/referencia/full/ipari-01.webp" data-title="Ipari fémlemez tetőfedés">
+        <a href="#" class="ref-item" data-cat="ipari-femlemez-tetofedes" data-index="0" data-full="images/site/referencia/full/ipari-femlemez-tetofedes-01.webp" data-title="Ipari fémlemez tetőfedés">
           <picture>
-            <source srcset="images/site/referencia/thumb/ipari-01.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/ipari-01.jpg" alt="Ipari fémlemez tetőfedés — 01. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/ipari-femlemez-tetofedes-01.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/ipari-femlemez-tetofedes-01.jpg" alt="Ipari fémlemez tetőfedés — 01. munka" loading="lazy">
           </picture>
         </a>
     </div>
   </section>
 
-  <section class="ref-cat" id="alapozas">
+  <section class="ref-cat" id="alapozas-pinceszigeteles">
     <div class="ref-cat-head">
       <h2>Alapozás és pinceszigetelés</h2>
       <p>Láthatatlan, de a legfontosabb munka: az épület alapjainak vízszigetelése.</p>
       <span class="ref-count">1 kép</span>
     </div>
     <div class="ref-grid">
-        <a href="#" class="ref-item" data-cat="alapozas" data-index="0" data-full="images/site/referencia/full/alapozas-01.webp" data-title="Alapozás és pinceszigetelés">
+        <a href="#" class="ref-item" data-cat="alapozas-pinceszigeteles" data-index="0" data-full="images/site/referencia/full/alapozas-pinceszigeteles-01.webp" data-title="Alapozás és pinceszigetelés">
           <picture>
-            <source srcset="images/site/referencia/thumb/alapozas-01.webp" type="image/webp">
-            <img src="images/site/referencia/thumb/alapozas-01.jpg" alt="Alapozás és pinceszigetelés — 01. munka" loading="lazy">
+            <source srcset="images/site/referencia/thumb/alapozas-pinceszigeteles-01.webp" type="image/webp">
+            <img src="images/site/referencia/thumb/alapozas-pinceszigeteles-01.jpg" alt="Alapozás és pinceszigetelés — 01. munka" loading="lazy">
           </picture>
         </a>
     </div>
@@ -574,11 +677,11 @@
       <div class="footer-col">
         <h4>Kategóriák</h4>
         <ul>
-          <li><a href="#lapostetos">Lapostető szigetelés</a></li>
-          <li><a href="#badogozas">Bádogozás és szegélyezés</a></li>
-          <li><a href="#erkely">Erkély és terasz szigetelés</a></li>
-          <li><a href="#ipari">Ipari fémlemez tetőfedés</a></li>
-          <li><a href="#alapozas">Alapozás és pinceszigetelés</a></li>
+          <li><a href="#lapostetoszigeteles-miskolc">Lapostető szigetelés</a></li>
+          <li><a href="#badogozas-szegelyezes">Bádogozás és szegélyezés</a></li>
+          <li><a href="#erkely-terasz-szigeteles">Erkély és terasz szigetelés</a></li>
+          <li><a href="#ipari-femlemez-tetofedes">Ipari fémlemez tetőfedés</a></li>
+          <li><a href="#alapozas-pinceszigeteles">Alapozás és pinceszigetelés</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -626,7 +729,7 @@
 
     // lightbox kategóriánkénti navigációval
     (function(){
-      var cats = [{"key":"lapostetos","title":"Lapostető szigetelés","count":24},{"key":"badogozas","title":"Bádogozás és szegélyezés","count":10},{"key":"erkely","title":"Erkély és terasz szigetelés","count":3},{"key":"ipari","title":"Ipari fémlemez tetőfedés","count":1},{"key":"alapozas","title":"Alapozás és pinceszigetelés","count":1}];
+      var cats = [{"key":"lapostetoszigeteles-miskolc","title":"Lapostető szigetelés","count":40},{"key":"badogozas-szegelyezes","title":"Bádogozás és szegélyezés","count":10},{"key":"erkely-terasz-szigeteles","title":"Erkély és terasz szigetelés","count":3},{"key":"ipari-femlemez-tetofedes","title":"Ipari fémlemez tetőfedés","count":1},{"key":"alapozas-pinceszigeteles","title":"Alapozás és pinceszigetelés","count":1}];
       var lightbox = document.getElementById('lightbox');
       var lbImg = document.getElementById('lbImg');
       var lbCaption = document.getElementById('lbCaption');

@@ -13,8 +13,8 @@ fs.mkdirSync(THUMB, { recursive: true });
 // kategória, cím, leírás + a hozzá tartozó eredeti fájlnevek (UUID rész elég az azonosításhoz)
 const categories = [
   {
-    slug: 'lapostето',
-    key: 'lapostetos',
+    slug: 'lapostetoszigeteles-miskolc',
+    key: 'lapostetoszigeteles-miskolc',
     title: 'Lapostető szigetelés',
     desc: 'Bitumenes és PVC membrános lapostető-szigetelés, társasházaktól az ipari épületekig.',
     files: [
@@ -42,11 +42,27 @@ const categories = [
       'AB1EA95B-DCE8-4CA3-A3F9-4A8230326DE5',
       'B73F9F82-70BF-4173-BEAE-0F5F99FFC39F',
       'EAE8EB03-5BC5-4482-B9DB-A9FC18A3C0EF',
+      '8073.jpeg',
+      '8074.jpeg',
+      '8075.jpeg',
+      '8076.jpeg',
+      '8077.jpeg',
+      '8078.jpeg',
+      '8079.jpeg',
+      '8080.jpeg',
+      '8081.jpeg',
+      '8082.jpeg',
+      '8083.jpeg',
+      '8084.jpeg',
+      '8085.jpeg',
+      '8086.jpeg',
+      '8088.jpeg',
+      '8089.jpeg',
     ],
   },
   {
-    slug: 'badogozas',
-    key: 'badogozas',
+    slug: 'badogozas-szegelyezes',
+    key: 'badogozas-szegelyezes',
     title: 'Bádogozás és szegélyezés',
     desc: 'Szegélylemezek, kéményszegélyek, ereszcsatornák — a részletek, amiken a tartósság múlik.',
     files: [
@@ -63,8 +79,8 @@ const categories = [
     ],
   },
   {
-    slug: 'erkely',
-    key: 'erkely',
+    slug: 'erkely-terasz-szigeteles',
+    key: 'erkely-terasz-szigeteles',
     title: 'Erkély és terasz szigetelés',
     desc: 'Lakóépület erkélyek és teraszok vízszigetelése, csúszásmentes bevonattal.',
     files: [
@@ -74,8 +90,8 @@ const categories = [
     ],
   },
   {
-    slug: 'ipari',
-    key: 'ipari',
+    slug: 'ipari-femlemez-tetofedes',
+    key: 'ipari-femlemez-tetofedes',
     title: 'Ipari fémlemez tetőfedés',
     desc: 'Trapézlemez tetőfedés és varratszigetelés ipari csarnokokon.',
     files: [
@@ -83,8 +99,8 @@ const categories = [
     ],
   },
   {
-    slug: 'alapozas',
-    key: 'alapozas',
+    slug: 'alapozas-pinceszigeteles',
+    key: 'alapozas-pinceszigeteles',
     title: 'Alapozás és pinceszigetelés',
     desc: 'Láthatatlan, de a legfontosabb munka: az épület alapjainak vízszigetelése.',
     files: [

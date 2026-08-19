@@ -151,26 +151,28 @@
     box-shadow: 0 12px 30px -14px rgba(0,0,0,0.5);
     transition:background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
-  .nav-left { display:flex; gap:24px; }
+  .nav-left { display:flex; gap:26px; }
   .nav-left a {
     text-decoration:none; color:#fff; font-family:'Oswald', sans-serif;
-    font-weight:600; font-size:13px; letter-spacing:1.2px; text-transform:uppercase;
+    font-weight:600; font-size:15px; letter-spacing:1px; text-transform:uppercase;
     transition:color 0.3s ease;
   }
-  .logo { display:flex; align-items:center; gap:9px; }
+  .logo { display:flex; align-items:center; gap:9px; text-decoration:none; }
   .logo-box {
-    width:36px; height:36px; border:2px solid #ffd400; color:#ffd400; display:flex;
-    align-items:center; justify-content:center; font-family:'Oswald', sans-serif;
-    font-weight:700; font-size:16px; border-radius:50%;
+    width:48px; height:48px; border:2px solid #ffd400; display:flex;
+    align-items:center; justify-content:center; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #ffffff 0%, #f3f0ea 100%);
+    flex-shrink:0;
   }
+  .logo-box img { height:26px; width:auto; object-fit:contain; display:block; }
   .logo-text { font-family:'Oswald', sans-serif; line-height:1.05; }
-  .logo-text .top { font-size:14px; font-weight:600; letter-spacing:1px; color:#fff; transition:color 0.3s ease; }
-  .logo-text .bottom { font-size:9px; letter-spacing:1.5px; color:#c9c3b3; }
+  .logo-text .top { font-size:16px; font-weight:600; letter-spacing:1px; color:#fff; transition:color 0.3s ease; }
+  .logo-text .bottom { font-size:10px; letter-spacing:1.5px; color:#c9c3b3; }
   .nav-right { display:flex; align-items:center; gap:16px; }
   .fb-icon { width:16px; height:16px; fill:#fff; transition:fill 0.3s ease; }
   .phone-btn {
     background:#ffd400; color:#1a1a1a; padding:9px 18px; font-family:'Oswald', sans-serif;
-    font-weight:700; letter-spacing:1px; font-size:12px; text-decoration:none; border-radius:999px;
+    font-weight:700; letter-spacing:1px; font-size:14px; text-decoration:none; border-radius:999px;
   }
 
   /* MOBIL HAMBURGER MENÜ */
@@ -502,6 +504,9 @@
     .navbar { top:14px; width:calc(100% - 32px); padding:10px 16px; }
     .nav-left { display:none; }
     .nav-burger { display:flex; }
+    .logo-text { display:none; }
+    .nav-right { gap:12px; }
+    .phone-btn { white-space:nowrap; }
     .hero {
       padding:clamp(96px, 30vw, 130px) clamp(16px, 5vw, 24px) clamp(64px, 20vw, 96px);
       gap:clamp(28px, 9vw, 44px);
@@ -1212,18 +1217,20 @@
   </div>
 
   <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo" aria-label="Pipe Work Kft — vissza a főoldalra">
+      <div class="logo-box">
+        <picture><source srcset="images/site/logo-icon.webp" type="image/webp"><img src="images/site/logo-icon.png" alt="Pipe Work Kft logó"></picture>
+      </div>
+      <div class="logo-text">
+        <div class="top">PIPE WORK</div>
+        <div class="bottom">KFT</div>
+      </div>
+    </a>
     <div class="nav-left">
       <a href="#rolunk">Rólunk</a>
       <a href="#szolgaltatasok">Szolgáltatások</a>
       <a href="referenciak.html">Referenciák</a>
       <a href="#kapcsolat">Kapcsolat</a>
-    </div>
-    <div class="logo">
-      <div class="logo-box">PW</div>
-      <div class="logo-text">
-        <div class="top">PIPE WORK</div>
-        <div class="bottom">KFT</div>
-      </div>
     </div>
     <div class="nav-right">
       <svg class="fb-icon" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12"/></svg>
@@ -1370,14 +1377,14 @@
     </div>
     <div class="refs-stage-wrap" id="refsWrap">
       <div class="refs-stage" id="refsStage">
-        <div class="refs-card" data-i="0" data-href="referenciak.html#lapostetos"><picture><source srcset="images/site/referencia/thumb/lapostetos-01.webp" type="image/webp"><img src="images/site/referencia/thumb/lapostetos-01.jpg" alt="" loading="lazy"></picture><div class="cap">Lapostető szigetelés<b>24 munka</b></div></div>
-        <div class="refs-card" data-i="1" data-href="referenciak.html#badogozas"><picture><source srcset="images/site/referencia/thumb/badogozas-02.webp" type="image/webp"><img src="images/site/referencia/thumb/badogozas-02.jpg" alt="" loading="lazy"></picture><div class="cap">Bádogozás &amp; szegélyezés<b>10 munka</b></div></div>
-        <div class="refs-card" data-i="2" data-href="referenciak.html#erkely"><picture><source srcset="images/site/referencia/thumb/erkely-01.webp" type="image/webp"><img src="images/site/referencia/thumb/erkely-01.jpg" alt="" loading="lazy"></picture><div class="cap">Erkély &amp; terasz<b>3 munka</b></div></div>
-        <div class="refs-card" data-i="3" data-href="referenciak.html#lapostetos"><picture><source srcset="images/site/referencia/thumb/lapostetos-13.webp" type="image/webp"><img src="images/site/referencia/thumb/lapostetos-13.jpg" alt="" loading="lazy"></picture><div class="cap">Lapostető szigetelés<b>24 munka</b></div></div>
-        <div class="refs-card" data-i="4" data-href="referenciak.html#ipari"><picture><source srcset="images/site/referencia/thumb/ipari-01.webp" type="image/webp"><img src="images/site/referencia/thumb/ipari-01.jpg" alt="" loading="lazy"></picture><div class="cap">Ipari fémlemez tetőfedés<b>1 munka</b></div></div>
-        <div class="refs-card" data-i="5" data-href="referenciak.html#badogozas"><picture><source srcset="images/site/referencia/thumb/badogozas-06.webp" type="image/webp"><img src="images/site/referencia/thumb/badogozas-06.jpg" alt="" loading="lazy"></picture><div class="cap">Bádogozás &amp; szegélyezés<b>10 munka</b></div></div>
-        <div class="refs-card" data-i="6" data-href="referenciak.html#alapozas"><picture><source srcset="images/site/referencia/thumb/alapozas-01.webp" type="image/webp"><img src="images/site/referencia/thumb/alapozas-01.jpg" alt="" loading="lazy"></picture><div class="cap">Alapozás &amp; pinceszigetelés<b>1 munka</b></div></div>
-        <div class="refs-card" data-i="7" data-href="referenciak.html#lapostetos"><picture><source srcset="images/site/referencia/thumb/lapostetos-19.webp" type="image/webp"><img src="images/site/referencia/thumb/lapostetos-19.jpg" alt="" loading="lazy"></picture><div class="cap">Lapostető szigetelés<b>24 munka</b></div></div>
+        <div class="refs-card" data-i="0" data-href="referenciak.html#lapostetoszigeteles-miskolc"><picture><source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-01.webp" type="image/webp"><img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-01.jpg" alt="" loading="lazy"></picture><div class="cap">Lapostető szigetelés<b>40 munka</b></div></div>
+        <div class="refs-card" data-i="1" data-href="referenciak.html#badogozas-szegelyezes"><picture><source srcset="images/site/referencia/thumb/badogozas-szegelyezes-02.webp" type="image/webp"><img src="images/site/referencia/thumb/badogozas-szegelyezes-02.jpg" alt="" loading="lazy"></picture><div class="cap">Bádogozás &amp; szegélyezés<b>10 munka</b></div></div>
+        <div class="refs-card" data-i="2" data-href="referenciak.html#erkely-terasz-szigeteles"><picture><source srcset="images/site/referencia/thumb/erkely-terasz-szigeteles-01.webp" type="image/webp"><img src="images/site/referencia/thumb/erkely-terasz-szigeteles-01.jpg" alt="" loading="lazy"></picture><div class="cap">Erkély &amp; terasz<b>3 munka</b></div></div>
+        <div class="refs-card" data-i="3" data-href="referenciak.html#lapostetoszigeteles-miskolc"><picture><source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-13.webp" type="image/webp"><img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-13.jpg" alt="" loading="lazy"></picture><div class="cap">Lapostető szigetelés<b>40 munka</b></div></div>
+        <div class="refs-card" data-i="4" data-href="referenciak.html#ipari-femlemez-tetofedes"><picture><source srcset="images/site/referencia/thumb/ipari-femlemez-tetofedes-01.webp" type="image/webp"><img src="images/site/referencia/thumb/ipari-femlemez-tetofedes-01.jpg" alt="" loading="lazy"></picture><div class="cap">Ipari fémlemez tetőfedés<b>1 munka</b></div></div>
+        <div class="refs-card" data-i="5" data-href="referenciak.html#badogozas-szegelyezes"><picture><source srcset="images/site/referencia/thumb/badogozas-szegelyezes-06.webp" type="image/webp"><img src="images/site/referencia/thumb/badogozas-szegelyezes-06.jpg" alt="" loading="lazy"></picture><div class="cap">Bádogozás &amp; szegélyezés<b>10 munka</b></div></div>
+        <div class="refs-card" data-i="6" data-href="referenciak.html#alapozas-pinceszigeteles"><picture><source srcset="images/site/referencia/thumb/alapozas-pinceszigeteles-01.webp" type="image/webp"><img src="images/site/referencia/thumb/alapozas-pinceszigeteles-01.jpg" alt="" loading="lazy"></picture><div class="cap">Alapozás &amp; pinceszigetelés<b>1 munka</b></div></div>
+        <div class="refs-card" data-i="7" data-href="referenciak.html#lapostetoszigeteles-miskolc"><picture><source srcset="images/site/referencia/thumb/lapostetoszigeteles-miskolc-19.webp" type="image/webp"><img src="images/site/referencia/thumb/lapostetoszigeteles-miskolc-19.jpg" alt="" loading="lazy"></picture><div class="cap">Lapostető szigetelés<b>40 munka</b></div></div>
       </div>
     </div>
     <div class="refs-nav">
