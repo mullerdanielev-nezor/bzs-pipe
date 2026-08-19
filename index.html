@@ -514,8 +514,8 @@
     .hero-content { padding-left:0; align-items:center; text-align:center; }
     .hero-eyebrow-mobile { display:flex; justify-content:center; }
     .hero-eyebrow-mobile::before { display:none; }
-    .hero-title-oneline { font-size:clamp(34px, 11vw, 52px); white-space:normal; }
-    .hero-sub { max-width:36ch; font-size:clamp(15px, 4.2vw, 18px); }
+    .hero-title-oneline { font-size:clamp(38px, 12.5vw, 56px); white-space:normal; }
+    .hero-sub { max-width:36ch; font-size:clamp(16px, 4.5vw, 19px); }
     .hero-underline { margin-left:auto; margin-right:auto; }
     .hero-ctas { flex-direction:column; align-items:center; }
     .hero-cta-solid, .hero-cta-outline { width:auto; min-width:200px; text-align:center; font-size:15px; padding:16px 30px; }
@@ -623,7 +623,7 @@
   @media (max-width: 700px) {
     .services { padding:64px 24px 72px; }
     .services-grid { grid-template-columns:1fr; }
-    .services-title { font-size:26px; }
+    .services-title { font-size:29px; }
   }
 
   /* RÓLUNK — blob-vágású kép, lebegő alakzatok, kinetikus szöveg */
@@ -885,8 +885,8 @@
   }
   @media (max-width: 700px) {
     .about { padding:64px 24px; }
-    .about-title { font-size:24px; }
-    .about-stat b { font-size:22px; }
+    .about-title { font-size:27px; }
+    .about-stat b { font-size:24px; }
     .about-stats { gap:16px; }
     .about-row { grid-template-columns:1fr; }
     .about-gallery { grid-template-columns:1fr; margin-top:40px; }
@@ -975,18 +975,19 @@
 
   @media (max-width: 900px) {
     .refs { padding:64px 24px 80px; }
-    .refs-title { font-size:24px; }
+    .refs-title { font-size:28px; }
     .refs-card { width:220px; height:270px; }
     .refs-stage-wrap { height:330px; }
   }
   @media (max-width: 600px) {
     .refs-card { width:190px; height:235px; }
     .refs-stage-wrap { height:290px; }
-    .refs-title { font-size:26px; }
-    .refs-hint { font-size:13.5px; }
-    .refs-nav { gap:14px; }
-    .refs-btn { display:none; }
-    .refs-cta { font-size:14.5px; padding:16px 28px; }
+    .refs-title { font-size:28px; }
+    .refs-hint { font-size:14px; }
+    .refs-nav { flex-wrap:wrap; row-gap:14px; }
+    .refs-btn { flex-shrink:0; order:1; }
+    #refsNext { order:2; }
+    .refs-cta { order:3; width:100%; text-align:center; justify-content:center; font-size:15px; padding:16px 28px; }
   }
 
   /* TÉRKÉP / ELÉRHETŐSÉG */
@@ -1090,8 +1091,10 @@
   }
   @media (max-width:600px) {
     .map-section, .contact-section, .faq-section { padding:56px 20px; }
-    .map-title, .contact-title, .faq-title { font-size:24px; }
+    .map-title, .contact-title, .faq-title { font-size:27px; }
     .contact-row { grid-template-columns:1fr; }
+    .contact-submit { font-size:14.5px; padding:16px 32px; width:100%; text-align:center; }
+    .faq-item summary { font-size:16px; }
   }
 
   /* PRELOADER */
@@ -1163,7 +1166,8 @@
   }
   @media (max-width:600px) {
     .reviews-section { padding:56px 20px; }
-    .reviews-title { font-size:24px; }
+    .reviews-title { font-size:27px; }
+    .review-card p { font-size:15.5px; }
   }
 
   /* LÁBLÉC */
